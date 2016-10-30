@@ -61,3 +61,15 @@
   - Nav
   - AddPhotoContainer
     - AddPhotoForm
+
+    ## Routes
+
+    |Path   | Component   |
+    |-------|-------------|
+    | "/login" | "SessionFormContainer" |
+    | "/" | "HomeContainer" |
+    | "/:username" | "ProfileContainer => ProfilePosts" |
+    | "/:username/photos" | "ProfileContainer => ProfilePhotos" |
+    | "/:username/friends" | "ProfileContainer => ProfileFriends" |
+    | "/edit-profile" | "EditProfile" |
+    | "/add-photo" | "AddPhoto" |
