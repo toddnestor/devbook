@@ -30,6 +30,56 @@ friend_id       | integer   | not null, foreign key user who's receiving the req
 status          | string    | not null, (pending when created, accepted after accepted), index
 
 ## media
-column name     | data type | details
-----------------|-----------|-----------------------
-id              | integer   | not null, primary_key
+column name        | data type | details
+-------------------|-----------|-----------------------
+id                 | integer   | not null, primary_key
+url                | string    | not null, full url to media item
+user_id            | integer   | not null, foreign key user who uploaded media
+title              | string    | null
+description        | text      | null
+media_file_name    | string    | null, paperclip gem adds this column
+media_content_type | string    | null, paperclip gem adds this column
+media_file_size    | integer   | null, paperclip gem adds this column
+media_updated_at   | datetime  | null, paperclip gem adds this column
+
+## attachments
+column name        | data type | details
+-------------------|-----------|-----------------------
+id                 | integer   | not null, primary_key
+attachable_type    | string    | not null, polymorphic relationship type
+attachable_id      | integer   | not null, polymorphic relationship id
+
+## albums
+column name        | data type | details
+-------------------|-----------|-----------------------
+id                 | integer   | not null, primary_key
+user_id            | integer   | not null, foreign key user who created album
+title              | string    | null
+description        | text      | null
+
+## activity
+column name        | data type | details
+-------------------|-----------|-----------------------
+id                 | integer   | not null, primary_key
+user_id            | integer   | not null, foreign key user who created activity
+wall_id            | integer   | not null, foreign key user who's wall activity should show up on
+targetable_type    | string    | not null, polymorphic relationship type
+targetable_id      | integer   | not null, polymorphic relationship id
+
+## comments
+column name        | data type | details
+-------------------|-----------|-----------------------
+id                 | integer   | not null, primary_key
+text               | text      | not null
+user_id            | integer   | not null, foreign key user who created comment
+commentable_type   | string    | not null, polymorphic relationship type
+commentable_id     | integer   | not null, polymorphic relationship id
+
+## meta (to store misc data from other models, like user details that don't need to be searchable such as hometown, etc)
+column name        | data type | details
+-------------------|-----------|-----------------------
+id                 | integer   | not null, primary_key
+key                | string    | not null
+value              | text      | null
+metable_type       | string    | not null, polymorphic relationship type
+metable_id         | integer   | not null, polymorphic relationship id
