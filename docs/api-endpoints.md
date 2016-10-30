@@ -17,6 +17,8 @@
 - `GET /api/users/:id`
 - `POST /api/users/:id/friend-request`
   - creates pending friend request for current user to friend with :id
+- `POST /api/users/:id/block`
+  - blocks user
 
 ### Friendships
 
@@ -28,7 +30,6 @@
 
 - `POST /api/session`
 - `DELETE /api/session`
-- `GET /api/session`
 
 ### Activity
 
