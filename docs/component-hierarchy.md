@@ -2,13 +2,22 @@
 
 **SessionFormContainer**
   - SessionForm
+    - LoginForm
+    - SignUpForm
 
-**HomeContainer**
+**App**
   - Nav
     - SearchContainer
-      -Search
+      - Search
         - FriendItem
     - ProfileMenu
+  - HomeContainer
+  - ProfileContainer
+  - EditProfileContainer
+  - AddPhoto
+
+
+**HomeContainer**
   - Home
     - ProfileCard
     - AboutCard
@@ -25,11 +34,6 @@
       - FriendItem
 
 **ProfileContainer**
-  - Nav
-    - SearchContainer
-      -Search
-        - FriendItem
-    - ProfileMenu
   - Profile
     - ProfileHeader
     - ProfilePosts
@@ -42,23 +46,17 @@
           - Comments
             - Comment
       - AdCard
-      - Notification
       - FriendsCard
         - FriendItem
     - ProfilePhotos
-      - PhotoIndex
-        - PhotoItem
+      - PhotoItem
     - ProfileFriends
-      - FriendIndex
-        - FriendItem
+      - FriendItem
 
-**EditProfile**
-  - Nav
-  - EditProfileContainer
-    - EditProfileForm
+**EditProfileContainer**
+  - EditProfile
 
 **AddPhoto**
-  - Nav
   - AddPhotoContainer
     - AddPhotoForm
 
