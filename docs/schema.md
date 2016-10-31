@@ -8,6 +8,11 @@ fname           | string    | not null, indexed
 lname           | string    | not null, indexed
 username        | string    | not null, indexed, unique
 email           | string    | not null, indexed, unique
+hometown        | text      | null
+works_at        | text      | null
+lives_at        | text      | null
+intro           | text      | null
+tagline         | text      | null
 avatar_url      | string    | null
 cover_image_url | string    | null
 password_digest | string    | not null
@@ -74,12 +79,3 @@ text               | text      | not null
 user_id            | integer   | not null, foreign key user who created comment
 commentable_type   | string    | not null, polymorphic relationship type
 commentable_id     | integer   | not null, polymorphic relationship id
-
-## meta (to store misc data from other models, like user details that don't need to be searchable such as hometown, etc)
-column name        | data type | details
--------------------|-----------|-----------------------
-id                 | integer   | not null, primary_key
-key                | string    | not null
-value              | text      | null
-metable_type       | string    | not null, polymorphic relationship type
-metable_id         | integer   | not null, polymorphic relationship id
