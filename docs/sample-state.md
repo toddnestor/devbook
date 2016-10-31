@@ -48,52 +48,7 @@
       friend_id: 2
     }
   },
-  forms: {
-    session: {
-      user: {
-        fname: "Todd",
-        lname: "Nestor",
-        email: "todd.nestor@gmail.com",
-        email_confirmation: "todd.nestor@gmail.com",
-        password: "123123",
-        password_confirmation: "123123",
-        gender: "male",
-        birthday: "January 1, 2016"
-      },
-      errors: []
-    },
-    addPhoto: {
-      photo: {
-        file: "path/to/file",
-        title: "Some Cool Title",
-        description: "Some cool description"
-      },
-      errors: []
-    },
-    addStatus: {
-      status: {
-        text: "Today was awesome",
-        photos: []
-      },
-      errors: []
-    },
-    editProfile: {
-      profile: {
-        id: 1,
-        username: "todd",
-        fname: "Todd",
-        lname: "Nestor",
-        email: "todd.nestor@gmail.com",
-        new_password: "",
-        new_password_confirmation: "",
-        hometown: "Lincoln, CA",
-        work: "App Academy",
-        intro: "",
-        tagline: ""
-      },
-      errors: []
-    }
-  },
+  errors: [],
   friendSearchTerm: "" //used to track current friend search
 }
 ```

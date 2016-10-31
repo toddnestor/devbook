@@ -37,7 +37,7 @@ sufficient CSS styling:
 
 ## Implementation Timeline
 
-### Phase 1: Backend setup and Front End User Authentication (1 days)
+### Phase 1: Backend setup and Front End User Authentication (2 days)
 
 **Objective:** Functioning rails project with front-end Authentication
 
@@ -62,11 +62,8 @@ sufficient CSS styling:
 
 **objective:** Add infinite scroll to feed
 
-### Phase 7: BONUS Photo albums (1 day)
-
-**objective:** Users can create photo albums and add photos to them.  Album creation/photos added show up in activity feeds.
-
-### Other Bonus Features (TBD)
+### Bonus Features (TBD)
+- [ ] Photos/Albums
 - [ ] Notifications
 - [ ] Likes
 - [ ] Search
