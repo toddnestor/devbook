@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161028050851) do
+ActiveRecord::Schema.define(version: 20161101170057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,30 @@ ActiveRecord::Schema.define(version: 20161028050851) do
     t.datetime "media_updated_at"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.string   "title"
     t.index ["user_id"], name: "index_media_on_user_id", using: :btree
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "fname",           null: false
+    t.string   "lname",           null: false
+    t.string   "username",        null: false
+    t.string   "email",           null: false
+    t.text     "hometown"
+    t.text     "works_at"
+    t.text     "lives_at"
+    t.text     "intro"
+    t.text     "tagline"
+    t.string   "avatar_url"
+    t.string   "cover_image_url"
+    t.string   "password_digest", null: false
+    t.string   "session_token",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["email"], name: "index_users_on_email", using: :btree
+    t.index ["fname"], name: "index_users_on_fname", using: :btree
+    t.index ["lname"], name: "index_users_on_lname", using: :btree
+    t.index ["username"], name: "index_users_on_username", using: :btree
   end
 
 end

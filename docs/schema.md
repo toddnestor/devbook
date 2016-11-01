@@ -41,7 +41,7 @@ id                 | integer   | not null, primary_key
 url                | string    | not null, full url to media item
 user_id            | integer   | not null, foreign key user who uploaded media
 title              | string    | null
-description        | text      | null
+caption            | text      | null
 media_file_name    | string    | null, paperclip gem adds this column
 media_content_type | string    | null, paperclip gem adds this column
 media_file_size    | integer   | null, paperclip gem adds this column
