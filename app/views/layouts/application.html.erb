@@ -3,12 +3,17 @@
   <head>
     <title>Devbook</title>
     <%= csrf_meta_tags %>
+    <% if current_user %>
+      <script type="text/javascript">
+        window.currentUser = {id: <%= current_user.id %>, username: "<%= current_user.username %>"}
+      </script>
+    <% end %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="with-top-navbar">
     <%= yield %>
   </body>
 </html>
