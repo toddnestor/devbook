@@ -16,4 +16,36 @@ class ApplicationController < ActionController::Base
     current_user.reset_session_token! if current_user
     session[:session_token] = nil
   end
+
+  def model
+    self.class.model
+  end
+
+  def self.model
+    controller_name.classify.constantize
+  end
+
+  def create
+    @object = model.new(input_params)
+
+    if @object.save
+      render :show
+    else
+      render '/api/shared/errors', status: 401
+    end
+  end
+
+  def update
+    if @object.update(input_params)
+      render :show
+    else
+      render '/api/shared/errors', status: 401
+    end
+  end
+
+  def set_object
+    @object = model.find(params[:id])
+    @object.destroy
+    render :show
+  end
 end
