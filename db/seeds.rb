@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.where(demo: true).destroy_all
+
 User.create(
   fname: 'Luke',
   lname: 'Skywalker',
@@ -13,6 +15,11 @@ User.create(
   email: 'jedi@rebellion.org',
   hometown: 'Tatooine',
   password: '123123',
+  works_at: 'Rebellion',
+  lives_at: 'X-wing',
+  avatar_url: 'http://devbook.objects.cdn.dream.io/images/luke.jpg',
+  cover_image_url: 'http://devbook.objects.cdn.dream.io/images/tatooine.jpg',
+  tagline: 'May the force be with you.',
   demo: true
 )
 

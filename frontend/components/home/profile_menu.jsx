@@ -23,12 +23,13 @@ class ProfileMenu extends React.Component {
 
   render() {
     let { showProfileMenu } = this.state;
+    let { currentUser } = this.props;
 
     return (
       <ul className="nav navbar-nav navbar-right m-r-0 hidden-xs">
         <li>
           <button className="btn btn-default navbar-btn navbar-btn-avitar" onClick={this.toggleProfileMenu.bind(this)} title="">
-            <img className="img-circle" src="https://en.gravatar.com/userimage/60529344/2daf3294c4731a1d4e540600dbb20d41.jpeg" />
+            <img className="img-circle" src={ currentUser.avatar_url } />
           </button>
           <div className="popover fade bottom in" role="tooltip" style={{top: '42.2px', left: '-169px', display: showProfileMenu ? 'block' : 'none'}}>
             <div className="arrow" style={{left: '91.6256%'}}></div>

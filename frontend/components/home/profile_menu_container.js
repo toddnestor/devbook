@@ -3,7 +3,7 @@ import ProfileMenu from './profile_menu';
 import { logout } from '../../actions/session_actions';
 
 const mapStateToProps = state => ({
-
+  currentUser: state.session.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -11,8 +11,10 @@ class Api::SessionsController < ApplicationController
   end
 
   def demo
-    demo_users = User.where(demo: true).to_a
-    @object = demo_users.sample
+    # if I want a random demo user each time
+    # demo_users = User.where(demo: true).to_a
+    # @object = demo_users.sample
+    @object = User.where(demo: true, fname: 'Luke', lname: 'Skywalker').first
     login(@object)
     render :show
   end
