@@ -28552,14 +28552,18 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _nav = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./nav\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	var _nav2 = _interopRequireDefault(_nav);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var App = function App(_ref) {
 	  var children = _ref.children;
 	  return _react2.default.createElement(
 	    'div',
-	    null,
-	    'App Stuff'
+	    { className: 'main-container' },
+	    _react2.default.createElement(_nav2.default, null)
 	  );
 	};
 	
@@ -28849,6 +28853,7 @@
 	    value: function validate(property) {
 	      var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
 	
+	      //needs refactored, this wasn't a clean way
 	      var errors = _.merge({}, this.state.errors);
 	
 	      switch (property) {
@@ -29311,8 +29316,7 @@
 	  }, {
 	    key: 'hasError',
 	    value: function hasError() {
-	      console.log('errors: ', this.props.errors);
-	      this.props.errors.indexOf('Invalid credentials') > -1;
+	      return this.props.errors.indexOf('Invalid credentials') > -1;
 	    }
 	  }, {
 	    key: 'render',

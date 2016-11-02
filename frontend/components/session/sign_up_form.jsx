@@ -43,6 +43,7 @@ class SignUpForm extends React.Component {
   }
 
   validate(property, cb = () => {}) {
+    //needs refactored, this wasn't a clean way
     let errors = _.merge({}, this.state.errors);
 
     switch(property) {

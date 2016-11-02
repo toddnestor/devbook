@@ -111,12 +111,12 @@
 
 .has-popup .popup {
   visibility: hidden;
-  width: 120px;
+  width: auto;
   background-color: black;
   color: #fff;
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 5px;
   position: absolute;
   z-index: 1;
 }
@@ -144,4 +144,8 @@
 
 .has-popup .popup.bottom.red:after {
   border-bottom-color: #d9534f;
+}
+
+html, body, #root {
+  height: 100%;
 }
