@@ -22,7 +22,8 @@ class LoginForm extends React.Component {
   }
 
   hasError() {
-
+    console.log('errors: ', this.props.errors);
+    this.props.errors.indexOf('Invalid credentials') > -1;
   }
 
   render() {
