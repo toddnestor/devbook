@@ -40,7 +40,7 @@ Rails.application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.debug = true
+  config.assets.debug = false
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
@@ -53,6 +53,10 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.reload_classes_only_on_change = false
+
+  class Application < Rails::Application
+    config.web_console.whitelisted_ips = ['127.0.0.1', '1.2.3.1', '1.2.3.5']
+  end
 
   Paperclip.options[:command_path] = "/usr/bin/"
 end
