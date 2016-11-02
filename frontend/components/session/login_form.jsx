@@ -21,9 +21,13 @@ class LoginForm extends React.Component {
     this.props.login(this.state);
   }
 
+  hasError() {
+
+  }
+
   render() {
     return (
-      <form className="navbar-form navbar-right app-search" role="search" onSubmit={this.handleSubmit.bind(this)}>
+      <form className="navbar-form navbar-right app-search has-popup" role="search" onSubmit={this.handleSubmit.bind(this)}>
         <div className="form-group">
           <input type="text" className="form-control" onChange={this.update('email').bind(this)} value={this.state.email} placeholder="E-mail" />
         </div>
@@ -32,6 +36,9 @@ class LoginForm extends React.Component {
         </div>
         <button className="btn btn-success btn-sm">Log In</button>
         <button className="btn btn-warning btn-sm">Demo</button>
+        <div className="popup bottom red " style={{visibility: this.hasError() ? 'visible' : 'hidden'}}>
+          Invalid credentials
+        </div>
       </form>
     );
   }
