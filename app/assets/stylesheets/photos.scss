@@ -1,0 +1,25 @@
+.photos-card {
+
+  .photo-item:nth-child(odd) {
+    margin-right: 10px;
+  }
+
+  .photo-item:nth-child(even) {
+    margin-right: 0px;
+  }
+
+  .photo-item {
+    margin-bottom: 10px;
+    display: inline-block;
+    vertical-align: bottom;
+
+    img {
+      width: 114px;
+      height: 118px;
+    }
+  }
+}
+
+.photo-item {
+  overflow: hidden;
+}
