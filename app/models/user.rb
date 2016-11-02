@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   validates :password, confirmation: true, length: {minimum: 6, allow_nil: true}
   validates :email, confirmation: true, uniqueness: true
+  validates :username, uniqueness: true
   validate :email_is_correct_format
   after_initialize :ensure_session_token
 

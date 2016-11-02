@@ -20,8 +20,30 @@ class SignUpForm extends React.Component {
     };
   }
 
-  validate(property) {
-    let errors = {};
+  componentDidMount() {
+    this.validateGlobalErrors(this.props.errors);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.validateGlobalErrors(nextProps.errors);
+  }
+
+  validateGlobalErrors(messages) {
+    let errors = _.merge({}, this.state.errors);
+
+    if(messages.indexOf('Email has already been taken') > -1) {
+      errors.email = "Email has already been taken.";
+    }
+
+    if(messages.indexOf('Username has already been taken') > -1) {
+      errors.username = "Username has already been taken.";
+    }
+
+    this.setState({errors});
+  }
+
+  validate(property, cb = () => {}) {
+    let errors = _.merge({}, this.state.errors);
 
     switch(property) {
       case 'fname':
@@ -59,11 +81,19 @@ class SignUpForm extends React.Component {
         } else {
           errors.email = null;
         }
+
+        if( this.state.email_confirmation ) {
+          if( this.state.email !== this.state.email_confirmation ) {
+            errors.email_confirmation = "E-mail address and confirmation must match.";
+          } else {
+            errors.email_confirmation = null;
+          }
+        }
         break;
       case 'email_confirmation':
         if( !this.state.email_confirmation) {
           errors.email_confirmation = "You must confirm your e-mail address.";
-        } else if ( this.state.email != this.state.email_confirmation ) {
+        } else if ( this.state.email !== this.state.email_confirmation ) {
           errors.email_confirmation = "E-mail address and confirmation must match.";
         } else {
           errors.email_confirmation = null;
@@ -102,7 +132,7 @@ class SignUpForm extends React.Component {
         break;
     }
 
-    this.setState({errors});
+    this.setState({errors}, cb);
   }
 
   update(property) {
@@ -111,16 +141,46 @@ class SignUpForm extends React.Component {
     }
   }
 
+  hasErrors() {
+    let hasErrors = false;
+
+    _.values(this.state.errors).forEach( error => {
+      if( error ) {
+        hasErrors = true;
+      }
+    });
+
+    return hasErrors;
+  }
+
+  validateList(properties = [], cb) {
+    if( properties.length < 1 ) {
+      cb();
+    } else {
+      this.validate(properties[0], () => {
+        this.validateList( properties.slice(1), cb );
+      });
+    }
+  }
+
+  validateAll(cb) {
+    this.validateList(Object.keys(this.state), cb);
+  }
+
   handleSubmit(e) {
     e.preventDefault();
 
-    let user = _.merge({}, this.state);
-    user.birthday = new Date( this.state.birthday_year, this.state.birthday_month - 1, this.state.birthday_day);
-    delete user.errors;
-    delete user.birthday_month;
-    delete user.birthday_day;
-    delete user.birthday_year;
-    this.props.signup(user);
+    this.validateAll(() => {
+      if( !this.hasErrors() ) {
+        let user = _.merge({}, this.state);
+        user.birthday = new Date( this.state.birthday_year, this.state.birthday_month - 1, this.state.birthday_day);
+        delete user.errors;
+        delete user.birthday_month;
+        delete user.birthday_day;
+        delete user.birthday_year;
+        this.props.signup(user);
+      }
+    });
   }
 
   months() {
@@ -241,7 +301,7 @@ class SignUpForm extends React.Component {
                     </label>
                   </div>
                 </div>
-                <button className="btn btn-success btn-lg green-button sign-up-button">Sign Up</button>
+                <button disabled={this.hasErrors()} className="btn btn-success btn-lg green-button sign-up-button">Sign Up</button>
               </form>
             </div>
           )

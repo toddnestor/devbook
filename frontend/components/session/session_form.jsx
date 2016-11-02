@@ -27,7 +27,7 @@ class SessionForm extends React.Component {
               </a>
             </div>
             <div className="navbar-collapse collapse" id="navbar-collapse-main">
-              <LoginForm login={login} />
+              <LoginForm login={login} errors={errors} />
             </div>
           </div>
         </nav>
@@ -48,7 +48,7 @@ class SessionForm extends React.Component {
               </div>
             </div>
             <div className="col-md-offset-1 col-md-5 col-sm-12">
-              <SignUpForm signup={signup} />
+              <SignUpForm signup={signup} errors={errors} />
             </div>
           </div>
         </div>
