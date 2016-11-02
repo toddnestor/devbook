@@ -7,7 +7,7 @@ const PhotosCard = ({ photos }) => (
       <h5 className="m-t-0">Photos <small>· <a href="#">Edit</a></small></h5>
       <div>
         {
-          photos.map( photo => <PhotoItem photo={photo} />)
+          photos.map( photo => <PhotoItem key={photo.id} photo={photo} />)
         }
       </div>
     </div>
