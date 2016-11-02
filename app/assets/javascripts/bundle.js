@@ -28112,7 +28112,7 @@
 	        _react2.default.createElement(
 	          'a',
 	          { className: 'navbar-brand', href: '/' },
-	          _react2.default.createElement('img', { src: '/assets/brand-white.png', alt: 'brand' })
+	          _react2.default.createElement('img', { src: 'http://devbook.objects.cdn.dream.io/brand-white.png', alt: 'brand' })
 	        )
 	      ),
 	      _react2.default.createElement(
@@ -28420,7 +28420,7 @@
 	              _react2.default.createElement(
 	                'a',
 	                { className: 'navbar-brand', href: 'index.html' },
-	                _react2.default.createElement('img', { src: '/assets/brand-white.png', alt: 'brand' })
+	                _react2.default.createElement('img', { src: 'http://devbook.objects.cdn.dream.io/brand-white.png', alt: 'brand' })
 	              )
 	            ),
 	            _react2.default.createElement(

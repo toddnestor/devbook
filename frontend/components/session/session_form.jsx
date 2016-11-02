@@ -23,7 +23,7 @@ class SessionForm extends React.Component {
           <div className="container">
             <div className="navbar-header">
               <a className="navbar-brand" href="index.html">
-                <img src="/assets/brand-white.png" alt="brand" />
+                <img src="http://devbook.objects.cdn.dream.io/brand-white.png" alt="brand" />
               </a>
             </div>
             <div className="navbar-collapse collapse" id="navbar-collapse-main">

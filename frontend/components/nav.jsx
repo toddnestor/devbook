@@ -7,7 +7,7 @@ const Nav = () => (
     <div className="container">
       <div className="navbar-header">
         <a className="navbar-brand" href="/">
-          <img src="/assets/brand-white.png" alt="brand" />
+          <img src="http://devbook.objects.cdn.dream.io/brand-white.png" alt="brand" />
         </a>
       </div>
       <div className="navbar-collapse collapse">
