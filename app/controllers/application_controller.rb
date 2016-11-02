@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
     @object = model.new(input_params)
 
     if @object.save
+      yield @object if block_given?
       render :show
     else
       render '/api/shared/errors', status: 401

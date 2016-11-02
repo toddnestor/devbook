@@ -11,11 +11,17 @@ const Root = ({ store }) => {
     }
   }
 
+  const _redirectUnlessLoggedIn = (nextState, replace) => {
+    if( !store.getState().session.currentUser ) {
+      replace('/login');
+    }
+  }
+
   return (
     <Provider store={store}>
       <Router history={browserHistory}>
-        <Route path="/" component={App} />
-        <Route path="/login" component={SessionFormContainer} />
+        <Route path="/" component={App} onEnter={_redirectUnlessLoggedIn} />
+        <Route path="/login" component={SessionFormContainer} onEnter={_redirectIfLoggedIn} />
       </Router>
     </Provider>
   );

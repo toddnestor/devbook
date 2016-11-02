@@ -8,19 +8,8 @@ const mapStateToProps = ({ session }) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  formType: location.hash.indexOf('login') > -1 ? 'login' : 'signup',
-  processForm: user => {
-    let formType = ownProps.location.pathname.indexOf('login') > -1 ? 'login' : 'signup';
-
-    switch( formType ) {
-      case 'login':
-        dispatch(login(user));
-        break;
-      case 'signup':
-        dispatch(signup(user));
-        break;
-    }
-  }
+  login: user => dispatch(login(user)),
+  signup: user => dispatch(signup(user))
 });
 
 export default connect(

@@ -1,6 +1,12 @@
 class Api::UsersController < ApplicationController
   before_action :set_object, only: [:update, :show, :destroy]
 
+  def create
+    super do |user|
+      login(user)
+    end
+  end
+
   private
   def input_params
     params.require(:user).permit(
@@ -17,7 +23,8 @@ class Api::UsersController < ApplicationController
       :avatar_url,
       :cover_image_url,
       :password,
-      :password_confirmation
+      :password_confirmation,
+      :birthday
     )
   end
 end
