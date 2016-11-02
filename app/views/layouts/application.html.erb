@@ -5,7 +5,13 @@
     <%= csrf_meta_tags %>
     <% if current_user %>
       <script type="text/javascript">
-        window.currentUser = {id: <%= current_user.id %>, username: "<%= current_user.username %>"}
+        window.currentUser = {
+          id: <%= current_user.id %>,
+          username: "<%= current_user.username %>",
+          lname: "<%= current_user.lname %>",
+          fname: "<%= current_user.fname %>",
+          tagline: "<%= current_user.tagline %>"
+        };
       </script>
     <% end %>
     <%= favicon_link_tag %>
