@@ -58,13 +58,13 @@
 	
 	var _root2 = _interopRequireDefault(_root);
 	
-	var _store = __webpack_require__(263);
+	var _store = __webpack_require__(265);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	window._ = __webpack_require__(269);
+	window._ = __webpack_require__(271);
 	
 	document.addEventListener('DOMContentLoaded', function () {
 	  var preconfiguredStore = {};
@@ -21468,7 +21468,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _session_form_container = __webpack_require__(258);
+	var _session_form_container = __webpack_require__(260);
 	
 	var _session_form_container2 = _interopRequireDefault(_session_form_container);
 	
@@ -28087,147 +28087,64 @@
 	  value: true
 	});
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
 	var _reactRouter = __webpack_require__(203);
 	
+	var _profile_menu_container = __webpack_require__(258);
+	
+	var _profile_menu_container2 = _interopRequireDefault(_profile_menu_container);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Nav = function (_React$Component) {
-	  _inherits(Nav, _React$Component);
-	
-	  function Nav(props) {
-	    _classCallCheck(this, Nav);
-	
-	    var _this = _possibleConstructorReturn(this, (Nav.__proto__ || Object.getPrototypeOf(Nav)).call(this, props));
-	
-	    _this.state = {};
-	    return _this;
-	  }
-	
-	  _createClass(Nav, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'nav',
-	        { className: 'navbar navbar-inverse navbar-fixed-top app-navbar' },
+	var Nav = function Nav() {
+	  return _react2.default.createElement(
+	    'nav',
+	    { className: 'navbar navbar-inverse navbar-fixed-top app-navbar' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'container' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'navbar-header' },
 	        _react2.default.createElement(
-	          'div',
-	          { className: 'container' },
+	          'a',
+	          { className: 'navbar-brand', href: '/' },
+	          _react2.default.createElement('img', { src: '/assets/brand-white.png', alt: 'brand' })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'navbar-collapse collapse' },
+	        _react2.default.createElement(
+	          'ul',
+	          { className: 'nav navbar-nav hidden-xs' },
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'navbar-header' },
+	            'li',
+	            { className: 'active' },
 	            _react2.default.createElement(
-	              'a',
-	              { className: 'navbar-brand', href: '/' },
-	              _react2.default.createElement('img', { src: '/assets/brand-white.png', alt: 'brand' })
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'navbar-collapse collapse' },
-	            _react2.default.createElement(
-	              'ul',
-	              { className: 'nav navbar-nav hidden-xs' },
-	              _react2.default.createElement(
-	                'li',
-	                { className: 'active' },
-	                _react2.default.createElement(
-	                  _reactRouter.Link,
-	                  { to: '/' },
-	                  'Home'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  'a',
-	                  { href: 'profile/index.html' },
-	                  'Profile'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  'a',
-	                  { 'data-toggle': 'modal', href: '#msgModal' },
-	                  'Messages'
-	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'ul',
-	              { className: 'nav navbar-nav navbar-right m-r-0 hidden-xs' },
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  'a',
-	                  { className: 'app-notifications', href: 'notifications/index.html' },
-	                  _react2.default.createElement('span', { className: 'icon icon-bell' })
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  'button',
-	                  { className: 'btn btn-default navbar-btn navbar-btn-avitar', title: '' },
-	                  _react2.default.createElement('img', { className: 'img-circle', src: 'https://en.gravatar.com/userimage/60529344/2daf3294c4731a1d4e540600dbb20d41.jpeg' })
-	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'form',
-	              { className: 'navbar-form navbar-right app-search', role: 'search' },
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'form-group' },
-	                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Search' })
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'ul',
-	              { className: 'nav navbar-nav' },
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  'a',
-	                  { href: '#' },
-	                  'Growl'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  'a',
-	                  { href: 'login/index.html' },
-	                  'Logout'
-	                )
-	              )
+	              _reactRouter.Link,
+	              { to: '/' },
+	              'Home'
 	            )
 	          )
+	        ),
+	        _react2.default.createElement(_profile_menu_container2.default, null),
+	        _react2.default.createElement(
+	          'form',
+	          { className: 'navbar-form navbar-right app-search', role: 'search' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'form-group' },
+	            _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Search' })
+	          )
 	        )
-	      );
-	    }
-	  }]);
-	
-	  return Nav;
-	}(_react2.default.Component);
+	      )
+	    )
+	  );
+	};
 	
 	exports.default = Nav;
 
@@ -28243,11 +28160,164 @@
 	
 	var _reactRedux = __webpack_require__(173);
 	
-	var _session_form = __webpack_require__(259);
+	var _profile_menu = __webpack_require__(259);
+	
+	var _profile_menu2 = _interopRequireDefault(_profile_menu);
+	
+	var _session_actions = __webpack_require__(264);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {};
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    logout: function logout() {
+	      return dispatch((0, _session_actions.logout)());
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_profile_menu2.default);
+
+/***/ },
+/* 259 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ProfileMenu = function (_React$Component) {
+	  _inherits(ProfileMenu, _React$Component);
+	
+	  function ProfileMenu(props) {
+	    _classCallCheck(this, ProfileMenu);
+	
+	    var _this = _possibleConstructorReturn(this, (ProfileMenu.__proto__ || Object.getPrototypeOf(ProfileMenu)).call(this, props));
+	
+	    _this.state = {
+	      showProfileMenu: false
+	    };
+	    return _this;
+	  }
+	
+	  _createClass(ProfileMenu, [{
+	    key: 'toggleProfileMenu',
+	    value: function toggleProfileMenu(e) {
+	      e.preventDefault();
+	      var profileMenuState = !this.state.showProfileMenu;
+	      this.setState({ showProfileMenu: profileMenuState });
+	    }
+	  }, {
+	    key: 'handleLogout',
+	    value: function handleLogout(e) {
+	      e.preventDefault();
+	      console.log('we happened');
+	      this.props.logout();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var showProfileMenu = this.state.showProfileMenu;
+	
+	
+	      return _react2.default.createElement(
+	        'ul',
+	        { className: 'nav navbar-nav navbar-right m-r-0 hidden-xs' },
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'btn btn-default navbar-btn navbar-btn-avitar', onClick: this.toggleProfileMenu.bind(this), title: '' },
+	            _react2.default.createElement('img', { className: 'img-circle', src: 'https://en.gravatar.com/userimage/60529344/2daf3294c4731a1d4e540600dbb20d41.jpeg' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'popover fade bottom in', role: 'tooltip', style: { top: '42.2px', left: '-169px', display: showProfileMenu ? 'block' : 'none' } },
+	            _react2.default.createElement('div', { className: 'arrow', style: { left: '91.6256%' } }),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'popover-content p-x-0' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'nav nav-stacked', style: { width: '200px' } },
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    'a',
+	                    { href: '#' },
+	                    'View Profile'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    'a',
+	                    { href: '#' },
+	                    'Edit Profile'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    'a',
+	                    { href: '#', onClick: this.handleLogout.bind(this) },
+	                    'Log Out'
+	                  )
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return ProfileMenu;
+	}(_react2.default.Component);
+	
+	exports.default = ProfileMenu;
+
+/***/ },
+/* 260 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _session_form = __webpack_require__(261);
 	
 	var _session_form2 = _interopRequireDefault(_session_form);
 	
-	var _session_actions = __webpack_require__(262);
+	var _session_actions = __webpack_require__(264);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -28276,7 +28346,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_session_form2.default);
 
 /***/ },
-/* 259 */
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28293,11 +28363,11 @@
 	
 	var _reactRouter = __webpack_require__(203);
 	
-	var _sign_up_form = __webpack_require__(260);
+	var _sign_up_form = __webpack_require__(262);
 	
 	var _sign_up_form2 = _interopRequireDefault(_sign_up_form);
 	
-	var _login_form = __webpack_require__(261);
+	var _login_form = __webpack_require__(263);
 	
 	var _login_form2 = _interopRequireDefault(_login_form);
 	
@@ -28439,7 +28509,7 @@
 	exports.default = SessionForm;
 
 /***/ },
-/* 260 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28924,7 +28994,7 @@
 	exports.default = SignUpForm;
 
 /***/ },
-/* 261 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29031,7 +29101,7 @@
 	exports.default = LoginForm;
 
 /***/ },
-/* 262 */
+/* 264 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29087,7 +29157,7 @@
 	};
 
 /***/ },
-/* 263 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29098,11 +29168,11 @@
 	
 	var _redux = __webpack_require__(180);
 	
-	var _root_reducer = __webpack_require__(264);
+	var _root_reducer = __webpack_require__(266);
 	
 	var _root_reducer2 = _interopRequireDefault(_root_reducer);
 	
-	var _root_middleware = __webpack_require__(266);
+	var _root_middleware = __webpack_require__(268);
 	
 	var _root_middleware2 = _interopRequireDefault(_root_middleware);
 	
@@ -29116,7 +29186,7 @@
 	exports.default = configureStore;
 
 /***/ },
-/* 264 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29127,7 +29197,7 @@
 	
 	var _redux = __webpack_require__(180);
 	
-	var _session_reducer = __webpack_require__(265);
+	var _session_reducer = __webpack_require__(267);
 	
 	var _session_reducer2 = _interopRequireDefault(_session_reducer);
 	
@@ -29140,7 +29210,7 @@
 	exports.default = RootReducer;
 
 /***/ },
-/* 265 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29149,7 +29219,7 @@
 	  value: true
 	});
 	
-	var _session_actions = __webpack_require__(262);
+	var _session_actions = __webpack_require__(264);
 	
 	var _defaultState = {
 	  currentUser: null,
@@ -29183,7 +29253,7 @@
 	exports.default = SessionReducer;
 
 /***/ },
-/* 266 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29194,7 +29264,7 @@
 	
 	var _redux = __webpack_require__(180);
 	
-	var _session_middleware = __webpack_require__(267);
+	var _session_middleware = __webpack_require__(269);
 	
 	var _session_middleware2 = _interopRequireDefault(_session_middleware);
 	
@@ -29205,7 +29275,7 @@
 	exports.default = RootMiddleware;
 
 /***/ },
-/* 267 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29214,9 +29284,9 @@
 	  value: true
 	});
 	
-	var _session_actions = __webpack_require__(262);
+	var _session_actions = __webpack_require__(264);
 	
-	var _session_api = __webpack_require__(268);
+	var _session_api = __webpack_require__(270);
 	
 	var _reactRouter = __webpack_require__(203);
 	
@@ -29242,9 +29312,8 @@
 	          break;
 	        case _session_actions.LOGOUT:
 	          (0, _session_api.logout)(function () {
-	            return next(action);
+	            return _reactRouter.browserHistory.push('/login');
 	          });
-	          return;
 	          break;
 	        case _session_actions.SIGNUP:
 	          (0, _session_api.signup)(action.user, success, error);
@@ -29257,7 +29326,7 @@
 	};
 
 /***/ },
-/* 268 */
+/* 270 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29306,7 +29375,7 @@
 	};
 
 /***/ },
-/* 269 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global, module) {/**

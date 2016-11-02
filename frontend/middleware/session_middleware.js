@@ -24,8 +24,7 @@ export default ({ getState, dispatch }) => next => action => {
       demoLogin(success, error);
       break;
     case LOGOUT:
-      logout(() => next(action));
-      return;
+      logout(() => browserHistory.push('/login'));
       break;
     case SIGNUP:
       signup(action.user, success, error);
