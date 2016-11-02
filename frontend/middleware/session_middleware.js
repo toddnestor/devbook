@@ -1,11 +1,12 @@
 import { receiveCurrentUser,
          receiveErrors,
          LOGIN,
+         DEMO_LOGIN,
          LOGOUT,
          SIGNUP
        } from '../actions/session_actions';
 
-import { login, signup, logout } from '../util/session_api';
+import { login, demoLogin, signup, logout } from '../util/session_api';
 import { browserHistory } from 'react-router';
 
 export default ({ getState, dispatch }) => next => action => {
@@ -18,6 +19,9 @@ export default ({ getState, dispatch }) => next => action => {
   switch(action.type) {
     case LOGIN:
       login(action.user, success, error);
+      break;
+    case DEMO_LOGIN:
+      demoLogin(success, error);
       break;
     case LOGOUT:
       logout(() => next(action));

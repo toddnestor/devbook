@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-class Nav {
+class Nav extends React.Component {
   constructor(props) {
     super(props);
 

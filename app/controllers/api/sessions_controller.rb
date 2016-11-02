@@ -10,6 +10,12 @@ class Api::SessionsController < ApplicationController
     end
   end
 
+  def demo
+    demo_users = User.where(demo: true).to_a
+    @object = demo_users.sample
+    render :show
+  end
+
   def destroy
     logout
     render json: Hash.new

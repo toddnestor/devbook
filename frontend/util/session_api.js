@@ -18,6 +18,15 @@ export const login = (user, success, error) => {
   });
 }
 
+export const demoLogin = (success, error) => {
+  $.ajax({
+    method: 'POST',
+    url: '/api/session/demo',
+    success,
+    error
+  })
+}
+
 export const logout = success => {
   $.ajax({
     method: 'DELETE',

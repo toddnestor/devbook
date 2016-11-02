@@ -15,7 +15,7 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    let { errors, login, signup } = this.props;
+    let { errors, login, signup, demoLogin } = this.props;
 
     return (
       <div className="sign-up-page">
@@ -27,7 +27,7 @@ class SessionForm extends React.Component {
               </a>
             </div>
             <div className="navbar-collapse collapse" id="navbar-collapse-main">
-              <LoginForm login={login} errors={errors} />
+              <LoginForm login={login} errors={errors} demoLogin={demoLogin} />
             </div>
           </div>
         </nav>

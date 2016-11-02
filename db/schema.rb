@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101221837) do
+ActiveRecord::Schema.define(version: 20161102153757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,10 +29,10 @@ ActiveRecord::Schema.define(version: 20161101221837) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "fname",           null: false
-    t.string   "lname",           null: false
-    t.string   "username",        null: false
-    t.string   "email",           null: false
+    t.string   "fname",                           null: false
+    t.string   "lname",                           null: false
+    t.string   "username",                        null: false
+    t.string   "email",                           null: false
     t.text     "hometown"
     t.text     "works_at"
     t.text     "lives_at"
@@ -40,11 +40,12 @@ ActiveRecord::Schema.define(version: 20161101221837) do
     t.text     "tagline"
     t.string   "avatar_url"
     t.string   "cover_image_url"
-    t.string   "password_digest", null: false
-    t.string   "session_token",   null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "password_digest",                 null: false
+    t.string   "session_token",                   null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.datetime "birthday"
+    t.boolean  "demo",            default: false
     t.index ["email"], name: "index_users_on_email", using: :btree
     t.index ["fname"], name: "index_users_on_fname", using: :btree
     t.index ["lname"], name: "index_users_on_lname", using: :btree

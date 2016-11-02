@@ -21,6 +21,11 @@ class LoginForm extends React.Component {
     this.props.login(this.state);
   }
 
+  handleDemoLogin(e) {
+    e.preventDefault();
+    this.props.demoLogin();
+  }
+
   hasError() {
     return this.props.errors.indexOf('Invalid credentials') > -1;
   }
@@ -35,9 +40,9 @@ class LoginForm extends React.Component {
           <input type="password" className="form-control" onChange={this.update('password').bind(this)} value={this.state.password} placeholder="Password" />
         </div>
         <button className="btn btn-success btn-sm">Log In</button>
-        <button className="btn btn-warning btn-sm">Demo</button>
+        <button onClick={this.handleDemoLogin.bind(this)} className="btn btn-warning btn-sm">Demo</button>
         <div className="popup bottom red " style={{visibility: this.hasError() ? 'visible' : 'hidden'}}>
-          Invalid credentials
+          Invalid username or password, please try again.
         </div>
       </form>
     );
