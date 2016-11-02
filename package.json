@@ -2,7 +2,7 @@
   "name": "devbook",
   "version": "1.0.0",
   "description": "DevBook, the social network for developers",
-  "main": "index.js",
+  "main": "frontend/devbook.jsx",
   "directories": {
     "doc": "docs",
     "test": "test"
