@@ -22,9 +22,9 @@ class SessionForm extends React.Component {
         <nav className="navbar navbar-inverse navbar-fixed-top app-navbar">
           <div className="container">
             <div className="navbar-header">
-              <a className="navbar-brand" href="index.html">
-                <img src="http://devbook.objects.cdn.dream.io/brand-white.png" alt="brand" />
-              </a>
+              <Link to="/" className="navbar-brand logo">
+                devbook
+              </Link>
             </div>
             <div className="navbar-collapse collapse" id="navbar-collapse-main">
               <LoginForm login={login} errors={errors} demoLogin={demoLogin} />

@@ -45,3 +45,12 @@
     }
   }
 }
+
+.profile-header {
+  position: relative;
+
+  .profile-header-nav {
+    background-color: rgba(0,0,0,0.5);
+    box-shadow: 0 0 25px black;
+  }
+}

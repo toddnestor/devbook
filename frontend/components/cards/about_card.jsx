@@ -5,13 +5,13 @@ const AboutCard = ({ user }) => (
         <div className="panel-body">
           <h5 className="m-t-0">About</h5>
           <ul className="list-unstyled list-spaced">
-            <li>
+            <li style={{display: user.works_at ? 'list-item' : 'none'}}>
               <span className="text-muted icon icon-info m-r"></span>Works at <a href="#">{user.works_at}</a>
             </li>
-            <li>
+            <li style={{display: user.lives_at ? 'list-item' : 'none'}}>
               <span className="text-muted icon icon-home m-r"></span>Lives in <a href="#">{user.lives_at}</a>
             </li>
-            <li>
+            <li style={{display: user.hometown ? 'list-item' : 'none'}}>
               <span className="text-muted icon icon-location-pin m-r"></span>From <a href="#">{user.hometown}</a>
             </li>
           </ul>

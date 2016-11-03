@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 
 const ProfileHeader = ({ profile }) => (
   <div className="profile-header text-center" style={{backgroundImage: `url(${profile && profile.cover_image_url ? profile.cover_image_url : 'https://devbook.objects.cdn.dream.io/media_items/media/000/000/002/large/Programmer.jpg?1478195335'})`}}>
+    <div className="gradient-overlay"></div>
     <div className="container">
       <div className="container-inner">
         <img className="img-circle media-object" src={ profile && profile.avatar_url ? profile.avatar_url : 'http://devbook.objects.cdn.dream.io/images/default_avatar.png' } />

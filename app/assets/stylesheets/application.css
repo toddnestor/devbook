@@ -174,3 +174,10 @@ html, body, #root {
 .ReactModal__Overlay.ReactModal__Overlay--after-open {
   background-color: rgba(0,0,0,0.7) !important;
 }
+
+.navbar-brand.logo {
+  font-size: 36px;
+  color: white;
+  font-weight: 700;
+  font-family: 'Arvo', serif;
+}

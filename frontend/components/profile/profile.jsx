@@ -139,10 +139,10 @@ class Profile extends React.Component {
             <Notification>
               <strong>Welcome to DevBook!</strong> Check out what your friends are up to.
             </Notification>
-            <AdCard imageSrc="http://devbook.objects.cdn.dream.io/images/instagram_2.jpg" cta="Buy a ticket" url="http://google.com">
-              <strong>It might be time to visit Iceland.</strong>
+            <AdCard imageSrc="https://devbook.objects.cdn.dream.io/media_items/media/000/000/014/original/Alderaan-Hope.jpg?1478204355" cta="Book your ticket" url="http://lmgtfy.com/?q=tickets+to+alderaan">
+              <strong>It might be time to visit Alderaan.</strong>
               <p>
-                Iceland is so chill, and everything looks cool here. Also, we heard the people are pretty nice. What are you waiting for?
+                Alderaan is awesome, the fun is explosive, you'll be sure to have a blast!
               </p>
             </AdCard>
             <FriendsCard friends={dummyFriends} />

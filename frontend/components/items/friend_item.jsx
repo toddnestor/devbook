@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const FriendItem = ({ friend }) => (
   <li className="media m-b">
-    <a className="media-left" href="#">
+    <Link to={`/${friend.username}`} className="media-left">
       <img className="media-object img-circle" src={friend.avatar_url} />
-    </a>
+    </Link>
     <div className="media-body">
       <strong>{friend.fname} {friend.lname}</strong> @{friend.username}
       <div className="media-body-actions">
