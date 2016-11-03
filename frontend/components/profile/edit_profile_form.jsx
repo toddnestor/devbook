@@ -3,7 +3,7 @@ import React from 'react';
 class EditProfileForm extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = _.merge({}, this.props.user);
     this.state.errors = {};
     this.state.password = '';
@@ -79,37 +79,16 @@ class EditProfileForm extends React.Component {
         } else {
           errors.email = null;
         }
-
-        if( this.state.email_confirmation ) {
-          if( this.state.email !== this.state.email_confirmation ) {
-            errors.email_confirmation = "E-mail address and confirmation must match.";
-          } else {
-            errors.email_confirmation = null;
-          }
-        }
-        break;
-      case 'email_confirmation':
-        if( !this.state.email_confirmation) {
-          errors.email_confirmation = "You must confirm your e-mail address.";
-        } else if ( this.state.email !== this.state.email_confirmation ) {
-          errors.email_confirmation = "E-mail address and confirmation must match.";
-        } else {
-          errors.email_confirmation = null;
-        }
         break;
       case 'password':
-        if( !this.state.password ) {
-          errors.password = "You must choose a password.";
-        } else if (this.state.password.length < 6 ) {
+        if (this.state.password && this.state.password.length < 6 ) {
           errors.password = "Your password must be at least six characters.";
         } else {
           errors.password = null;
         }
         break;
       case 'password_confirmation':
-        if( !this.state.password_confirmation ) {
-          errors.password_confirmation = "You must confirm your password";
-        } else if ( this.state.password != this.state.password_confirmation ) {
+        if ( this.state.password != this.state.password_confirmation ) {
           errors.password_confirmation = "Your password and confirmation must match.";
         } else {
           errors.password_confirmation = null;
@@ -176,6 +155,10 @@ class EditProfileForm extends React.Component {
         delete user.birthday_month;
         delete user.birthday_day;
         delete user.birthday_year;
+        if( !user.password ) {
+          delete user.password;
+          delete user.password_confirmation;
+        }
         this.props.signup(user);
       }
     });
@@ -245,15 +228,12 @@ class EditProfileForm extends React.Component {
               <input type="text" className="form-control" onChange={this.update('email').bind(this)} value={this.state.email} placeholder="E-mail address" />
               <span className="help-block" style={{display: errors['email'] ? 'block' : 'none'}}>{errors['email']}</span>
             </div>
-            <div className={errors['email_confirmation'] ? 'col-sm-12 form-group has-error' : 'col-sm-12 form-group'}>
-              <input type="text" className="form-control" onChange={this.update('email_confirmation').bind(this)} value={this.state.email_confirmation} placeholder="Confirm e-mail" />
-              <span className="help-block" style={{display: errors['email_confirmation'] ? 'block' : 'none'}}>{errors['email_confirmation']}</span>
-            </div>
             <div className={errors['password'] ? 'col-sm-12 form-group has-error' : 'col-sm-12 form-group'}>
               <input type="password" className="form-control" onChange={this.update('password').bind(this)} value={this.state.password} placeholder="New password" />
+              <span className="help-block text-info">Leave blank to keep current password</span>
               <span className="help-block" style={{display: errors['password'] ? 'block' : 'none'}}>{errors['password']}</span>
             </div>
-            <div className={errors['password_confirmation'] ? 'col-sm-12 form-group has-error' : 'col-sm-12 form-group'}>
+            <div className={errors['password_confirmation'] ? 'col-sm-12 form-group has-error' : 'col-sm-12 form-group'} style={{display: this.state.password ? 'block' : 'none'}}>
               <input type="password" className="form-control" onChange={this.update('password_confirmation').bind(this)} value={this.state.password_confirmation} placeholder="Confirm password" />
               <span className="help-block" style={{display: errors['password_confirmation'] ? 'block' : 'none'}}>{errors['password_confirmation']}</span>
             </div>
@@ -289,21 +269,44 @@ class EditProfileForm extends React.Component {
             </div>
             <div className="col-sm-12 gender-selector">
               <label className="radio-inline">
-                <input type="radio" value="male" onChange={this.update('gender').bind(this)} /> Male
+                <input type="radio" checked={this.state.gender == 'male'} value="male" onChange={this.update('gender').bind(this)} /> Male
                 </label>
                 <label className="radio-inline">
-                  <input type="radio" value="female" onChange={this.update('gender').bind(this)} /> Female
+                  <input type="radio" checked={this.state.gender == 'female'} value="female" onChange={this.update('gender').bind(this)} /> Female
                   </label>
                   <label className="radio-inline">
-                    <input type="radio" value="other" onChange={this.update('gender').bind(this)} /> Other
+                    <input type="radio" checked={this.state.gender == 'other'} value="other" onChange={this.update('gender').bind(this)} /> Other
                     </label>
-                  </div>
+            </div>
+            <div className="col-sm-12 form-group">
+              <label for="tagline">Tagline</label>
+              <input id="tagline" type="text" className="form-control" onChange={this.update('tagline').bind(this)} value={this.state.tagline} placeholder="Tagline" />
+            </div>
+            <div className="col-sm-12 form-group">
+              <label for="intro">Intro</label>
+              <textarea id="intro" className="form-control" onChange={this.update('intro').bind(this)} value={this.state.intro} placeholder="Intro..."></textarea>
+            </div>
+            <div className="col-sm-12 form-group">
+              <label for="relationship_status">Relationship Status</label>
+              <input id="relationship_status" type="text" className="form-control" onChange={this.update('relationship_status').bind(this)} value={this.state.relationship_status} placeholder="Relationship Status..." />
+            </div>
+            <div className="col-sm-12 form-group">
+              <label for="hometown">Hometown</label>
+              <input type="text" id="hometown" className="form-control" onChange={this.update('hometown').bind(this)} value={this.state.hometown} placeholder="Hometown" />
+            </div>
+            <div className="col-sm-12 form-group">
+              <label for="works_at">Works at</label>
+              <input id="works_at" type="text" className="form-control" onChange={this.update('works_at').bind(this)} value={this.state.works_at} placeholder="Works at..." />
+            </div>
+            <div className="col-sm-12 form-group">
+              <label for="lives_at">Lives at</label>
+              <input id="lives_at" type="text" className="form-control" onChange={this.update('works_at').bind(this)} value={this.state.lives_at} placeholder="Lives at..." />
+            </div>
                 </div>
                 <button disabled={this.hasErrors()} className="btn btn-success btn-lg green-button sign-up-button">Update Profile</button>
               </form>
             </div>
-          )
-
+          );
   }
 };
 

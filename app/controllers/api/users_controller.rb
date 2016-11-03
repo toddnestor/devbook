@@ -24,7 +24,9 @@ class Api::UsersController < ApplicationController
       :cover_image_url,
       :password,
       :password_confirmation,
-      :birthday
+      :birthday,
+      :gender,
+      :relationship_status
     )
   end
 end

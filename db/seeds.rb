@@ -18,6 +18,7 @@ User.create(
   works_at: 'Rebellion',
   lives_at: 'X-wing',
   birthday: 24.years.ago,
+  gender: 'male',
   avatar_url: 'http://devbook.objects.cdn.dream.io/images/luke.jpg',
   cover_image_url: 'http://devbook.objects.cdn.dream.io/images/tatooine.jpg',
   tagline: 'May the force be with you.',
@@ -27,6 +28,7 @@ User.create(
 User.create(
   fname: 'Leia',
   lname: 'Organa',
+  gender: 'female',
   username: 'leia',
   email: 'princess@rebellion.org',
   hometown: 'Alderaan',
