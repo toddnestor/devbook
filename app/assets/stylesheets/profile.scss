@@ -24,3 +24,24 @@
     display: block;
   }
 }
+
+.profile-menu-dropdown {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    position: relative;
+    display: block;
+
+    a {
+      position: relative;
+      display: block;
+      padding: 10px 15px;
+    }
+
+    a:hover {
+      text-decoration: none;
+      background-color: #f5f8fa;
+    }
+  }
+}
