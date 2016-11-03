@@ -4,6 +4,7 @@ import Root from './components/root';
 import configureStore from './store/store';
 
 window._ = require('lodash');
+window.moment = require('moment');
 
 document.addEventListener('DOMContentLoaded', () => {
   let preconfiguredStore = {};
