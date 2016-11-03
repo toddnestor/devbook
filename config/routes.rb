@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :update, :destroy, :show]
     post '/session/demo', to: 'sessions#demo'
     resource :session, only: [:create, :destroy]
+    resources :media_items, only: [:create, :update, :destroy, :show]
   end
 
   root to: 'static_pages#root'

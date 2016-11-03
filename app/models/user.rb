@@ -4,8 +4,9 @@ class User < ApplicationRecord
   validates :username, uniqueness: true
   validate :email_is_correct_format
   after_initialize :ensure_session_token
+  after_initialize :set_avatar_url
 
-  attr_accessor :password
+  attr_accessor :password, :email
 
   def self.find_by_credentials(email, password)
     @user = User.find_by_email(email)
@@ -17,6 +18,7 @@ class User < ApplicationRecord
     @password = password
     self.password_digest = BCrypt::Password.create(password)
   end
+
 
   def reset_session_token!
     self.session_token = generate_session_token
@@ -34,6 +36,14 @@ class User < ApplicationRecord
 
   def generate_session_token
     SecureRandom::urlsafe_base64
+  end
+
+  def set_avatar_url
+    unless self.avatar_url
+      hash = ""
+      hash = Digest::MD5.hexdigest(self.attributes["email"]) if self.attributes["email"]
+      self.avatar_url = "https://www.gravatar.com/avatar/#{hash}"
+    end
   end
 
   def email_is_correct_format

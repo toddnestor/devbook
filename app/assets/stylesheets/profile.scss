@@ -4,4 +4,23 @@
   border: 1px solid #d3e0e9;
   padding-top: 20px;
   padding-bottom: 20px;
+
+  h3 {
+    text-align: center;
+  }
+
+  .upload-area {
+    text-align: center;
+  }
+
+  .edit-avatar {
+    cursor: pointer;
+  }
+
+  .click-help-text {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    display: block;
+  }
 }

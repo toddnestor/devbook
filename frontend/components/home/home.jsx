@@ -74,16 +74,20 @@ const dummyActivities = [
     photos: [
       {
         id: 1,
-        url: 'http://devbook.objects.cdn.dream.io/images/unsplash_1.jpg'},
+        url: 'http://devbook.objects.cdn.dream.io/images/unsplash_1.jpg'
+      },
       {
         id: 2,
-        url: 'http://devbook.objects.cdn.dream.io/images/instagram_1.jpg'},
+        url: 'http://devbook.objects.cdn.dream.io/images/instagram_1.jpg'
+      },
       {
         id: 3,
-        url: 'http://devbook.objects.cdn.dream.io/images/instagram_13.jpg'},
+        url: 'http://devbook.objects.cdn.dream.io/images/instagram_13.jpg'
+      },
       {
         id: 4,
-        url: 'http://devbook.objects.cdn.dream.io/images/unsplash_2.jpg'}
+        url: 'http://devbook.objects.cdn.dream.io/images/unsplash_2.jpg'
+      }
     ],
     comments: [
       {

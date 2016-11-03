@@ -1,4 +1,5 @@
 import React from 'react';
+import Textarea from 'react-textarea-autosize';
 
 class EditProfileForm extends React.Component {
   constructor(props) {
@@ -279,27 +280,27 @@ class EditProfileForm extends React.Component {
                     </label>
             </div>
             <div className="col-sm-12 form-group">
-              <label for="tagline">Tagline</label>
+              <label htmlFor="tagline">Tagline</label>
               <input id="tagline" type="text" className="form-control" onChange={this.update('tagline').bind(this)} value={this.state.tagline} placeholder="Tagline" />
             </div>
             <div className="col-sm-12 form-group">
-              <label for="intro">Intro</label>
-              <textarea id="intro" className="form-control" onChange={this.update('intro').bind(this)} value={this.state.intro} placeholder="Intro..."></textarea>
+              <label htmlFor="intro">Intro</label>
+              <Textarea id="intro" className="form-control" onChange={this.update('intro').bind(this)} value={this.state.intro} placeholder="Intro..."></Textarea>
             </div>
             <div className="col-sm-12 form-group">
-              <label for="relationship_status">Relationship Status</label>
+              <label htmlFor="relationship_status">Relationship Status</label>
               <input id="relationship_status" type="text" className="form-control" onChange={this.update('relationship_status').bind(this)} value={this.state.relationship_status} placeholder="Relationship Status..." />
             </div>
             <div className="col-sm-12 form-group">
-              <label for="hometown">Hometown</label>
+              <label htmlFor="hometown">Hometown</label>
               <input type="text" id="hometown" className="form-control" onChange={this.update('hometown').bind(this)} value={this.state.hometown} placeholder="Hometown" />
             </div>
             <div className="col-sm-12 form-group">
-              <label for="works_at">Works at</label>
+              <label htmlFor="works_at">Works at</label>
               <input id="works_at" type="text" className="form-control" onChange={this.update('works_at').bind(this)} value={this.state.works_at} placeholder="Works at..." />
             </div>
             <div className="col-sm-12 form-group">
-              <label for="lives_at">Lives at</label>
+              <label htmlFor="lives_at">Lives at</label>
               <input id="lives_at" type="text" className="form-control" onChange={this.update('lives_at').bind(this)} value={this.state.lives_at} placeholder="Lives at..." />
             </div>
                 </div>

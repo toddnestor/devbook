@@ -20,3 +20,6 @@ bundle.js
 bundle.js.map
 /rules.xml
 /bootstrap.css
+
+# Ignore application configuration
+/config/application.yml
