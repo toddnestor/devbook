@@ -37,7 +37,7 @@ class ProfileMenu extends React.Component {
       <ul className="nav navbar-nav navbar-right m-r-0 hidden-xs">
         <li>
           <button className="btn btn-default navbar-btn navbar-btn-avitar" onClick={this.toggleProfileMenu} title="">
-            <img className="img-circle" src={ currentUser.avatar_url } />
+            <img className="img-circle" src={ currentUser && currentUser.avatar_url ? currentUser.avatar_url : '' } />
           </button>
           <div className="popover fade bottom in" role="tooltip" style={{top: '42.2px', left: '-169px', display: showProfileMenu ? 'block' : 'none'}}>
             <div className="arrow" style={{left: '91.6256%'}}></div>

@@ -19,6 +19,11 @@ class Upload extends React.Component {
     this.state = {
       modalIsOpen: false
     };
+
+    this.options = _.merge( {
+      callback: files => console.log(files),
+      multiple: true
+    }, this.props );
   }
 
   componentWillMount() {
@@ -30,7 +35,6 @@ class Upload extends React.Component {
   }
 
   onDrop(files) {
-    console.log('the files ', files);
     let data = new FormData();
 
     $.each(files, function(key, value)
@@ -47,7 +51,8 @@ class Upload extends React.Component {
       contentType: false,
       data,
       success: data => {
-        console.log(data);
+        this.options.callback(data);
+        this.closeModal();
       }
     });
   }
@@ -73,7 +78,7 @@ class Upload extends React.Component {
             contentLabel="Example Modal"
           >
           <div>
-            <Dropzone className="dropzone" onDrop={this.onDrop}>
+            <Dropzone multiple={this.options.multiple} className="dropzone" onDrop={this.onDrop.bind(this)}>
               <div>
                 Drop files here or click to upload.
               </div>

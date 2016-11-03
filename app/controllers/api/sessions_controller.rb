@@ -15,8 +15,12 @@ class Api::SessionsController < ApplicationController
     # demo_users = User.where(demo: true).to_a
     # @object = demo_users.sample
     @object = User.where(demo: true, fname: 'Luke', lname: 'Skywalker').first
-    login(@object)
-    render :show
+    if @object
+      login(@object)
+      render :show
+    else
+      render json: Hash.new, status: 401
+    end
   end
 
   def destroy

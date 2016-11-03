@@ -22,6 +22,8 @@ User.create(
   avatar_url: 'http://devbook.objects.cdn.dream.io/images/luke.jpg',
   cover_image_url: 'http://devbook.objects.cdn.dream.io/images/tatooine.jpg',
   tagline: 'May the force be with you.',
+  relationship_status: 'single',
+  intro: 'I am a jedi knight, like my father before me.',
   demo: true
 )
 

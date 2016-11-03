@@ -2,11 +2,12 @@ class User < ApplicationRecord
   validates :password, confirmation: true, length: {minimum: 6, allow_nil: true}
   validates :email, confirmation: true, uniqueness: true
   validates :username, uniqueness: true
+  validates :username, :email, presence: true
   validate :email_is_correct_format
   after_initialize :ensure_session_token
   after_initialize :set_avatar_url
 
-  attr_accessor :password, :email
+  attr_accessor :password
 
   def self.find_by_credentials(email, password)
     @user = User.find_by_email(email)

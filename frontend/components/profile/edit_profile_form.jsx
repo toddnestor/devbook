@@ -6,6 +6,8 @@ class EditProfileForm extends React.Component {
     super(props);
 
     this.state = _.merge({}, this.props.user);
+    this.state.avatar_url = this.props.avatar_url;
+    this.state.cover_image_url = this.props.cover_image_url;
     this.state.errors = {};
     this.state.password = '';
     this.state.password_confirmation = '';
@@ -24,6 +26,10 @@ class EditProfileForm extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.validateGlobalErrors(nextProps.errors);
+    this.setState({
+      avatar_url: nextProps.avatar_url,
+      cover_image_url: nextProps.cover_image_url
+    });
   }
 
   validateGlobalErrors(messages) {
