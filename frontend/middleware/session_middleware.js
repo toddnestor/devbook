@@ -3,10 +3,11 @@ import { receiveCurrentUser,
          LOGIN,
          DEMO_LOGIN,
          LOGOUT,
-         SIGNUP
+         SIGNUP,
+         UPDATE_USER
        } from '../actions/session_actions';
 
-import { login, demoLogin, signup, logout } from '../util/session_api';
+import { login, demoLogin, signup, logout, updateUser } from '../util/session_api';
 import { browserHistory } from 'react-router';
 
 export default ({ getState, dispatch }) => next => action => {
@@ -25,6 +26,9 @@ export default ({ getState, dispatch }) => next => action => {
       break;
     case LOGOUT:
       logout(() => browserHistory.push('/login'));
+      break;
+    case UPDATE_USER:
+      updateUser(action.user, user => dispatch(receiveCurrentUser(user)), error);
       break;
     case SIGNUP:
       signup(action.user, success, error);

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import EditProfile from './edit_profile';
-import { signup } from '../../actions/session_actions';
+import { updateUser } from '../../actions/session_actions';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  signup: user => dispatch(signup(user))
+  updateUser: user => dispatch(updateUser(user))
 });
 
 export default connect(

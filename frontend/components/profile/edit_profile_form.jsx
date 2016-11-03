@@ -159,7 +159,7 @@ class EditProfileForm extends React.Component {
           delete user.password;
           delete user.password_confirmation;
         }
-        this.props.signup(user);
+        this.props.updateUser(user);
       }
     });
   }
@@ -238,7 +238,7 @@ class EditProfileForm extends React.Component {
               <span className="help-block" style={{display: errors['password_confirmation'] ? 'block' : 'none'}}>{errors['password_confirmation']}</span>
             </div>
             <div className={errors['birthday'] ? 'col-sm-12 form-group has-error' : 'col-sm-12 form-group'}>
-              <div className="birthday-label">Birthday</div>
+              <label>Birthday</label>
               <div className="birthday-selector">
                 <select onChange={this.update('birthday_month').bind(this)} value={this.state.birthday_month}>
                   <option value="0">Month</option>
@@ -300,7 +300,7 @@ class EditProfileForm extends React.Component {
             </div>
             <div className="col-sm-12 form-group">
               <label for="lives_at">Lives at</label>
-              <input id="lives_at" type="text" className="form-control" onChange={this.update('works_at').bind(this)} value={this.state.lives_at} placeholder="Lives at..." />
+              <input id="lives_at" type="text" className="form-control" onChange={this.update('lives_at').bind(this)} value={this.state.lives_at} placeholder="Lives at..." />
             </div>
                 </div>
                 <button disabled={this.hasErrors()} className="btn btn-success btn-lg green-button sign-up-button">Update Profile</button>

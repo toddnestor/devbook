@@ -36,6 +36,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def destroy
+    @object.destroy
+    render :show
+  end
+
   def update
     if @object.update(input_params)
       render :show
@@ -46,7 +51,5 @@ class ApplicationController < ActionController::Base
 
   def set_object
     @object = model.find(params[:id])
-    @object.destroy
-    render :show
   end
 end

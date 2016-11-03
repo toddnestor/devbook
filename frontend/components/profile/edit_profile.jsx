@@ -1,7 +1,7 @@
 import React from 'react';
 import EditProfileForm from './edit_profile_form';
 
-const EditProfile = ({ currentUser, signup, errors }) => {
+const EditProfile = ({ currentUser, updateUser, errors }) => {
 
   return (
     <div className="container p-t-md">
@@ -11,7 +11,7 @@ const EditProfile = ({ currentUser, signup, errors }) => {
             edit avatar
           </div>
           <div className="col-md-9">
-            <EditProfileForm signup={signup} errors={errors} user={currentUser} mode="edit" />
+            <EditProfileForm updateUser={updateUser} errors={errors} user={currentUser} mode="edit" />
           </div>
         </div>
       </div>
