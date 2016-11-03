@@ -72,17 +72,27 @@ const dummyActivities = [
     time_ago: '4 min',
     text: 'Alcatra cow flank swine. Ground round short loin andouille kevin frankfurter kielbasa. Tenderloin prosciutto porchetta flank ground round. Venison tri-tip leberkas meatloaf, ground round bacon kevin frankfurter sirloin ham tenderloin brisket hamburger andouille swine',
     photos: [
-      {url: 'http://devbook.objects.cdn.dream.io/images/unsplash_1.jpg'},
-      {url: 'http://devbook.objects.cdn.dream.io/images/instagram_1.jpg'},
-      {url: 'http://devbook.objects.cdn.dream.io/images/instagram_13.jpg'},
-      {url: 'http://devbook.objects.cdn.dream.io/images/unsplash_2.jpg'}
+      {
+        id: 1,
+        url: 'http://devbook.objects.cdn.dream.io/images/unsplash_1.jpg'},
+      {
+        id: 2,
+        url: 'http://devbook.objects.cdn.dream.io/images/instagram_1.jpg'},
+      {
+        id: 3,
+        url: 'http://devbook.objects.cdn.dream.io/images/instagram_13.jpg'},
+      {
+        id: 4,
+        url: 'http://devbook.objects.cdn.dream.io/images/unsplash_2.jpg'}
     ],
     comments: [
       {
+        id: 1,
         user: dummyFriends[0],
         text: 'Andouille beef tri-tip rump cupim, porchetta cow swine.'
       },
       {
+        id: 2,
         user: dummyFriends[1],
         text: 'Brisket bresaola alcatra beef leberkas chuck jowl, sausage drumstick pig. Filet mignon shank short loin jerky sausage ham hock, corned beef ball tip porchetta frankfurter tail swine beef ribs short ribs turkey.'
       }

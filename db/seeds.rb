@@ -17,6 +17,7 @@ User.create(
   password: '123123',
   works_at: 'Rebellion',
   lives_at: 'X-wing',
+  birthday: 24.years.ago,
   avatar_url: 'http://devbook.objects.cdn.dream.io/images/luke.jpg',
   cover_image_url: 'http://devbook.objects.cdn.dream.io/images/tatooine.jpg',
   tagline: 'May the force be with you.',

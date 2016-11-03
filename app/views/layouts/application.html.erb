@@ -3,6 +3,7 @@
   <head>
     <title>Devbook</title>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <% if current_user %>
       <script type="text/javascript">
         window.currentUser = {
@@ -10,12 +11,14 @@
           username: "<%= current_user.username %>",
           lname: "<%= current_user.lname %>",
           fname: "<%= current_user.fname %>",
+          email: "<%= current_user.email %>",
           tagline: "<%= current_user.tagline %>",
           avatar_url: "<%= current_user.avatar_url %>",
           cover_image_url: "<%= current_user.cover_image_url %>",
           works_at: "<%= current_user.works_at %>",
           lives_at: "<%= current_user.lives_at %>",
-          hometown: "<%= current_user.hometown %>"
+          hometown: "<%= current_user.hometown %>",
+          birthday: "<%= current_user.birthday %>"
         };
       </script>
     <% end %>

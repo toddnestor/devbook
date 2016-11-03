@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 class ProfileMenu extends React.Component {
   constructor(props) {
@@ -7,6 +8,13 @@ class ProfileMenu extends React.Component {
     this.state = {
       showProfileMenu: false
     };
+
+    this.toggleProfileMenu = this.toggleProfileMenu.bind(this);
+    this.closeProfileMenu = this.closeProfileMenu.bind(this);
+  }
+
+  closeProfileMenu() {
+    this.setState({showProfileMenu: false});
   }
 
   toggleProfileMenu(e) {
@@ -28,7 +36,7 @@ class ProfileMenu extends React.Component {
     return (
       <ul className="nav navbar-nav navbar-right m-r-0 hidden-xs">
         <li>
-          <button className="btn btn-default navbar-btn navbar-btn-avitar" onClick={this.toggleProfileMenu.bind(this)} title="">
+          <button className="btn btn-default navbar-btn navbar-btn-avitar" onClick={this.toggleProfileMenu} title="">
             <img className="img-circle" src={ currentUser.avatar_url } />
           </button>
           <div className="popover fade bottom in" role="tooltip" style={{top: '42.2px', left: '-169px', display: showProfileMenu ? 'block' : 'none'}}>
@@ -36,7 +44,7 @@ class ProfileMenu extends React.Component {
             <div className="popover-content p-x-0">
               <div className="nav nav-stacked" style={{width: '200px'}}>
                 <li><a href="#">View Profile</a></li>
-                <li><a href="#">Edit Profile</a></li>
+                <li><Link onClick={this.closeProfileMenu} to={'/edit-profile'}>Edit Profile</Link></li>
                 <li><a href="#" onClick={this.handleLogout.bind(this)}>Log Out</a></li>
               </div>
             </div>
