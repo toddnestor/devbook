@@ -23,12 +23,12 @@ const Root = ({ store }) => {
   return (
     <Provider store={store}>
       <Router history={browserHistory}>
+        <Route path="/login" component={SessionFormContainer} onEnter={_redirectIfLoggedIn} />
         <Route path="/" component={App} onEnter={_redirectUnlessLoggedIn}>
           <IndexRoute component={HomeContainer} />
           <Route path="edit-profile" component={EditProfileContainer} />
           <Route path=":username" component={ProfileContainer} />
         </Route>
-        <Route path="/login" component={SessionFormContainer} onEnter={_redirectIfLoggedIn} />
       </Router>
     </Provider>
   );
