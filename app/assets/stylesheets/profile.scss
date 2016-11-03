@@ -23,6 +23,16 @@
     font-size: 16px;
     display: block;
   }
+
+  .tab-content {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: 0;
+    margin-bottom: 20px;
+    padding: 20px;
+  }
 }
 
 .profile-menu-dropdown {
