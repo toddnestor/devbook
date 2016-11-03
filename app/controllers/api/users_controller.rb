@@ -1,10 +1,14 @@
 class Api::UsersController < ApplicationController
-  before_action :set_object, only: [:update, :show, :destroy]
+  before_action :set_object, only: [:update, :destroy]
 
   def create
     super do |user|
       login(user)
     end
+  end
+
+  def show
+    @object = User.find_by_username(params[:username])
   end
 
   private
