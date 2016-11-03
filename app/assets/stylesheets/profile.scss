@@ -64,3 +64,17 @@
     box-shadow: 0 0 25px black;
   }
 }
+
+.profile-photos {
+  .photo-item {
+    display: inline-block;
+    overflow: visible;
+    margin: 10px;
+    vertical-align: bottom;
+
+    img {
+      max-width: 300px;
+      height:auto;
+    }
+  }
+}

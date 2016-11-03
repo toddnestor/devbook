@@ -6,6 +6,9 @@ import SessionFormContainer from './session/session_form_container';
 import HomeContainer from './home/home_container';
 import EditProfileContainer from './profile/edit_profile_container';
 import ProfileContainer from './profile/profile_container';
+import PostsContainer from './profile/posts_container';
+import PhotosContainer from './profile/photos_container';
+import FriendsContainer from './profile/friends_container';
 
 const Root = ({ store }) => {
   const _redirectIfLoggedIn = (nextState, replace) => {
@@ -27,7 +30,11 @@ const Root = ({ store }) => {
         <Route path="/" component={App} onEnter={_redirectUnlessLoggedIn}>
           <IndexRoute component={HomeContainer} />
           <Route path="edit-profile" component={EditProfileContainer} />
-          <Route path=":username" component={ProfileContainer} />
+          <Route path=":username" component={ProfileContainer}>
+            <IndexRoute component={PostsContainer} />
+            <Route path="photos" component={PhotosContainer} />
+            <Route path="friends" component={FriendsContainer} />
+          </Route>
         </Route>
       </Router>
     </Provider>

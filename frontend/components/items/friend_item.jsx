@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const FriendItem = ({ friend }) => (
-  <li className="media m-b">
+  <li className="media m-b friend-item">
     <Link to={`/${friend.username}`} className="media-left">
       <img className="media-object img-circle" src={friend.avatar_url} />
     </Link>
