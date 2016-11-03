@@ -47,6 +47,12 @@ class User < ApplicationRecord
     end
   end
 
+  def set_cover_image
+    unless self.cover_image_url
+      self.cover_image_url = 'https://devbook.objects.cdn.dream.io/media_items/media/000/000/002/large/Programmer.jpg?1478195335'
+    end
+  end
+
   def email_is_correct_format
     unless self.email =~ /^[a-z0-9]{1}[a-z0-9\+\.\-\_]{1,}@[a-z0-9]{1}[a-z0-9\-]{1,}\.[a-z0-9\-]{2,}$/i
       self.errors[:email] = "must be a validly formatted e-mail address."
