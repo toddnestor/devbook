@@ -1,5 +1,6 @@
 class Api::UsersController < ApplicationController
   before_action :set_object, only: [:update, :destroy]
+  before_action :authenticate_user!, only: [:show, :update, :destroy]
 
   def create
     super do |user|
@@ -9,6 +10,10 @@ class Api::UsersController < ApplicationController
 
   def show
     @object = User.find_by_username(params[:username])
+
+    unless current_user == @object || current_user.are_we_friends?(@object)
+      render json: ["You must be friends to view user's profile"], status: 401
+    end
   end
 
   private

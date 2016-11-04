@@ -4,7 +4,7 @@ class Friendship < ApplicationRecord
 
     transaction do
       friendship1 = create(user: requestor, friend: requestee, status: 'pending')
-      friendship2 = create(user: requestee, friend: requestor, status: 'pending')
+      friendship2 = create(user: requestee, friend: requestor, status: 'requested')
 
       friendship1
     end
@@ -54,7 +54,12 @@ class Friendship < ApplicationRecord
   end
 
   def blocked_friendship_exists?
-    Friendship.exists?(user_id: user_id, friend_id: friend_id, state: 'blocked') || UserFriendship.exists?(user_id: friend_id, friend_id: user_id, state: 'blocked') || UserFriendship.exists?(user_id: user_id, friend_id: friend_id, state: 'been_blocked') || Friendship.exists?(user_id: friend_id, friend_id: user_id, state: 'been_blocked')
+    # needs refactored into one query
+    return true if Friendship.exists?(user_id: user_id, friend_id: friend_id, status: 'blocked')
+    return true if Friendship.exists?(user_id: friend_id, friend_id: user_id, status: 'blocked')
+    return true if Friendship.exists?(user_id: user_id, friend_id: friend_id, status: 'been_blocked')
+    return true if Friendship.exists?(user_id: friend_id, friend_id: user_id, status: 'been_blocked')
+    false
   end
 
   private
@@ -67,6 +72,6 @@ class Friendship < ApplicationRecord
   end
 
   def delete_mutual_friendship!
-    mutual_friendship.delete
+    mutual_friendship.delete if mutual_friendship
   end
 end

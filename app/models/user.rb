@@ -9,7 +9,12 @@ class User < ApplicationRecord
 
   attr_accessor :password
 
-  has_many :friendships
+  has_many :media_items
+
+  has_many :friendships,
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :Friendship
 
   has_many :friends,
     -> { where(friendships: { status: 'accepted' }) },
