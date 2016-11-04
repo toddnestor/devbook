@@ -14,6 +14,10 @@ class Friendship < ApplicationRecord
     Friendship.exists?(user_id: user1.id, friend_id: user2.id) || Friendship.exists?(user_id: user2.id, friend_id: user1.id)
   end
 
+  def self.friendship_between(user1, user2)
+    Friendship.where(user_id: user1.id, friend_id: user2.id).first
+  end
+
   validate :not_blocked
 
   belongs_to :user

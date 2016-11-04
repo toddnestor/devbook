@@ -10,7 +10,8 @@ const FriendItem = ({ friend }) => (
       <strong>{friend.fname} {friend.lname}</strong> @{friend.username}
       <div className="media-body-actions">
         <button className="btn btn-primary-outline btn-sm">
-          <span className={friend.are_friends ? 'icon icon-check' : 'icon icon-add-user'}></span> {friend.are_friends ? 'Friends' : 'Friend'}</button>
+          <span className={friend.are_friends ? 'icon icon-check' : 'icon icon-add-user'}></span> {friend.are_friends ? 'Friends' : 'Friend'}
+        </button>
       </div>
     </div>
   </li>

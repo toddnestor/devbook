@@ -1,6 +1,10 @@
 class Api::UsersController < ApplicationController
   before_action :set_object, only: [:update, :destroy]
-  before_action :authenticate_user!, only: [:show, :update, :destroy]
+  before_action :authenticate_user!, only: [:show, :update, :destroy, :index]
+
+  def index
+    @users = User.where.not(id: current_user.been_blocked_friendships.pluck(:friend_id)).all
+  end
 
   def create
     super do |user|

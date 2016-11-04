@@ -6,10 +6,18 @@ class EditProfile extends React.Component {
   constructor(props) {
     super(props);
 
+    this.displayProfileLink = false;
+
     this.state = _.merge({}, {
       avatar_url: this.props.currentUser.avatar_url,
       cover_image_url: this.props.currentUser.cover_image_url
     });
+  }
+
+  componentWillReceiveProps(newProps) {
+    if( newProps.currentUser.saved ) {
+      this.displayProfileLink = true;
+    }
   }
 
   afterAvatarUpload(files) {
@@ -53,7 +61,7 @@ class EditProfile extends React.Component {
                 </button>
                 <strong>Success!</strong> Your profile was saved.
               </div>
-              <EditProfileForm updateUser={updateUser} avatar_url={this.state.avatar_url} cover_image_url={this.state.cover_image_url} errors={errors} user={currentUser} mode="edit" />
+              <EditProfileForm updateUser={updateUser} avatar_url={this.state.avatar_url} cover_image_url={this.state.cover_image_url} errors={errors} user={currentUser} profileLink={this.displayProfileLink} mode="edit" />
             </div>
           </div>
         </div>

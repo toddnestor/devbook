@@ -1,5 +1,6 @@
 import React from 'react';
 import Textarea from 'react-textarea-autosize';
+import { Link } from 'react-router';
 
 class EditProfileForm extends React.Component {
   constructor(props) {
@@ -23,6 +24,10 @@ class EditProfileForm extends React.Component {
 
   componentDidMount() {
     this.validateGlobalErrors(this.props.errors);
+  }
+
+  componentWillUnmount() {
+    this.dismissSaved();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -219,6 +224,7 @@ class EditProfileForm extends React.Component {
 
   render() {
     let {errors, editingTab} = this.state;
+    let { profileLink } = this.props;
 
     return (
       <div className="sign-up-form">
@@ -356,6 +362,9 @@ class EditProfileForm extends React.Component {
             </div>
           </div>
           <button disabled={this.hasErrors()} className="btn btn-success btn-lg green-button sign-up-button">Update Profile</button>
+          <Link to={`/${this.state.username}`} style={{display: profileLink ? 'inline-block' : 'none'}} className="btn btn-primary-outline btn-sm view-profile-btn">
+            View Profile
+          </Link>
         </form>
       </div>
     );

@@ -12,8 +12,11 @@ const Nav = () => (
       </div>
       <div className="navbar-collapse collapse">
         <ul className="nav navbar-nav hidden-xs">
-          <li className="active">
+          <li className={location.pathname == '/' ? 'active' : ''}>
             <Link to="/">Home</Link>
+          </li>
+          <li className={location.pathname == '/users' ? 'active' : ''}>
+            <Link to="/users">Users</Link>
           </li>
         </ul>
 

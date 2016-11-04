@@ -16,11 +16,11 @@ const ProfileHeader = ({ profile, router }) => {
   };
 
   return (
-    <div className="profile-header text-center" style={{backgroundImage: `url(${profile && profile.cover_image_url ? profile.cover_image_url : 'https://devbook.objects.cdn.dream.io/media_items/media/000/000/002/large/Programmer.jpg?1478195335'})`}}>
+    <div className="profile-header text-center" style={{backgroundImage: `url(${profile && profile.cover_image_url ? profile.cover_image_url : 'https://devbook.objects.cdn.dream.io/media_items/media/000/000/017/large/default.jpg?1478280539'})`}}>
       <div className="gradient-overlay"></div>
       <div className="container">
         <div className="container-inner">
-          <img className="img-circle media-object" src={ profile && profile.avatar_url ? profile.avatar_url : 'http://devbook.objects.cdn.dream.io/images/default_avatar.png' } />
+          <img className="img-circle media-object" src={ profile && profile.avatar_url ? profile.avatar_url : '' } />
           <h3 className="profile-header-user">{profile.fname} {profile.lname}</h3>
           <p className="profile-header-bio">
             {profile.tagline}

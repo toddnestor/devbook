@@ -90,6 +90,12 @@ class User < ApplicationRecord
     accepted_friends.include?(other_user)
   end
 
+  def friend_status(other_user)
+    friendship = Friendship.friendship_between(self, other_user)
+    return 'none' unless friendship
+    return friendship.status
+  end
+
   private
   def ensure_session_token
     self.session_token ||= generate_session_token
