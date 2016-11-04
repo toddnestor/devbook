@@ -9,6 +9,57 @@ class User < ApplicationRecord
 
   attr_accessor :password
 
+  has_many :friendships
+
+  has_many :friends,
+    -> { where(friendships: { status: 'accepted' }) },
+    through: :friendships
+
+  has_many :accepted_friendships,
+    -> { where( status: 'accepted' ) },
+    class_name: :Friendship,
+    foreign_key: :user_id
+
+  has_many :accepted_friends,
+    through: :accepted_friendships,
+    source: :friend
+
+  has_many :pending_friendships,
+    -> { where( status: 'pending' ) },
+    class_name: :Friendship,
+    foreign_key: :user_id
+
+  has_many :pending_friends,
+    through: :pending_friendships,
+    source: :friend
+
+  has_many :requested_friendships,
+    -> { where( status: 'requested' ) },
+    class_name: :Friendship,
+    foreign_key: :user_id
+
+  has_many :requested_friends,
+    through: :requested_friendships,
+    source: :friend
+
+  has_many :blocked_friendships,
+    -> { where( status: 'blocked' ) },
+    class_name: :Friendship,
+    foreign_key: :user_id
+
+  has_many :blocked_friends,
+    through: :blocked_friendships,
+    source: :friend
+
+  has_many :been_blocked_friendships,
+    -> { where( status: 'been_blocked' ) },
+    class_name: :Friendship,
+    foreign_key: :user_id
+
+  has_many :been_blocked_friends,
+    through: :been_blocked_friendships,
+    source: :friend
+
   def self.find_by_credentials(email, password)
     @user = User.find_by_email(email)
     return @user if @user && @user.is_password?(password)
@@ -28,6 +79,10 @@ class User < ApplicationRecord
 
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)
+  end
+
+  def are_we_friends?(other_user)
+    accepted_friends.include?(other_user)
   end
 
   private

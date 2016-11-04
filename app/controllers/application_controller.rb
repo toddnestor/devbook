@@ -52,4 +52,10 @@ class ApplicationController < ActionController::Base
   def set_object
     @object = model.find(params[:id])
   end
+
+  def authenticate_user!
+    unless current_user
+      render json: ["You must be logged in to do that."], status: 401
+    end
+  end
 end
