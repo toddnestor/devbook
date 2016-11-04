@@ -25,7 +25,6 @@ class ProfileMenu extends React.Component {
 
   handleLogout(e) {
     e.preventDefault();
-    console.log('we happened');
     this.props.logout();
   }
 

@@ -1,4 +1,4 @@
-import { RECEIVE_CURRENT_USER, RECEIVE_ERRORS, LOGOUT } from '../actions/session_actions';
+import { RECEIVE_CURRENT_USER, RECEIVE_ERRORS, LOGOUT, CONFIRM_SAVED } from '../actions/session_actions';
 
 const _defaultState = {
   currentUser: null,
@@ -17,6 +17,11 @@ const SessionReducer = (state = _defaultState, action) => {
       break;
     case RECEIVE_ERRORS:
       return _.merge({}, state, {errors: action.errors});
+      break;
+    case CONFIRM_SAVED:
+      let currentUser = _.merge({}, state.currentUser);
+      currentUser.saved = null;
+      return _.merge({}, state, {currentUser});
       break;
     case LOGOUT:
       return _.merge({}, state, {currentUser: null});

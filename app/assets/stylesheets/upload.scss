@@ -1,0 +1,28 @@
+.dropzone {
+  min-height: 150px;
+  padding: 54px 54px;
+  border: 2px dashed #0087F7;
+  border-radius: 5px;
+  background: white;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.dropzone div {
+  cursor: pointer;
+  font-weight: 400;
+  text-align: center;
+  margin: 2em 0;
+  font-size: 20px;
+}
+
+.dropzone-dragging {
+  border-width: 4px;
+  background: #ccc;
+  font-weight: 700;
+}
+
+.dropzone-loading {
+  min-height: 266;
+  min-width: 445px;
+}

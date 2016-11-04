@@ -17,7 +17,8 @@ class Upload extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      loading: false
     };
 
     this.options = _.merge( {
@@ -30,11 +31,21 @@ class Upload extends React.Component {
     Modal.setAppElement('body');
   }
 
+  finishLoading() {
+    this.setState({loading: false});
+  }
+
+  startLoading() {
+    this.setState({loading: true});
+  }
+
   toggleModal() {
     this.setState({modalIsOpen: !this.state.modalOpen});
   }
 
   onDrop(files) {
+    this.startLoading();
+
     let data = new FormData();
 
     $.each(files, function(key, value)
@@ -52,6 +63,7 @@ class Upload extends React.Component {
       data,
       success: data => {
         this.options.callback(data);
+        this.finishLoading();
         this.closeModal();
       }
     });
@@ -67,6 +79,7 @@ class Upload extends React.Component {
 
   render() {
     let { children } = this.props;
+    let { loading } = this.state;
 
     return (
       <div onClick={this.toggleModal.bind(this)} className="upload-area">
@@ -76,13 +89,20 @@ class Upload extends React.Component {
             onRequestClose={this.closeModal.bind(this)}
             style={customStyles}
             contentLabel="Example Modal"
+            shouldCloseOnOverlayClick={!loading}
           >
           <div>
-            <Dropzone multiple={this.options.multiple} className="dropzone" onDrop={this.onDrop.bind(this)}>
-              <div>
-                Drop files here or click to upload.
+            <div style={{display: loading ? 'block' : 'none'}} className="dropzone-loading">
+              <div className="loader">
               </div>
-            </Dropzone>
+            </div>
+            <div style={{display: loading ? 'none' : 'block'}}>
+              <Dropzone multiple={this.options.multiple} className="dropzone" activeClassName="dropzone-dragging" onDrop={this.onDrop.bind(this)}>
+                <div>
+                  Drop files here or click to upload.
+                </div>
+              </Dropzone>
+            </div>
           </div>
         </Modal>
       </div>

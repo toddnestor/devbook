@@ -5,6 +5,7 @@ export const SIGNUP = 'SIGNUP';
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 export const UPDATE_USER = 'UPDATE_USER';
+export const CONFIRM_SAVED = 'CONFIRM_SAVED';
 
 export const login = user => ({
   type: LOGIN,
@@ -37,4 +38,8 @@ export const receiveErrors = errors => ({
 export const updateUser = user => ({
   type: UPDATE_USER,
   user
+});
+
+export const confirmSaved = () => ({
+  type: CONFIRM_SAVED
 });

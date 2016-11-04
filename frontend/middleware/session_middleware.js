@@ -11,7 +11,7 @@ import { login, demoLogin, signup, logout, updateUser } from '../util/session_ap
 import { browserHistory } from 'react-router';
 
 export default ({ getState, dispatch }) => next => action => {
-  const success = user => {
+  let success = user => {
     dispatch( receiveCurrentUser( user ) );
     browserHistory.push('/');
   }
@@ -28,7 +28,12 @@ export default ({ getState, dispatch }) => next => action => {
       logout(() => browserHistory.push('/login'));
       break;
     case UPDATE_USER:
-      updateUser(action.user, user => dispatch(receiveCurrentUser(user)), error);
+      success = user => {
+        user.saved = true;
+        dispatch(receiveCurrentUser(user))
+      };
+
+      updateUser(action.user, success, error);
       break;
     case SIGNUP:
       signup(action.user, success, error);

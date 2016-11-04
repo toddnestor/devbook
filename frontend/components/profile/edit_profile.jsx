@@ -22,6 +22,11 @@ class EditProfile extends React.Component {
     this.setState({cover_image_url: file.urls.large});
   }
 
+  dismissSaved(e) {
+    e.preventDefault();
+    this.props.confirmSaved();
+  }
+
   render() {
     let { currentUser, updateUser, errors } = this.props;
 
@@ -42,6 +47,12 @@ class EditProfile extends React.Component {
               </Upload>
             </div>
             <div className="col-md-9">
+              <div className="alert alert-success alert-dismissible" style={{display: currentUser.saved ? 'block' : 'none'}}>
+                <button type="button" className="close" onClick={this.dismissSaved.bind(this)}>
+                  <span>&times;</span>
+                </button>
+                <strong>Success!</strong> Your profile was saved.
+              </div>
               <EditProfileForm updateUser={updateUser} avatar_url={this.state.avatar_url} cover_image_url={this.state.cover_image_url} errors={errors} user={currentUser} mode="edit" />
             </div>
           </div>
