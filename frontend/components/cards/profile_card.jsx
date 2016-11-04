@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import FriendButton from '../friend_button/friend_button_container';
 
 const ProfileCard = ({ user }) => (
   <div className="panel panel-default panel-profile m-b-md">
@@ -23,10 +24,7 @@ const ProfileCard = ({ user }) => (
           </a>
         </li>
       </ul>
-      <button className="btn btn-primary-outline btn-sm">
-        <span className={user.friend_status != 'none' ? 'icon icon-check' : 'icon icon-add-user'}></span>
-        {user.friend_status != 'none' ? ' Friends' : ' Friend'}
-      </button>
+      <FriendButton user={user} />
     </div>
   </div>
 );

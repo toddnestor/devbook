@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
-    resources :users, only: [:create, :update, :destroy, :index]
+    resources :users, only: [:create, :update, :destroy, :index] do
+      post '/request', to: 'friendships#request'
+      post '/request/cancel', to: 'friendships#cancel'
+      post '/block', to: 'friendships#block'
+      post '/unblock', to: 'friendships#unblock'
+      post '/unfriend', to: 'friendships#unfriend'
+      post '/accept', to: 'friendships#accept'
+      post '/deny', to: 'friendships#deny'
+    end
+
     get '/users/:username', to: 'users#show'
     post '/session/demo', to: 'sessions#demo'
     resource :session, only: [:create, :destroy]

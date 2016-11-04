@@ -44,11 +44,13 @@ class ProfileMenu extends React.Component {
               <div className="nav nav-stacked" style={{width: '200px'}}>
                 <ul className="profile-menu-dropdown">
                   <li>
-                    <Link to={`/${currentUser ? currentUser.username : ''}`}>
+                    <Link onClick={this.closeProfileMenu} to={`/${currentUser ? currentUser.username : ''}`}>
                     View Profile
                     </Link>
                   </li>
-                  <li><Link onClick={this.closeProfileMenu} to={'/edit-profile'}>Edit Profile</Link></li>
+                  <li>
+                    <Link onClick={this.closeProfileMenu} to={'/edit-profile'}>Edit Profile</Link>
+                  </li>
                   <li><a href="#" onClick={this.handleLogout.bind(this)}>Log Out</a></li>
                 </ul>
               </div>

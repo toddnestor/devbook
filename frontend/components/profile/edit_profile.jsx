@@ -20,6 +20,10 @@ class EditProfile extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.dismissSaved();
+  }
+
   afterAvatarUpload(files) {
     let file = files[0];
     this.setState({avatar_url: file.urls.avatar});
@@ -31,7 +35,10 @@ class EditProfile extends React.Component {
   }
 
   dismissSaved(e) {
-    e.preventDefault();
+    if(e) {
+      e.preventDefault();
+    }
+
     this.props.confirmSaved();
   }
 

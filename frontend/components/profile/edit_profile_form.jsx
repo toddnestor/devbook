@@ -26,10 +26,6 @@ class EditProfileForm extends React.Component {
     this.validateGlobalErrors(this.props.errors);
   }
 
-  componentWillUnmount() {
-    this.dismissSaved();
-  }
-
   componentWillReceiveProps(nextProps) {
     this.validateGlobalErrors(nextProps.errors);
     this.setState({
