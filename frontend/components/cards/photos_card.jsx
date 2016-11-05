@@ -1,5 +1,5 @@
 import React from 'react';
-import PhotoItem from '../items/photo_item';
+import PhotoItem from '../items/photo_item_container';
 
 const PhotosCard = ({ photos }) => (
   <div className="panel panel-default visible-md-block visible-lg-block photos-card">

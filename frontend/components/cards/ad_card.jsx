@@ -1,5 +1,5 @@
 import React from 'react';
-import PhotoItem from '../items/photo_item';
+import PhotoItem from '../items/photo_item_container';
 
 const AdCard = ({ children, imageSrc, url, cta}) => (
   <div className="panel panel-default m-b-md hidden-xs ad-card">

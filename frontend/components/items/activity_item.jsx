@@ -1,5 +1,5 @@
 import React from 'react';
-import PhotoItem from './photo_item';
+import PhotoItem from './photo_item_container';
 import Comments from '../cards/comments';
 import { Link } from 'react-router';
 

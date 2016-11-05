@@ -1,5 +1,5 @@
 import React from 'react';
-import PhotoItem from '../items/photo_item';
+import PhotoItem from '../items/photo_item_container';
 // import Masonry from 'react-masonry-component';//undecided if I want this
 
 import { dummyPhotos } from './dummy_content';
