@@ -9,8 +9,8 @@ class Api::FriendshipsController < ApplicationController
   end
 
   def request
-    friendship = Friendship.request(current_user, User.find(params[:user_id]))
-    render json: friendship
+    @friendship = Friendship.request(current_user, User.find(params[:user_id]))
+    render json: @friendship
   end
 
   def block
