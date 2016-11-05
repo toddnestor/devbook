@@ -65,6 +65,14 @@ class User < ApplicationRecord
     through: :been_blocked_friendships,
     source: :friend
 
+  def friend_count
+    friends.count
+  end
+
+  def first_two_friends
+    friends.limit(2)
+  end
+
   def self.find_by_credentials(email, password)
     @user = User.find_by_email(email)
     return @user if @user && @user.is_password?(password)
@@ -91,6 +99,7 @@ class User < ApplicationRecord
   end
 
   def friend_status(other_user)
+    return 'self' if other_user.id == self.id
     friendship = Friendship.friendship_between(self, other_user)
     return 'none' unless friendship
     return friendship.status

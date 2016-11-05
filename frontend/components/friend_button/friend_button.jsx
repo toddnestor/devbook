@@ -20,10 +20,6 @@ const FriendButton = ({ currentUser,
   }
 
   const displayButton = ()  => {
-    if(currentUser.id === user.id) {
-      return <span style={{display: 'none'}}></span>;
-    }
-
     switch(user.friend_status) {
       case 'none':
         return <AddFriendButton user={user} requestFriend={requestFriend} handleBlockUser={handleBlockUser} />
@@ -36,6 +32,8 @@ const FriendButton = ({ currentUser,
       case 'accepted':
         return <AcceptedFriendButton user={user} unfriendUser={unfriendUser} handleBlockUser={handleBlockUser} />
     }
+
+    return <span style={{display: 'none'}}></span>;
   }
 
   return displayButton();

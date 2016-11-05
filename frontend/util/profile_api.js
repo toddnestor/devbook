@@ -6,3 +6,12 @@ export const fetchProfile = (username, success, error) => {
     error
   });
 };
+
+export const fetchProfileFriends = (id, success, error) => {
+  $.ajax({
+    method: 'GET',
+    url: `/api/users/${id}/friends`,
+    success,
+    error
+  });
+};

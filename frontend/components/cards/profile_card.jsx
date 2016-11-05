@@ -20,7 +20,7 @@ const ProfileCard = ({ user }) => (
         <li className="panel-menu-item">
           <a href="#userModal" className="text-inherit" data-toggle="modal">
             Friends
-            <h5 className="m-y-0">12M</h5>
+            <h5 className="m-y-0">{user.friend_count}</h5>
           </a>
         </li>
       </ul>

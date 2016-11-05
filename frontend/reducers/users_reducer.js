@@ -17,6 +17,7 @@ const UsersReducer = (state = _defaultState, action) => {
     case UPDATE_FRIENDSHIP_STATUS:
       let userToUpdate = _.merge({}, state.users[action.user.id]);
       userToUpdate.friend_status = action.status;
+      userToUpdate.friend_count++;
       let users = _.merge(state.users, {[userToUpdate.id]: userToUpdate});
       return _.merge({}, state, {users});
     default:

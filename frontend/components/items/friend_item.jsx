@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import FriendButton from '../friend_button/friend_button_container';
 
 const FriendItem = ({ friend }) => (
   <li className="media m-b friend-item">
@@ -7,11 +8,11 @@ const FriendItem = ({ friend }) => (
       <img className="media-object img-circle" src={friend.avatar_url} />
     </Link>
     <div className="media-body">
-      <strong>{friend.fname} {friend.lname}</strong> @{friend.username}
+      <Link to={`/${friend.username}`} className="friend-name">
+        <strong>{friend.fname} {friend.lname}</strong> @{friend.username}
+      </Link>
       <div className="media-body-actions">
-        <button className="btn btn-primary-outline btn-sm">
-          <span className={friend.are_friends ? 'icon icon-check' : 'icon icon-add-user'}></span> {friend.are_friends ? 'Friends' : 'Friend'}
-        </button>
+        <FriendButton user={friend} />
       </div>
     </div>
   </li>

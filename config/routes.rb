@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
 
     get '/users/:username', to: 'users#show'
+    get '/users/:username/friends', to: 'users#friends'
     post '/session/demo', to: 'sessions#demo'
     resource :session, only: [:create, :destroy]
     resources :media_items, only: [:create, :update, :destroy, :show]

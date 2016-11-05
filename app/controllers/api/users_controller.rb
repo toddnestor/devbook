@@ -14,10 +14,12 @@ class Api::UsersController < ApplicationController
 
   def show
     @object = User.find_by_username(params[:username])
+  end
 
-    unless current_user == @object || current_user.are_we_friends?(@object)
-      render json: ["You must be friends to view user's profile"], status: 401
-    end
+  def friends
+    @user = User.find_by_username(params[:username])
+    @users = @user.friends.where.not(id: current_user.been_blocked_friendships.pluck(:friend_id)).all
+    render :index
   end
 
   private

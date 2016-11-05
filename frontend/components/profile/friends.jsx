@@ -1,18 +1,30 @@
 import React from 'react';
 import FriendItem from '../items/friend_item';
 
-import { dummyFriends } from './dummy_content';
+class Friends extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-let friends = dummyFriends.concat(dummyFriends).concat(dummyFriends).concat(dummyFriends);
+  componentWillMount() {
+    this.props.fetchProfileFriends(this.props.params.username);
+  }
 
-const Friends = ({ profile }) => (
-  <div className="container p-t-md profile-friends">
-    <ul className="media-list media-list-stream">
-      {
-        friends.map( (friend, i) => <FriendItem key={i} friend={friend} /> )
-      }
-    </ul>
-  </div>
-);
+  render() {
+    let { profile } = this.props;
+
+    let friends = profile.friends || [];
+
+    return (
+      <div className="container p-t-md profile-friends">
+        <ul className="media-list media-list-stream">
+          {
+            friends.map( (friend, i) => <FriendItem key={i} friend={friend} /> )
+          }
+        </ul>
+      </div>
+    );
+  }
+}
 
 export default Friends;

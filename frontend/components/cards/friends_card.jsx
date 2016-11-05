@@ -7,7 +7,7 @@ const FriendsCard = ({ friends }) => (
         <h5 className="m-t-0">Friends <small>· <a href="#">View All</a></small></h5>
         <ul className="media-list media-list-stream">
           {
-            friends.map( friend => <FriendItem key={friend.id} friend={friend} /> )
+            friends.slice(0,2).map( friend => <FriendItem key={friend.id} friend={friend} /> )
           }
         </ul>
         </div>

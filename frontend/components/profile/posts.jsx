@@ -7,7 +7,7 @@ import Notification from '../items/notification';
 import AdCard from '../cards/ad_card';
 import FriendsCard from '../cards/friends_card';
 
-import { dummyPhotos, dummyActivities, dummyFriends } from './dummy_content';
+import { dummyPhotos, dummyActivities } from './dummy_content';
 
 const Posts = ({ profile }) => (
   <div className="container p-t-md">
@@ -29,7 +29,7 @@ const Posts = ({ profile }) => (
           Alderaan is awesome, the fun is explosive, you'll be sure to have a blast!
         </p>
       </AdCard>
-      <FriendsCard friends={dummyFriends} />
+      <FriendsCard friends={profile.friends || []} />
     </div>
   </div>
 );
