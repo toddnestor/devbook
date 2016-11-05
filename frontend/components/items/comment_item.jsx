@@ -1,12 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const CommentItem = ({ comment }) => (
   <li className="media">
-    <a className="media-left" href="#">
+    <Link className="media-left" to={`/${comment.user.username}`}>
       <img className="media-object img-circle" src={comment.user.avatar_url} />
-    </a>
+    </Link>
     <div className="media-body">
-      <strong>{comment.user.fname} {comment.user.lname}: </strong>
+      <Link className="user-link" to={`/${comment.user.username}`}>
+        <strong>{comment.user.fname} {comment.user.lname}: </strong>
+      </Link>
       {comment.text}
     </div>
   </li>

@@ -11,7 +11,9 @@ const ProfileCard = ({ user }) => (
       </Link>
 
       <h5 className="panel-title">
-        <a className="text-inherit" href="#">{user.fname} {user.lname}</a>
+        <Link className="text-inherit" to={`/${user.username}`}>
+          {user.fname} {user.lname}
+        </Link>
       </h5>
 
       <p className="m-b-md">{user.tagline}</p>

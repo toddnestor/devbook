@@ -1,6 +1,7 @@
 import React from 'react';
 import PhotoItem from './photo_item';
 import Comments from '../cards/comments';
+import { Link } from 'react-router';
 
 const ActivityItem = ({ activity }) => {
   const renderPhotos = () => (
@@ -17,13 +18,15 @@ const ActivityItem = ({ activity }) => {
 
   return (
     <li className="media list-group-item p-a activity-item">
-      <a className="media-left" href="#">
+      <Link className="media-left" to={`/${activity.user.username}`}>
         <img className="media-object img-circle" src={activity.user.avatar_url} />
-      </a>
+      </Link>
       <div className="media-body">
         <div className="media-heading">
           <small className="pull-right text-muted">{activity.time_ago} ago</small>
-          <h5>{activity.user.fname} {activity.user.lname}</h5>
+          <Link className="user-link" to={`/${activity.user.username}`}>
+            <h5>{activity.user.fname} {activity.user.lname}</h5>
+          </Link>
         </div>
         <p>
           {activity.text}

@@ -29,7 +29,7 @@ const Home = ({ currentUser }) => (
           Alderaan is awesome, the fun is explosive, you'll be sure to have a blast!
         </p>
       </AdCard>
-      <FriendsCard friends={currentUser.friends || []} />
+      <FriendsCard friends={currentUser.friends || []} user={currentUser} />
     </div>
   </div>
 );

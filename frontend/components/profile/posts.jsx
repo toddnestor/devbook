@@ -29,7 +29,7 @@ const Posts = ({ profile }) => (
           Alderaan is awesome, the fun is explosive, you'll be sure to have a blast!
         </p>
       </AdCard>
-      <FriendsCard friends={profile.friends || []} />
+      <FriendsCard friends={profile.friends || []} user={profile} />
     </div>
   </div>
 );
