@@ -1,15 +1,16 @@
 class Api::FriendshipsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_friendship, only: [:accept, :block, :unblock, :unfriend, :deny, :cancel]
-  before_action :destroy, only: [:unblock, :unfriend, :deny, :cancel]
-  after_action :render_success, only: [:accept, :block, :unblock, :unfriend, :deny, :cancel]
+  before_action :set_friendship, only: [:accept, :block, :unblock, :unfriend, :deny, :cancel_request]
+  before_action :destroy, only: [:unblock, :unfriend, :deny, :cancel_request]
 
   def accept
     @friendship.accept! if @friendship
+    render json: @friendship
   end
 
-  def request
-    @friendship = Friendship.request(current_user, User.find(params[:user_id]))
+  def request_friendship
+    friend = User.find(params[:user_id])
+    @friendship = Friendship.request(current_user, friend)
     render json: @friendship
   end
 
@@ -19,18 +20,23 @@ class Api::FriendshipsController < ApplicationController
     end
 
     @friendship.block!
+    render json: @friendship
   end
 
   def unblock
+    render json: @friendship
   end
 
   def unfriend
+    render json: @friendship
   end
 
   def deny
+    render json: @friendship
   end
 
-  def cancel
+  def cancel_request
+    render json: @friendship
   end
 
   def destroy
@@ -42,7 +48,7 @@ class Api::FriendshipsController < ApplicationController
     @friendship = current_user.friendships.find_by_friend_id(params[:user_id])
   end
 
-  def render_success
+  def success_rendering
     hash = Hash.new
     hash[:success] = true
     render json: hash

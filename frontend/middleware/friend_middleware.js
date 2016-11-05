@@ -21,7 +21,7 @@ export default ({ getState, dispatch }) => next => action => {
 
   switch( action.type ) {
     case REQUEST_FRIEND:
-      requestFriend(action.user, success('requested'), error );
+      requestFriend(action.user, success('pending'), error );
       break;
     case CANCEL_REQUEST:
       cancelFriendRequest(action.user, success('none'), error );

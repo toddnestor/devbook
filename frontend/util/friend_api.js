@@ -1,7 +1,7 @@
 export const requestFriend = (user, success, error) => {
   $.ajax({
     method: 'POST',
-    url: `/api/users/${user.id}/request`,
+    url: `/api/users/${user.id}/request_friendship`,
     success,
     error
   });
@@ -10,7 +10,7 @@ export const requestFriend = (user, success, error) => {
 export const cancelFriendRequest = (user, success, error) => {
   $.ajax({
     method: 'POST',
-    url: `/api/users/${user.id}/request/cancel`,
+    url: `/api/users/${user.id}/cancel_request`,
     success,
     error
   });
