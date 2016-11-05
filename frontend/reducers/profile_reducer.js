@@ -1,5 +1,6 @@
 import { RECEIVE_PROFILE, RECEIVE_PROFILE_FRIENDS } from '../actions/profile_actions';
 import { UPDATE_FRIENDSHIP_STATUS } from '../actions/friend_actions';
+import { LOGOUT } FROM '../actions/session_actions';
 
 const _defaultState = {};
 
@@ -15,6 +16,8 @@ const ProfileReducer = (state = _defaultState, action) => {
       let duped = _.merge({}, state);
       duped.friends = _.values(action.friends);
       return duped;
+    case LOGOUT:
+      return _.merge({}, _defaultState);
     default:
       return state;
   }

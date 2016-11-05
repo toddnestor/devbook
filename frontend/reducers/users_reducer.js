@@ -1,5 +1,6 @@
 import { RECEIVE_USERS, FETCH_USERS } from '../actions/users_actions';
 import { UPDATE_FRIENDSHIP_STATUS } from '../actions/friend_actions';
+import { LOGOUT } FROM '../actions/session_actions';
 
 const _defaultState = {
   users: {},
@@ -20,6 +21,8 @@ const UsersReducer = (state = _defaultState, action) => {
       userToUpdate.friend_count++;
       let users = _.merge(state.users, {[userToUpdate.id]: userToUpdate});
       return _.merge({}, state, {users});
+    case LOGOUT:
+      return _.merge({}, _defaultState);
     default:
       return state;
   }
