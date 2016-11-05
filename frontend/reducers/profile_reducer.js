@@ -1,6 +1,6 @@
 import { RECEIVE_PROFILE, RECEIVE_PROFILE_FRIENDS } from '../actions/profile_actions';
 import { UPDATE_FRIENDSHIP_STATUS } from '../actions/friend_actions';
-import { LOGOUT } FROM '../actions/session_actions';
+import { LOGOUT } from '../actions/session_actions';
 
 const _defaultState = {};
 
