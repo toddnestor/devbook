@@ -8,12 +8,11 @@ class ApplicationController < ActionController::Base
   end
 
   def login(user)
-    user.reset_session_token!
-    session[:session_token] = user.session_token
+    session[:session_token] = user.session_token.session_token
   end
 
   def logout
-    current_user.reset_session_token! if current_user && !current_user.demo
+    user.session_token.destroy if current_user
     session[:session_token] = nil
   end
 

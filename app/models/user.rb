@@ -4,10 +4,10 @@ class User < ApplicationRecord
   validates :username, uniqueness: true
   validates :username, :email, presence: true
   validate :email_is_correct_format
-  after_initialize :ensure_session_token
+  after_initialize :session_token
   after_initialize :set_avatar_url
 
-  attr_accessor :password
+  attr_reader :password
 
   has_many :media_items
 
@@ -65,6 +65,8 @@ class User < ApplicationRecord
     through: :been_blocked_friendships,
     source: :friend
 
+  has_many :sessions
+
   def friend_count
     friends.count
   end
@@ -79,15 +81,15 @@ class User < ApplicationRecord
     return nil
   end
 
+  def self.find_by_session_token(session_token)
+    session = Session.find_by_session_token(session_token)
+    return session.user if session
+    nil
+  end
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
-  end
-
-
-  def reset_session_token!
-    self.session_token = generate_session_token
-    self.save
   end
 
   def is_password?(password)
@@ -105,15 +107,16 @@ class User < ApplicationRecord
     return friendship.status
   end
 
+  def session_token
+    @session_token ||= generate_session_token
+  end
+
   private
-  def ensure_session_token
-    self.session_token ||= generate_session_token
-  end
-
   def generate_session_token
-    SecureRandom::urlsafe_base64
+    token = SecureRandom::urlsafe_base64
+    Session.create!(user_id: self.id, session_token: token)
   end
-
+  
   def set_avatar_url
     unless self.avatar_url
       hash = ""
