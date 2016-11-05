@@ -163,3 +163,7 @@ html, body, #root {
   font-weight: 700;
   font-family: 'Arvo', serif;
 }
+
+.text-shadow {
+  text-shadow: 0 0 12px black;
+}
