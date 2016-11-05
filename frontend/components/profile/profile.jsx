@@ -17,11 +17,11 @@ class Profile extends React.Component {
   }
 
   render() {
-    let { profile, children } = this.props;
+    let { profile, children, params: { username } } = this.props;
 
     return (
       <div className="profile-page">
-        <ProfileHeader profile={profile} />
+        <ProfileHeader profile={profile} username={username} />
         { children }
       </div>
     );

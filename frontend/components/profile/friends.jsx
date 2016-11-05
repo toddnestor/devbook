@@ -1,5 +1,6 @@
 import React from 'react';
 import FriendItem from '../items/friend_item';
+import ProfileCard from '../cards/profile_card';
 
 class Friends extends React.Component {
   constructor(props) {
@@ -17,11 +18,13 @@ class Friends extends React.Component {
 
     return (
       <div className="container p-t-md profile-friends">
-        <ul className="media-list media-list-stream">
-          {
-            friends.map( (friend, i) => <FriendItem key={i} friend={friend} /> )
-          }
-        </ul>
+        {
+          friends.map( (friend, i) => (
+            <div className="col-md-3">
+              <ProfileCard key={i} user={friend} />
+            </div>
+        ))
+        }
       </div>
     );
   }

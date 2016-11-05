@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
 
-const ProfileHeader = ({ profile, router }) => {
+const ProfileHeader = ({ profile, router, username }) => {
 
   const getActiveTab = () => {
     let currentPath = router.getCurrentLocation().pathname;
@@ -31,17 +31,17 @@ const ProfileHeader = ({ profile, router }) => {
       <nav className="profile-header-nav">
         <ul className="nav nav-tabs">
           <li className={getActiveTab() == 'posts' ? 'active' : ''}>
-            <Link to={`/${profile.username}`}>
+            <Link to={`/${username}`}>
               Posts
             </Link>
           </li>
           <li className={getActiveTab() == 'photos' ? 'active' : ''}>
-            <Link to={`/${profile.username}/photos`}>
+            <Link to={`/${username}/photos`}>
               Photos
             </Link>
           </li>
           <li className={getActiveTab() == 'friends' ? 'active' : ''}>
-            <Link to={`/${profile.username}/friends`}>
+            <Link to={`/${username}/friends`}>
               Friends
             </Link>
           </li>
