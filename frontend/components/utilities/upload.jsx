@@ -23,7 +23,8 @@ class Upload extends React.Component {
 
     this.options = _.merge( {
       callback: files => console.log(files),
-      multiple: true
+      multiple: true,
+      accept: 'image/*'
     }, this.props );
   }
 
@@ -39,7 +40,8 @@ class Upload extends React.Component {
     this.setState({loading: true});
   }
 
-  toggleModal() {
+  toggleModal(e) {
+    e.stopPropagation();
     this.setState({modalIsOpen: !this.state.modalOpen});
   }
 
@@ -78,11 +80,11 @@ class Upload extends React.Component {
   }
 
   render() {
-    let { children } = this.props;
+    let { children, className, style } = this.props;
     let { loading } = this.state;
 
     return (
-      <div onClick={this.toggleModal.bind(this)} className="upload-area">
+      <div onClick={this.toggleModal.bind(this)} className={`upload-area ${className}`} style={style}>
         {children}
         <Modal
             isOpen={this.state.modalIsOpen}
@@ -97,9 +99,9 @@ class Upload extends React.Component {
               </div>
             </div>
             <div style={{display: loading ? 'none' : 'block'}}>
-              <Dropzone multiple={this.options.multiple} className="dropzone" activeClassName="dropzone-dragging" onDrop={this.onDrop.bind(this)}>
+              <Dropzone multiple={this.options.multiple} accept={this.options.accept} className="dropzone" activeClassName="dropzone-dragging" onDrop={this.onDrop.bind(this)}>
                 <div>
-                  Drop files here or click to upload.
+                  Drop file{this.options.multiple ? 's' : ''} here or click to upload.
                 </div>
               </Dropzone>
             </div>

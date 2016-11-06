@@ -57,4 +57,14 @@ class ApplicationController < ActionController::Base
       render json: ["You must be logged in to do that."], status: 401
     end
   end
+
+  def friend_or_self
+    return nil if params[:user_id] == 'home'
+    user = User.find(params[:user_id])
+    return nil if current_user.id == user.id
+
+    unless user && user.are_we_friends?(current_user)
+      render json: ["You must be friends to post on a user's wall."], status: 401
+    end
+  end
 end

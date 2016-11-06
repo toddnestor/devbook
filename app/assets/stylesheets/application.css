@@ -155,6 +155,7 @@ html, body, #root {
 
 .ReactModal__Overlay.ReactModal__Overlay--after-open {
   background-color: rgba(0,0,0,0.7) !important;
+  z-index: 1030;
 }
 
 .navbar-brand.logo {

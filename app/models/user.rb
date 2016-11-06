@@ -6,10 +6,13 @@ class User < ApplicationRecord
   validate :email_is_correct_format
   after_initialize :session_token
   after_initialize :set_avatar_url
+  before_save :create_activities
 
   attr_reader :password
 
   has_many :media_items
+  has_many :statuses, dependent: :destroy
+  has_many :activities, as: :feedable
 
   has_many :friendships,
     primary_key: :id,
@@ -116,7 +119,7 @@ class User < ApplicationRecord
     token = SecureRandom::urlsafe_base64
     Session.create!(user_id: self.id, session_token: token)
   end
-  
+
   def set_avatar_url
     unless self.avatar_url
       hash = ""
@@ -129,6 +132,20 @@ class User < ApplicationRecord
     unless self.cover_image_url
       self.cover_image_url = 'https://devbook.objects.cdn.dream.io/media_items/media/000/000/002/large/Programmer.jpg?1478195335'
     end
+  end
+
+  def create_activities
+    [
+      "relationship_status",
+      "cover_image_url",
+      "avatar_url"
+    ].each do |attribute|
+      if self.changes[attribute]
+        self.activities.create(wall_id: self.id, user_id: self.id, action: attribute)
+      end
+    end
+
+
   end
 
   def email_is_correct_format

@@ -2,12 +2,12 @@ import React from 'react';
 import ProfileCard from '../cards/profile_card';
 import AboutCard from '../cards/about_card';
 import PhotosCard from '../cards/photos_card';
-import Feed from '../feed/feed';
+import Feed from '../feed/feed_container';
 import Notification from '../items/notification';
 import AdCard from '../cards/ad_card';
 import FriendsCard from '../cards/friends_card';
 
-import { dummyPhotos, dummyActivities } from './dummy_content';
+import { dummyPhotos } from './dummy_content';
 
 const Posts = ({ profile }) => (
   <div className="container p-t-md">
@@ -17,7 +17,7 @@ const Posts = ({ profile }) => (
       <PhotosCard photos={dummyPhotos} />
     </div>
     <div className="col-md-6">
-      <Feed activities={dummyActivities} />
+      <Feed wallId={profile.id} />
     </div>
     <div className="col-md-3">
       <Notification>

@@ -2,14 +2,14 @@ import React from 'react';
 import ProfileCard from '../cards/profile_card';
 import AboutCard from '../cards/about_card';
 import PhotosCard from '../cards/photos_card';
-import Feed from '../feed/feed';
+import Feed from '../feed/feed_container';
 import Notification from '../items/notification';
 import AdCard from '../cards/ad_card';
 import FriendsCard from '../cards/friends_card';
 
-import { dummyPhotos, dummyActivities } from '../profile/dummy_content';
+import { dummyPhotos } from '../profile/dummy_content';
 
-const Home = ({ currentUser }) => (
+const Home = ({ currentUser, overlay, hideOverlay }) => (
   <div className="container p-t-md">
     <div className="col-md-3">
       <ProfileCard user={currentUser} />
@@ -17,7 +17,7 @@ const Home = ({ currentUser }) => (
       <PhotosCard photos={dummyPhotos} />
     </div>
     <div className="col-md-6">
-      <Feed activities={dummyActivities} />
+      <Feed wallId={'home'} overlay={overlay} />
     </div>
     <div className="col-md-3">
       <Notification>
@@ -31,6 +31,7 @@ const Home = ({ currentUser }) => (
       </AdCard>
       <FriendsCard friends={currentUser.friends || []} user={currentUser} />
     </div>
+    <div onClick={hideOverlay} className={overlay ? "zoom-overlay pointer-events" : "zoom-overlay"} style={{opacity: overlay ? '0.8' : '0', zIndex: '1030'}}></div>
   </div>
 );
 

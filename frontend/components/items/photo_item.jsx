@@ -1,10 +1,10 @@
 import React from 'react';
 
-const PhotoItem = ({ photo, openZoomPhoto }) => {
+const PhotoItem = ({ photo, openZoomPhoto, zoomUrl }) => {
 
   const handleZoomIn = e => {
     e.preventDefault();
-    openZoomPhoto(photo.url);
+    openZoomPhoto(zoomUrl ? zoomUrl : photo.url);
   };
 
   return (

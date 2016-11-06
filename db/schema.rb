@@ -10,10 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161105211712) do
+ActiveRecord::Schema.define(version: 20161106024459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "wall_id",       null: false
+    t.string   "feedable_type"
+    t.integer  "feedable_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "action"
+    t.index ["feedable_type", "feedable_id"], name: "index_activities_on_feedable_type_and_feedable_id", using: :btree
+    t.index ["user_id"], name: "index_activities_on_user_id", using: :btree
+    t.index ["wall_id"], name: "index_activities_on_wall_id", using: :btree
+  end
+
+  create_table "attachments", force: :cascade do |t|
+    t.integer  "media_item_id"
+    t.string   "attachable_type"
+    t.integer  "attachable_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id", using: :btree
+    t.index ["media_item_id"], name: "index_attachments_on_media_item_id", using: :btree
+  end
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id",    null: false
@@ -50,6 +73,16 @@ ActiveRecord::Schema.define(version: 20161105211712) do
     t.index ["user_id"], name: "index_sessions_on_user_id", using: :btree
   end
 
+  create_table "statuses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "wall_id"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_statuses_on_user_id", using: :btree
+    t.index ["wall_id"], name: "index_statuses_on_wall_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "fname",                               null: false
     t.string   "lname",                               null: false
@@ -75,5 +108,8 @@ ActiveRecord::Schema.define(version: 20161105211712) do
     t.index ["username"], name: "index_users_on_username", using: :btree
   end
 
+  add_foreign_key "activities", "users"
+  add_foreign_key "attachments", "media_items"
   add_foreign_key "sessions", "users"
+  add_foreign_key "statuses", "users"
 end

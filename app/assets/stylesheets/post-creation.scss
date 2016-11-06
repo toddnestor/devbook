@@ -1,0 +1,39 @@
+.image-previews {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  height: 220px;
+  max-width: 100%;
+  max-width: 453px;
+
+
+  .photo-item {
+    display: inline-block;
+    margin-right: 10px;
+    max-width: 300px;
+    max-height: 200px;
+
+    img {
+      max-height: 200px;
+      max-width: 300px;
+    }
+  }
+}
+
+@media (max-width: 1259px) and (min-width: 992px ) {
+  .image-previews {
+    max-width: 340px;
+  }
+}
+
+.only-photo {
+
+  .photo-item {
+
+    img {
+      max-width: 100%;
+    }
+  }
+}

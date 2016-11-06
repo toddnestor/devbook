@@ -2,7 +2,6 @@ import React from 'react';
 
 const ZoomPhoto = ({ closeZoomPhoto, zoomPhoto: {display, imageSrc}}) => {
   const handleClick = e => {
-    console.log('we got clicked');
     e.preventDefault();
     closeZoomPhoto();
   };

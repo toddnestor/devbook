@@ -8,7 +8,12 @@ Rails.application.routes.draw do
       post '/unfriend', to: 'friendships#unfriend'
       post '/accept', to: 'friendships#accept'
       post '/deny', to: 'friendships#deny'
+
+      resources :statuses, only: [:create]
+      resources :activities, only: [:index]
     end
+
+    resources :statuses, only: [:update, :destroy, :show]
 
     get '/users/:username', to: 'users#show'
     get '/users/:username/friends', to: 'users#friends'
