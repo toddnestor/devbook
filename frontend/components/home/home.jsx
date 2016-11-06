@@ -17,7 +17,7 @@ const Home = ({ currentUser, overlay, hideOverlay }) => (
       <PhotosCard photos={dummyPhotos} />
     </div>
     <div className="col-md-6">
-      <Feed wallId={'home'} overlay={overlay} />
+      <Feed wallId={'home'} />
     </div>
     <div className="col-md-3">
       <Notification>

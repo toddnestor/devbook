@@ -9,7 +9,7 @@ import FriendsCard from '../cards/friends_card';
 
 import { dummyPhotos } from './dummy_content';
 
-const Posts = ({ profile }) => (
+const Posts = ({ profile, overlay, hideOverlay }) => (
   <div className="container p-t-md">
     <div className="col-md-3">
       <ProfileCard user={profile} />
@@ -31,6 +31,7 @@ const Posts = ({ profile }) => (
       </AdCard>
       <FriendsCard friends={profile.friends || []} user={profile} />
     </div>
+    <div onClick={hideOverlay} className={overlay ? "zoom-overlay pointer-events" : "zoom-overlay"} style={{opacity: overlay ? '0.8' : '0', zIndex: '1030'}}></div>
   </div>
 );
 

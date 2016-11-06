@@ -4,7 +4,8 @@ import { fetchFeed } from '../../actions/feed_actions';
 
 const mapStateToProps = state => ({
   activities: state.feed,
-  loading: state.loading.fetchFeed
+  loading: state.loading.fetchFeed,
+  overlay: state.overlay
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

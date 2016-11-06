@@ -55,7 +55,7 @@ class PostCreation extends React.Component {
   render() {
 
     return (
-      <div className="form-group post-creation clearfix" onClick={this.postCreateFocus.bind(this)}>
+      <div className="form-group post-creation clearfix">
         <Textarea onFocus={this.postCreateFocus.bind(this)}
                   style={{minHeight: '58px'}}
                   type="text"
@@ -71,7 +71,7 @@ class PostCreation extends React.Component {
         <div className="controls">
           <button onClick={this.handlePostCreate.bind(this)} className="btn btn-primary btn-sm">Post</button>
           <Upload callback={this.addMedia.bind(this)} className="pull-right" multiple={true}>
-            <button onClick={this.props.hideOverlay} className="btn btn-success btn-sm"><span className="icon icon-camera"></span></button>
+            <button className="btn btn-success btn-sm"><span className="icon icon-camera"></span></button>
           </Upload>
         </div>
       </div>
