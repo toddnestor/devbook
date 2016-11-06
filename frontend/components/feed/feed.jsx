@@ -14,7 +14,7 @@ class Feed extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if( !this.props.wallId && nextProps.wallId ) {
+    if( (!this.props.wallId && nextProps.wallId) || (this.props.wallId && nextProps.wallId && this.props.wallId != nextProps.wallId) ) {
       nextProps.fetchFeed();
     }
   }
