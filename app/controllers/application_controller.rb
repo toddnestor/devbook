@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logout
-    user.session_token.destroy if current_user
+    current_user.session_token.destroy if current_user
     session[:session_token] = nil
   end
 
