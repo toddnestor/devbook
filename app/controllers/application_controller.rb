@@ -64,7 +64,7 @@ class ApplicationController < ActionController::Base
     return nil if current_user.id == user.id
 
     unless user && user.are_we_friends?(current_user)
-      render json: ["You must be friends to post on a user's wall."], status: 401
+      render json: []
     end
   end
 end

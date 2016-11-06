@@ -14,3 +14,13 @@ if activity.feedable_type == 'Status'
     end
   end
 end
+
+if activity.feedable_type == 'User' && ['avatar_url', 'cover_image_url'].include?(activity.action)
+  json.media_items do
+    json.array! [1] do
+      json.urls do
+        json.large activity.action == 'avatar_url' ? activity.user.avatar_url : activity.user.cover_image_url
+      end
+    end
+  end
+end

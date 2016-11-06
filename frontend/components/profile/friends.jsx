@@ -19,9 +19,9 @@ class Friends extends React.Component {
     return (
       <div className="container p-t-md profile-friends">
         {
-          friends.map( (friend, i) => (
-            <div className="col-md-3">
-              <ProfileCard key={i} user={friend} />
+          friends.map( friend => (
+            <div className="col-md-3" key={friend.id}>
+              <ProfileCard user={friend} />
             </div>
         ))
         }
