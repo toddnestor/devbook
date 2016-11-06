@@ -24,7 +24,7 @@ const ActivityItem = ({ activity }) => {
             activity.media_items.map( (photo, i) => (
               <PhotoItem key={photo.id}
                          zoomUrl={photo.urls.large}
-                         photo={{url: i % 2 == 0 ? photo.urls.wide : photo.urls.narrow}} />
+                         photo={{url: i == 0 || i == 3 ? photo.urls.wide : photo.urls.narrow}} />
             ))
           }
         </div>
