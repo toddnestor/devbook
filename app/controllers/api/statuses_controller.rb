@@ -15,7 +15,10 @@ class Api::StatusesController < ApplicationController
   end
 
   def destroy
-    @object.destroy
+    if @object.user == current_user
+      @object.destroy
+    end
+    
     render json: {}
   end
 
