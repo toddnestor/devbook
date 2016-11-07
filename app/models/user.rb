@@ -144,8 +144,6 @@ class User < ApplicationRecord
         self.activities.create(wall_id: self.id, user_id: self.id, action: attribute)
       end
     end
-
-
   end
 
   def email_is_correct_format

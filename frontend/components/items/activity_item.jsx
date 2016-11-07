@@ -1,6 +1,7 @@
 import React from 'react';
 import Status from './activities/status';
 import UserUpdate from './activities/user_update';
+import Friendship from './activities/friendship';
 import { Link } from 'react-router';
 
 const ActivityItem = ({ activity }) => {
@@ -10,6 +11,8 @@ const ActivityItem = ({ activity }) => {
         return <Status activity={activity} />
       case 'User':
         return <UserUpdate activity={activity} />
+      case 'Friendship':
+        return <Friendship activity={activity} />
       default:
         return <span style={{display: 'none'}}></span>
     }

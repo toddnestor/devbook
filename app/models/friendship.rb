@@ -1,4 +1,6 @@
 class Friendship < ApplicationRecord
+  has_many :activities, as: :feedable
+
   def self.request(requestor, requestee)
     return nil if Friendship.friendship_exists?(requestor, requestee)
 
@@ -69,6 +71,7 @@ class Friendship < ApplicationRecord
   private
   def accept_mutual_friendship!
       mutual_friendship.update_attribute(:status, 'accepted')
+      self.activities.create(user_id: self.user_id, wall_id: self.friend_id, action: 'created')
   end
 
   def block_mutual_friendship!

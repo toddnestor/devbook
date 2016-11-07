@@ -1,5 +1,9 @@
-json.extract! activity, :user_id, :user, :wall_id, :feedable, :action, :id,
+json.extract! activity, :user_id, :wall_id, :feedable, :action, :id,
                         :created_at, :updated_at, :feedable_type, :feedable_id
+
+json.set! :user do
+  json.partial! 'api/users/basic_user', user: activity.user
+end
 
 if( activity.wall_id != activity.user_id )
   json.set! :wall_user do
