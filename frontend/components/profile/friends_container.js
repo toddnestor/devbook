@@ -2,8 +2,10 @@ import { connect } from 'react-redux';
 import Friends from './friends';
 import { fetchProfileFriends } from '../../actions/profile_actions';
 
-const mapStateToProps = ({profile}) => ({
-  profile
+const mapStateToProps = ({profile, session: {currentUser}, loading}) => ({
+  profile,
+  currentUser,
+  loading: loading.friends
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -65,7 +65,12 @@ class ProfileMenu extends React.Component {
                 <ul className="profile-menu-dropdown">
                   <li>
                     <Link onClick={this.closeProfileMenu} to={`/${currentUser ? currentUser.username : ''}`}>
-                    View Profile
+                      View Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={this.closeProfileMenu} to={`/${currentUser ? currentUser.username : ''}/friends`}>
+                      View Friends
                     </Link>
                   </li>
                   <li>

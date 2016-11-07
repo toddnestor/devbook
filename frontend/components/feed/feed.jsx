@@ -38,6 +38,11 @@ class Feed extends React.Component {
         {
           activities.map( activity => <ActivityItemContainer key={activity.id} activity={activity} />)
         }
+        <li className="media list-group-item p-a" style={{display: activities && activities.length ? 'none' : 'list-item'}}>
+          <div className="jumbotron">
+            <h2 className="text-center">No activity to show.</h2>
+          </div>
+        </li>
       </ul>
     );
   }

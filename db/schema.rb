@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161106024459) do
+ActiveRecord::Schema.define(version: 20161107222233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,19 @@ ActiveRecord::Schema.define(version: 20161106024459) do
     t.datetime "updated_at",      null: false
     t.index ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id", using: :btree
     t.index ["media_item_id"], name: "index_attachments_on_media_item_id", using: :btree
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "text"
+    t.integer  "user_id"
+    t.integer  "parent_id"
+    t.string   "commentable_type"
+    t.integer  "commentable_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
+    t.index ["parent_id"], name: "index_comments_on_parent_id", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
   create_table "friendships", force: :cascade do |t|
@@ -110,6 +123,7 @@ ActiveRecord::Schema.define(version: 20161106024459) do
 
   add_foreign_key "activities", "users"
   add_foreign_key "attachments", "media_items"
+  add_foreign_key "comments", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "statuses", "users"
 end

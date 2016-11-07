@@ -7,6 +7,7 @@ class Status < ApplicationRecord
   has_many :media_items, through: :attachments
 
   has_many :activities, as: :feedable, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
 
   def create_activity
     self.activities.create(wall_id: self.wall_id, user_id: self.user_id, action: 'created')
