@@ -33,15 +33,17 @@ const FeedReducer = (state = _defaultState, action) => {
     case UPDATE_ACTIVITY:
       duped = duped.map( activity => {
         if( activity.id === action.activity.id) {
-          activity = action.activity;
+          activity.feedable = action.activity.feedable;
+          activity.media_items = action.activity.media_items;
         }
 
         return activity;
       });
+
       return duped;
     case REMOVE_ACTIVITY:
       let activityToRemove = _.find(duped, {id: action.activity.id});
-      
+
       if( activityToRemove ) {
         duped = _.without(duped, activityToRemove);
       }

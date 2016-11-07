@@ -20,7 +20,9 @@ export default ({ getState, dispatch }) => next => action => {
         }
       });
 
-      params.last_friend_request_id = highest;
+      if( !params.last_friend_request_id || highest > params.last_friend_request_id ) {
+        params.last_friend_request_id = highest;
+      }
     }
   };
   const error = xhr => console.log(xhr.responseJSON);

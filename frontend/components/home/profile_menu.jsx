@@ -15,13 +15,19 @@ class ProfileMenu extends React.Component {
   }
 
   componentWillMount() {
-    this.interval = setInterval(() => {
+    if( location.hostname === 'devbook.dev' ) {
       this.props.fetchNotifications();
-    }, 5000);
+    } else {
+      this.interval = setInterval(() => {
+        this.props.fetchNotifications();
+      }, 5000);
+    }
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval);
+    if( location.hostname !== 'devbook.dev' ) {
+      clearInterval(this.interval);
+    }
   }
 
   closeProfileMenu() {

@@ -14,11 +14,41 @@
     margin-right: 10px;
     max-width: 300px;
     max-height: 200px;
+    position: relative;
 
     img {
       max-height: 200px;
       max-width: 300px;
     }
+
+    .handle-remove {
+      position: absolute;
+      color: white;
+      font-weight: 900;
+      font-size: 28px;
+      top: -7px;
+      right: 5px;
+      cursor: pointer;
+      display: none;
+      text-shadow: 0 0 8px #000;
+    }
+  }
+
+  .photo-item:hover {
+    .handle-remove {
+      display: block;
+    }
+  }
+}
+
+.ReactModal__Content {
+  .post-creation {
+    min-width: 500px;
+  }
+
+  .image-previews {
+    max-width: 100%;
+    width: 100%;
   }
 }
 

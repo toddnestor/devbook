@@ -14,11 +14,20 @@ class Api::StatusesController < ApplicationController
     end
   end
 
+  def update
+    if @object.update(status_params)
+      @status = @object
+      render :show
+    else
+      render 'api/shared/errors', errors: status.errors.full_messages
+    end
+  end
+
   def destroy
     if @object.user == current_user
       @object.destroy
     end
-    
+
     render json: {}
   end
 

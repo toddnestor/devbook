@@ -90,7 +90,7 @@ class Upload extends React.Component {
             isOpen={this.state.modalIsOpen}
             onRequestClose={this.closeModal.bind(this)}
             style={customStyles}
-            contentLabel="Example Modal"
+            contentLabel="Upload Files"
             shouldCloseOnOverlayClick={!loading}
           >
           <div>
