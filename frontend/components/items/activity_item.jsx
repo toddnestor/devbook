@@ -23,7 +23,7 @@ const ActivityItem = ({ activity, currentUser }) => {
 
   return (
     <li className="media list-group-item p-a activity-item">
-      {isOwner() ? <StatusActionsContainer activity={activity} /> : ""}
+      {isOwner() && activity.feedable_type == 'Status' ? <StatusActionsContainer activity={activity} /> : ""}
       <Link className="media-left" to={`/${activity.user.username}`}>
         <img className="media-object img-circle" src={activity.user.avatar_url} />
       </Link>
