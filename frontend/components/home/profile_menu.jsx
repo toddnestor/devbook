@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import FriendRequests from '../notifications/friend_requests';
 
 class ProfileMenu extends React.Component {
   constructor(props) {
@@ -11,6 +12,16 @@ class ProfileMenu extends React.Component {
 
     this.toggleProfileMenu = this.toggleProfileMenu.bind(this);
     this.closeProfileMenu = this.closeProfileMenu.bind(this);
+  }
+
+  componentWillMount() {
+    this.interval = setInterval(() => {
+      this.props.fetchNotifications();
+    }, 5000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   closeProfileMenu() {
@@ -30,10 +41,13 @@ class ProfileMenu extends React.Component {
 
   render() {
     let { showProfileMenu } = this.state;
-    let { currentUser } = this.props;
+    let { currentUser, requestedFriends, acceptFriendRequest, denyFriendRequest } = this.props;
 
     return (
-      <ul className="nav navbar-nav navbar-right m-r-0 hidden-xs">
+      <ul className="nav navbar-nav navbar-right m-r-0 hidden-xs profile-menu">
+        <li>
+          <FriendRequests acceptFriendRequest={acceptFriendRequest} denyFriendRequest={denyFriendRequest} requestedFriends={requestedFriends} />
+        </li>
         <li>
           <button className="btn btn-default navbar-btn navbar-btn-avitar" onClick={this.toggleProfileMenu} title="">
             <img className="img-circle" src={ currentUser && currentUser.avatar_url ? currentUser.avatar_url : 'http://devbook.objects.cdn.dream.io/images/default_avatar.png' } />

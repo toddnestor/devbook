@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :activities, only: [:index]
     end
 
+    resources :notifications, only: [:index]
     resources :statuses, only: [:update, :destroy, :show]
 
     get '/users/:username', to: 'users#show'

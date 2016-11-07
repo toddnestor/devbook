@@ -6,6 +6,7 @@ import ZoomPhotoReducer from './zoom_photo_reducer';
 import LoadingReducer from './loading_reducer';
 import OverlayReducer from './overlay_reducer';
 import FeedReducer from './feed_reducer';
+import NotificationsReducer from './notifications_reducer';
 
 const RootReducer = combineReducers({
   session: SessionReducer,
@@ -14,7 +15,8 @@ const RootReducer = combineReducers({
   zoomPhoto: ZoomPhotoReducer,
   loading: LoadingReducer,
   overlay: OverlayReducer,
-  feed: FeedReducer
+  feed: FeedReducer,
+  notifications: NotificationsReducer
 });
 
 export default RootReducer;

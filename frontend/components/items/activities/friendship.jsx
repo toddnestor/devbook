@@ -10,12 +10,12 @@ const Friendship = ({ activity }) => {
 
   let firstUser, secondUser;
 
-  if( activity.user.friend_status == 'accepted' && activity.wall_user.friend_status != 'self' ) {
-    firstUser = activity.user;
-    secondUser = activity.wall_user;
-  } else {
+  if( activity.user.friend_status == 'accepted' ) {
     firstUser = activity.wall_user;
     secondUser = activity.user;
+  } else {
+    firstUser = activity.user;
+    secondUser = activity.wall_user;
   }
 
   return (

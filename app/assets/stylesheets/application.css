@@ -168,3 +168,7 @@ html, body, #root {
 .text-shadow {
   text-shadow: 0 0 12px black;
 }
+
+button.has-dropdown {
+  z-index: 1;
+}

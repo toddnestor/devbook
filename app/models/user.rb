@@ -4,7 +4,6 @@ class User < ApplicationRecord
   validates :username, uniqueness: true
   validates :username, :email, presence: true
   validate :email_is_correct_format
-  after_initialize :session_token
   after_initialize :set_avatar_url
   before_save :create_activities
 
@@ -135,13 +134,15 @@ class User < ApplicationRecord
   end
 
   def create_activities
-    [
-      "relationship_status",
-      "cover_image_url",
-      "avatar_url"
-    ].each do |attribute|
-      if self.changes[attribute]
-        self.activities.create(wall_id: self.id, user_id: self.id, action: attribute)
+    if self.id
+      [
+        "relationship_status",
+        "cover_image_url",
+        "avatar_url"
+      ].each do |attribute|
+        if self.changes[attribute]
+          self.activities.create(wall_id: self.id, user_id: self.id, action: attribute)
+        end
       end
     end
   end
