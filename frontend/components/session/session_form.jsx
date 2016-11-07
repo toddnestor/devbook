@@ -26,7 +26,7 @@ class SessionForm extends React.Component {
                 devbook
               </Link>
             </div>
-            <div className="navbar-collapse collapse" id="navbar-collapse-main">
+            <div className="" id="navbar-collapse-main">
               <LoginForm login={login} errors={errors} demoLogin={demoLogin} />
             </div>
           </div>
