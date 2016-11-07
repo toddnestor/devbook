@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   has_many :media_items
   has_many :statuses, dependent: :destroy
-  has_many :activities, as: :feedable
+  has_many :activities, as: :feedable, dependent: :destroy
 
   has_many :friendships,
     primary_key: :id,

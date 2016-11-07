@@ -1,5 +1,5 @@
 class Friendship < ApplicationRecord
-  has_many :activities, as: :feedable
+  has_many :activities, as: :feedable, dependent: :destroy
 
   def self.request(requestor, requestee)
     return nil if Friendship.friendship_exists?(requestor, requestee)

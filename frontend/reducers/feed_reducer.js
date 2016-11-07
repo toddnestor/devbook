@@ -1,5 +1,5 @@
 import { RECEIVE_FEED } from '../actions/feed_actions';
-import { RECEIVE_ACTIVITY } from '../actions/activity_actions';
+import { RECEIVE_ACTIVITY, UPDATE_ACTIVITY, REMOVE_ACTIVITY } from '../actions/activity_actions';
 import { UPDATE_FRIENDSHIP_STATUS } from '../actions/friend_actions';
 
 const _defaultState = [];
@@ -28,7 +28,23 @@ const FeedReducer = (state = _defaultState, action) => {
 
         return activity;
       });
+
+      return duped;
+    case UPDATE_ACTIVITY:
+      duped = duped.map( activity => {
+        if( activity.id === action.activity.id) {
+          activity = action.activity;
+        }
+
+        return activity;
+      });
+      return duped;
+    case REMOVE_ACTIVITY:
+      let activityToRemove = _.find(duped, {id: action.activity.id});
       
+      if( activityToRemove ) {
+        duped = _.without(duped, activityToRemove);
+      }
       return duped;
     default:
       return state;

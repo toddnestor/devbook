@@ -1,6 +1,7 @@
 class Api::StatusesController < ApplicationController
   before_action :authenticate_user!
   before_action :friend_or_self, only: [:create]
+  before_action :set_object, only: [:destroy, :update]
 
   def create
     wall_id = params[:user_id] == 'home' ? current_user.id : params[:user_id]
@@ -11,6 +12,11 @@ class Api::StatusesController < ApplicationController
     else
       render 'api/shared/errors', errors: status.errors.full_messages
     end
+  end
+
+  def destroy
+    @object.destroy
+    render json: {}
   end
 
   private

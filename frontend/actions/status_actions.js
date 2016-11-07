@@ -9,14 +9,16 @@ export const createStatus = (wallId, status) => ({
   status
 });
 
-export const updateStatus = status => ({
+export const updateStatus = (status, activity) => ({
   type: UPDATE_STATUS,
-  status
+  status,
+  activity
 });
 
-export const deleteStatus = status => ({
+export const deleteStatus = (status, activity) => ({
   type: DELETE_STATUS,
-  status
+  status,
+  activity
 });
 
 export const createdStatus = () => ({
