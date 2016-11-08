@@ -17,6 +17,20 @@ if activity.feedable_type == 'Status'
       json.partial! 'api/media_items/media_item', media_item: media_item
     end
   end
+
+  @comments = activity.feedable.comments
+else
+  @comments = activity.comments
+end
+
+json.comment_count @comments.count
+
+@comments = @comments.limit(10).order(created_at: :desc).to_a.reverse
+
+json.comments do
+  json.array! @comments do |comment|
+    json.partial! 'api/comments/comment', comment: comment
+  end
 end
 
 if activity.feedable_type == 'User' && ['avatar_url', 'cover_image_url'].include?(activity.action)

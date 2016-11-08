@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :activities, only: [:index]
     end
 
+    resources :comments, only: [:create, :update, :destroy]
     resources :notifications, only: [:index]
     resources :statuses, only: [:update, :destroy, :show]
 

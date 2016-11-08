@@ -1,18 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router';
+import Autop from '../utilities/autop';
+import PhotoItem from './photo_item_container';
 
-const CommentItem = ({ comment }) => (
-  <li className="media">
-    <Link className="media-left" to={`/${comment.user.username}`}>
-      <img className="media-object img-circle" src={comment.user.avatar_url} />
-    </Link>
-    <div className="media-body">
-      <Link className="user-link" to={`/${comment.user.username}`}>
-        <strong>{comment.user.fname} {comment.user.lname}: </strong>
+const CommentItem = ({ comment }) => {
+  const renderPhoto = () => <PhotoItem photo={{url: comment.media_items[0].urls.large}} />;
+
+  return (
+    <li className="media comment-item">
+      <Link className="media-left" to={`/${comment.user.username}`}>
+        <img className="media-object img-circle" src={comment.user.avatar_url} />
       </Link>
-      {comment.text}
-    </div>
-  </li>
-);
+      <div className="media-body">
+        <Link className="user-link" to={`/${comment.user.username}`}>
+          <strong>{comment.user.fname} {comment.user.lname}: </strong>
+        </Link>
+        <Autop>
+          {comment.text}
+        </Autop>
+        {comment.media_items && comment.media_items.length ? renderPhoto() : ''}
+      </div>
+    </li>
+  );
+}
 
 export default CommentItem;

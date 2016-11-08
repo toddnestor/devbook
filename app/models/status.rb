@@ -12,4 +12,8 @@ class Status < ApplicationRecord
   def create_activity
     self.activities.create(wall_id: self.wall_id, user_id: self.user_id, action: 'created')
   end
+
+  def can_comment?(other_user)
+    self.user == other_user || self.user.are_we_friends?(other_user)
+  end
 end

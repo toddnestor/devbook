@@ -1,0 +1,17 @@
+.comment-section {
+  .image-preview {
+    max-width: 50%;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .comment-item {
+    .photo-item {
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+}

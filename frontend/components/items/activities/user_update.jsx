@@ -2,13 +2,9 @@ import React from 'react';
 import Autop from '../../utilities/autop';
 import { Link } from 'react-router';
 import ActivityPhotos from './activity_photos';
-import Comments from '../../cards/comments';
+import Comments from '../../comments/comments_container';
 
 const UserUpdate = ({ activity }) => {
-  const renderComments = () => (
-    <Comments comments={activity.comments} />
-  );
-
   const renderPhotos = () => {
     return <ActivityPhotos media_items={activity.media_items} />
   }
@@ -45,7 +41,7 @@ const UserUpdate = ({ activity }) => {
         {`Updated ${updatedText()}.`}
       </div>
       {activity.media_items && activity.media_items.length > 0 ? renderPhotos() : ""}
-      {activity.comments && activity.comments.length > 0 ? renderComments() : ""}
+      <Comments activity={activity} />
     </div>
   );
 }

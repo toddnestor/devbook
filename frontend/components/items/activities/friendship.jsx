@@ -1,13 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Comments from '../../cards/comments';
+import Comments from '../../comments/comments_container';
 import ProfileCard from '../../cards/profile_card';
 
 const Friendship = ({ activity }) => {
-  const renderComments = () => (
-    <Comments comments={activity.comments} />
-  );
-
   let firstUser, secondUser;
 
   if( activity.user.friend_status === 'none' || activity.wall_user.friend_status === 'self' ) {
@@ -33,7 +29,7 @@ const Friendship = ({ activity }) => {
       <div style={{maxWidth: '50%'}}>
         <ProfileCard user={secondUser} />
       </div>
-      {activity.comments && activity.comments.length > 0 ? renderComments() : ""}
+      <Comments activity={activity} />
     </div>
   );
 }
