@@ -50,7 +50,7 @@ class Feed extends React.Component {
               activities.map( activity => <ActivityItemContainer key={activity.id} activity={activity} />)
             }
           </InfiniteScroll>
-          <li className="media list-group-item p-a" style={{display: hasMore ? 'none' : 'list-item'}}>
+          <li className="media list-group-item p-a" style={{display: hasMore || !activities.length ? 'none' : 'list-item'}}>
             <div className="jumbotron">
               <h2 className="text-center">No more to load.</h2>
             </div>

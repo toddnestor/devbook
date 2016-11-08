@@ -12,14 +12,16 @@ const FeedReducer = (state = _defaultState, action) => {
   let duped = merge({}, state);
   let searchParams;
   let commentedActivity;
+  let hasMore;
 
   switch( action.type ) {
     case RECEIVE_FEED:
-      return {activities: action.activities, hasMore: true};
+      hasMore = !!action.activities.length;
+      return {activities: action.activities, hasMore: hasMore};
     case RECEIVE_ADDITIONAL_FEED:
        let newFeed = duped.activities.concat(action.activities);
-       let hasMore = !!action.activities.length;
-       return{ activities: newFeed, hasMore};
+       hasMore = !!action.activities.length;
+       return { activities: newFeed, hasMore};
     case RECEIVE_ACTIVITY:
       duped.activities.unshift(action.activity);
       return duped;
