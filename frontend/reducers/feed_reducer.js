@@ -1,26 +1,30 @@
-import { RECEIVE_FEED } from '../actions/feed_actions';
+import { RECEIVE_FEED, RECEIVE_ADDITIONAL_FEED } from '../actions/feed_actions';
 import { RECEIVE_ACTIVITY, UPDATE_ACTIVITY, REMOVE_ACTIVITY } from '../actions/activity_actions';
 import { UPDATE_FRIENDSHIP_STATUS } from '../actions/friend_actions';
 import { RECEIVE_COMMENT,
          RECEIVE_UPDATED_COMMENT,
          REMOVE_COMMENT } from '../actions/comment_actions';
 
-const _defaultState = [];
+const _defaultState = {activities: [], hasMore: true};
 import merge from 'lodash/merge';
 
 const FeedReducer = (state = _defaultState, action) => {
-  let duped = merge([], state);
+  let duped = merge({}, state);
   let searchParams;
   let commentedActivity;
 
   switch( action.type ) {
     case RECEIVE_FEED:
-      return action.feed;
+      return {activities: action.activities, hasMore: true};
+    case RECEIVE_ADDITIONAL_FEED:
+       let newFeed = duped.activities.concat(action.activities);
+       let hasMore = !!action.activities.length;
+       return{ activities: newFeed, hasMore};
     case RECEIVE_ACTIVITY:
-      duped.unshift(action.activity);
+      duped.activities.unshift(action.activity);
       return duped;
     case UPDATE_FRIENDSHIP_STATUS:
-      duped = duped.map( activity => {
+      duped.activities = duped.activities.map( activity => {
         if( activity.user.id === action.user.id) {
           activity.user.friend_status = action.status;
           activity.user.friend_count++;
@@ -36,7 +40,7 @@ const FeedReducer = (state = _defaultState, action) => {
 
       return duped;
     case UPDATE_ACTIVITY:
-      duped = duped.map( activity => {
+      duped.activities = duped.activities.map( activity => {
         if( activity.id === action.activity.id) {
           activity.feedable = action.activity.feedable;
           activity.media_items = action.activity.media_items;
@@ -50,7 +54,7 @@ const FeedReducer = (state = _defaultState, action) => {
       let activityToRemove = _.find(duped, {id: action.activity.id});
 
       if( activityToRemove ) {
-        duped = _.without(duped, activityToRemove);
+        duped.activities = _.without(duped.activities, activityToRemove);
       }
       return duped;
     case RECEIVE_COMMENT:
@@ -65,7 +69,7 @@ const FeedReducer = (state = _defaultState, action) => {
           searchParams = {id: action.comment.commentable_id};
       }
 
-      commentedActivity = _.find(duped, searchParams);
+      commentedActivity = _.find(duped.activities, searchParams);
 
       if( commentedActivity ) {
         commentedActivity.comments.push( action.comment );
@@ -84,7 +88,7 @@ const FeedReducer = (state = _defaultState, action) => {
           searchParams = {id: action.comment.commentable_id};
       }
 
-      commentedActivity = _.find(duped, searchParams);
+      commentedActivity = _.find(duped.activities, searchParams);
 
       if( commentedActivity ) {
         let comment = _.find(commentedActivity.comments, {id: action.comment.id});
@@ -107,7 +111,7 @@ const FeedReducer = (state = _defaultState, action) => {
           searchParams = {id: action.comment.commentable_id};
       }
 
-      commentedActivity = _.find(duped, searchParams);
+      commentedActivity = _.find(duped.activities, searchParams);
 
       if( commentedActivity ) {
         let comment = _.find(commentedActivity.comments, {id: action.comment.id});

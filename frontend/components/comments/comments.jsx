@@ -9,8 +9,8 @@ const Comments = ({activity: {comments, comment_count}, currentUser, createComme
 
   return (
     <div className="comment-section">
-      <CommentForm createComment={createComment} user={currentUser} />
       {comments && comments.length > 0 ? renderComments() : ""}
+      <CommentForm createComment={createComment} user={currentUser} />
     </div>
   );
 };

@@ -1,8 +1,8 @@
-import { FETCH_FEED, receiveFeed } from '../actions/feed_actions';
-import { fetchFeed } from '../util/feed_api';
+import { FETCH_FEED, FETCH_MORE_FEED, receiveFeed, receiveAdditionalFeed } from '../actions/feed_actions';
+import { fetchFeed, fetchMoreFeed } from '../util/feed_api';
 
 export default ({ getState, dispatch }) => next => action => {
-  const success = feed => {
+  let success = feed => {
     dispatch( receiveFeed( feed ) );
   };
 
@@ -11,6 +11,12 @@ export default ({ getState, dispatch }) => next => action => {
   switch( action.type ) {
     case FETCH_FEED:
       fetchFeed( action.wallId, success, error );
+      break;
+    case FETCH_MORE_FEED:
+      success = feed => {
+        dispatch( receiveAdditionalFeed( feed ) );
+      };
+      fetchMoreFeed( action.wallId, action.page, success, error );
       break;
   }
 

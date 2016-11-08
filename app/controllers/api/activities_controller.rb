@@ -8,6 +8,11 @@ class Api::ActivitiesController < ApplicationController
     else
       profile_feed
     end
+
+    page = 1
+    page = params[:page] if params[:page]
+
+    @activities = @activities.page(page)
   end
 
   def home_feed
