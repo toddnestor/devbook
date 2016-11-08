@@ -4,7 +4,7 @@ import CommentForm from './comment_form';
 
 const Comments = ({activity: {comments, comment_count}, currentUser, createComment}) => {
   const renderComments = () => (
-    <CommentList comments={comments} comment_count={comment_count} />
+    <CommentList comments={comments} comment_count={comment_count} currentUser={currentUser} />
   );
 
   return (

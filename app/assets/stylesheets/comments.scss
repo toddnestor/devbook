@@ -8,10 +8,19 @@
   }
 
   .comment-item {
+    position: relative;
+    
     .photo-item {
       img {
         max-width: 100%;
       }
+    }
+
+    .comment-actions {
+      position: absolute;
+      right: 8px;
+      top: 3px;
+      cursor: pointer;
     }
   }
 }
