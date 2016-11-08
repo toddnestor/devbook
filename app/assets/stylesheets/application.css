@@ -145,8 +145,13 @@
   border-bottom-color: #d9534f;
 }
 
-html, body, #root {
+html {
   height: calc(100% - 50px);
+  margin-top: 50px;
+}
+
+body, #root {
+  height: 100%;
 }
 
 .ReactModal__Body--open {
