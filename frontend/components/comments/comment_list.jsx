@@ -6,7 +6,7 @@ const CommentList = ({ comments, comment_count, currentUser }) => {
 
   return (
     <ul className="media-list m-b">
-      <li className="media text-center" style={{display: comments.length < comment_count ? 'list-item' : 'none', cursor: 'pointer'}}>
+      <li className="media text-center" style={{display: false && comments.length < comment_count ? 'list-item' : 'none', cursor: 'pointer'}}>
         <span className="icon icon-dots-three-horizontal"></span>
       </li>
       {

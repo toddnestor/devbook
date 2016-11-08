@@ -2,10 +2,9 @@ import React from 'react';
 import DropdownIcon from '../utilities/dropdown_icon';
 import SweetAlert from 'sweetalert-react';
 import Modal from 'react-modal';
-import Textarea from 'react-textarea-autosize';
-import Upload from '../utilities/upload';
+import CommentForm from './comment_form';
 
-class StatusActions extends React.Component {
+class CommentActions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +13,7 @@ class StatusActions extends React.Component {
     };
   }
 
-  showEditStatus(e) {
+  showEditComment(e) {
     e.preventDefault();
     this.setState({editComment: true});
   }
@@ -34,18 +33,18 @@ class StatusActions extends React.Component {
     this.setState({editComment: false});
   }
 
-  handleUpdateComment(comment, mediaItems) {
-    let { updateStatus, activity } = this.props;
+  handleUpdateComment(updatedComment, mediaItem) {
+    let { updateComment, comment } = this.props;
 
-    activity.feedable.content = status.content;
-    activity.feedable.media_item_ids = status.media_item_ids;
-    activity.media_items = mediaItems;
+    updatedComment.id = this.props.comment.id;
+    updateComment(updatedComment);
 
-    updateStatus(activity.feedable, activity);
     this.closeModal();
   }
 
   render() {
+    let { updateComment, comment, currentUser } = this.props;
+
     const customStyles = {
       content : {
         top                   : '50%',
@@ -57,13 +56,11 @@ class StatusActions extends React.Component {
       }
     };
 
-    let { updateStatus, activity } = this.props;
-
     return (
       <DropdownIcon className="comment-actions" content={<span className="icon icon-chevron-down"></span>}>
         <ul className="dropdown-menu media-list media-list-stream friend-requests">
           <li>
-            <a onClick={this.showEditStatus.bind(this)}>
+            <a onClick={this.showEditComment.bind(this)}>
               Edit
             </a>
             <Modal
@@ -71,7 +68,10 @@ class StatusActions extends React.Component {
               onRequestClose={this.closeModal.bind(this)}
               style={customStyles}
               shouldCloseOnOverlayClick={true}>
-              
+              <CommentForm text={comment.text}
+                           mediaItem={comment.media_items[0]}
+                           createComment={this.handleUpdateComment.bind(this)}
+                           user={currentUser} />
             </Modal>
           </li>
           <li>
@@ -84,6 +84,7 @@ class StatusActions extends React.Component {
               text="Do you really want to delete this comment?"
               showCancelButton
               onConfirm={this.confirmDelete.bind(this)}
+              buttonText="Update"
               onCancel={() => this.setState({confirmDelete: false})}
             />
           </li>
@@ -93,4 +94,4 @@ class StatusActions extends React.Component {
   }
 }
 
-export default StatusActions;
+export default CommentActions;

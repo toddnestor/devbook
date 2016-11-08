@@ -25,7 +25,8 @@ end
 
 json.comment_count @comments.count
 
-@comments = @comments.limit(10).order(created_at: :desc).to_a.reverse
+# @comments = @comments.limit(10).order(created_at: :desc).to_a.reverse
+@comments = @comments.all
 
 json.comments do
   json.array! @comments do |comment|

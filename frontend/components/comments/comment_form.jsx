@@ -9,9 +9,9 @@ class CommentForm extends React.Component {
 
     this.state = {
       comment: {
-        text: ""
+        text: this.props.text ? this.props.text : ""
       },
-      mediaItem: null
+      mediaItem: this.props.mediaItem ? this.props.mediaItem : null
     };
   }
 
@@ -32,7 +32,7 @@ class CommentForm extends React.Component {
       this.state.comment.media_item_ids = [this.state.mediaItem.id];
     }
 
-    this.props.createComment(this.state.comment);
+    this.props.createComment(this.state.comment, this.state.mediaItem);
     this.setState({comment: {text: ""}, mediaItem: null});
   }
 
@@ -54,7 +54,7 @@ class CommentForm extends React.Component {
             {this.state.mediaItem ? <PhotoItem showRemove={true} removeCb={() => this.setState({mediaItem: null})} photo={{url: this.state.mediaItem.urls.large}} /> : ''}
           </div>
           <div className="controls">
-            <button onClick={this.handleCommentCreate.bind(this)} className="btn btn-primary btn-xs">Comment</button>
+            <button onClick={this.handleCommentCreate.bind(this)} className="btn btn-primary btn-xs">{this.props.buttonText ? this.props.buttonText : "Comment"}</button>
             <Upload callback={this.addMedia.bind(this)} className={this.state.mediaItem ? 'hidden' : 'pull-right'} multiple={false}>
               <button className="btn btn-success btn-xs"><span className="icon icon-camera"></span></button>
             </Upload>
