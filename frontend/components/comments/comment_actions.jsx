@@ -71,6 +71,7 @@ class CommentActions extends React.Component {
               <CommentForm text={comment.text}
                            mediaItem={comment.media_items[0]}
                            createComment={this.handleUpdateComment.bind(this)}
+                           buttonText="Update"
                            user={currentUser} />
             </Modal>
           </li>
@@ -84,7 +85,6 @@ class CommentActions extends React.Component {
               text="Do you really want to delete this comment?"
               showCancelButton
               onConfirm={this.confirmDelete.bind(this)}
-              buttonText="Update"
               onCancel={() => this.setState({confirmDelete: false})}
             />
           </li>

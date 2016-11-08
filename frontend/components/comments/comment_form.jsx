@@ -30,6 +30,8 @@ class CommentForm extends React.Component {
 
     if( this.state.mediaItem ) {
       this.state.comment.media_item_ids = [this.state.mediaItem.id];
+    } else {
+      this.state.comment.media_item_ids = [""];
     }
 
     this.props.createComment(this.state.comment, this.state.mediaItem);
