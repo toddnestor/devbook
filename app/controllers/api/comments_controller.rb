@@ -9,6 +9,7 @@ class Api::CommentsController < ApplicationController
       @object = @comment
       render :show
     else
+      @object = @comment
       render 'api/shared/errors', status: 422
     end
   end
