@@ -292,13 +292,13 @@ class SignUpForm extends React.Component {
             </div>
             <div className="col-sm-12 gender-selector">
               <label className="radio-inline">
-                <input type="radio" value="male" onChange={this.update('gender').bind(this)} /> Male
+                <input type="radio" checked={this.state.gender == 'male'} value="male" onChange={this.update('gender').bind(this)} /> Male
                 </label>
                 <label className="radio-inline">
-                  <input type="radio" value="female" onChange={this.update('gender').bind(this)} /> Female
+                  <input type="radio" checked={this.state.gender == 'female'} value="female" onChange={this.update('gender').bind(this)} /> Female
                   </label>
                   <label className="radio-inline">
-                    <input type="radio" value="other" onChange={this.update('gender').bind(this)} /> Other
+                    <input type="radio" checked={this.state.gender == 'other'} value="other" onChange={this.update('gender').bind(this)} /> Other
                     </label>
                   </div>
                 </div>
