@@ -10,11 +10,11 @@ p 'creating new demo users'
 def get_luke
   User.find_by_email('jedi@rebellion.org')
 end
-old_luke = get_luke
-old_luke_id = old_luke.id
-random_images = []
 
-old_luke.destroy
+demo_users = User.where(demo: true)
+p 'deleting previous demo users'
+demo_users.destroy_all
+
 luke = User.create(
   fname: 'Luke',
   lname: 'Skywalker',
@@ -34,18 +34,10 @@ luke = User.create(
   demo: true
 )
 
-MediaItem.where(user_id: old_luke_id).each do |item|
-  item.user = luke
-  item.save
-  random_images << item
-end
-
 def get_leia
   User.find_by_email('princess@rebellion.org')
 end
 
-old_leia_id = get_leia.id
-get_leia.destroy
 leia = User.create(
   fname: 'Leia',
   lname: 'Organa',
@@ -63,18 +55,10 @@ leia = User.create(
   demo: true
 )
 
-MediaItem.where(user_id: old_leia_id).each do |item|
-  item.user = leia
-  item.save
-  random_images << item
-end
-
 def get_han
   User.find_by_email('smuggler@rebellion.org')
 end
 
-old_han_id = get_han.id
-get_han.destroy
 han = User.create(
   fname: 'Han',
   lname: 'Solo',
@@ -92,18 +76,10 @@ han = User.create(
   demo: true
 )
 
-MediaItem.where(user_id: old_han_id).each do |item|
-  item.user = han
-  item.save
-  random_images << item
-end
-
 def get_chewie
   User.find_by_email('wookie@rebellion.org')
 end
 
-old_chewie_id = get_chewie.id
-get_chewie.destroy
 chewie = User.create(
   fname: 'Chewbacca',
   lname: '',
@@ -120,13 +96,6 @@ chewie = User.create(
   relationship_status: 'Single',
   demo: true
 )
-
-MediaItem.where(user_id: old_chewie_id).each do |item|
-  item.user = chewie
-  item.save
-  random_images << item
-end
-
 
 darth = User.create(
   fname: 'Anakin',
@@ -161,10 +130,6 @@ emperor = User.create(
   relationship_status: 'Single',
   demo: true
 )
-
-demo_users = User.where(demo: true)
-p 'deleting previous demo users'
-demo_users.destroy_all
 
 # Star wars relationships
 accepted_friendships = [
@@ -201,17 +166,17 @@ end
 p 'start uploading media'
 p 'uploading han_chewie'
 
-old_han_chewie = MediaItem.find_by(media_file_name: "han-chewie.jpg", user_id: old_luke_id)
+old_han_chewie = MediaItem.find_by(media_file_name: "han-chewie.jpg")
 if old_han_chewie
   old_han_chewie.user = luke
   old_han_chewie.save
   han_chewie = old_han_chewie
 else
-  han_chewie = MediaItem.create(media: File.new("#{__dir__}/seed-images/han-chewie.jpg"), user_id: luke.id)
+  han_chewie = MediaItem.create(media: File.new("#{__dir__}/seed-images/han-chewie.jpg"))
 end
 
 p 'uploading millenium_falcon'
-old_millenium_falcon = MediaItem.find_by(media_file_name: "millenium-falcon.jpg", user_id: old_luke_id)
+old_millenium_falcon = MediaItem.find_by(media_file_name: "millenium-falcon.jpg")
 if old_millenium_falcon
   old_millenium_falcon.user = luke
   old_millenium_falcon.save
@@ -221,7 +186,7 @@ else
 end
 
 p 'uploading stormtrooper'
-old_stormtrooper = MediaItem.find_by(media_file_name: "stormtrooper.jpg", user_id: old_luke_id)
+old_stormtrooper = MediaItem.find_by(media_file_name: "stormtrooper.jpg")
 if old_stormtrooper
   old_stormtrooper.user = luke
   old_stormtrooper.save
@@ -231,17 +196,17 @@ else
 end
 
 p 'uploading walkers'
-old_walkers = MediaItem.find_by(media_file_name: "walker-things.jpeg", user_id: old_luke_id)
+old_walkers = MediaItem.find_by(media_file_name: "walker-things.jpeg")
 if old_walkers
   old_walkers.user = luke
   old_walkers.save
   walkers = old_walkers
 else
-  walkers = MediaItem.create(media: File.new("#{__dir__}/seed-images/walker-things.jpeg"), user_id: luke.id)
+  walkers = MediaItem.create(media: File.new("#{__dir__}/seed-images/walker-things.jpeg"))
 end
 
 p 'uploading obi_yoda'
-old_obi_yoda = MediaItem.find_by(media_file_name: "obi-yoda.jpg", user_id: old_luke_id)
+old_obi_yoda = MediaItem.find_by(media_file_name: "obi-yoda.jpg")
 if old_obi_yoda
   old_obi_yoda.user = luke
   old_obi_yoda.save
@@ -251,7 +216,7 @@ else
 end
 
 p 'uploading han_i_know_solo'
-old_han_i_know_solo = MediaItem.find_by(media_file_name: "han-i-know-solo.png", user_id: old_han_id)
+old_han_i_know_solo = MediaItem.find_by(media_file_name: "han-i-know-solo.png")
 if old_han_i_know_solo
   old_han_i_know_solo.user = luke
   old_han_i_know_solo.save
@@ -282,8 +247,9 @@ random_images = []
     if File.exists?(filename)
       p "uploading random image #{n}"
 
-      random_image = MediaItem.where(media_file_name: "#{n}.#{extension}", user_id: [old_han_id, old_luke_id, old_leia_id]).first
+      random_image = MediaItem.where(media_file_name: "#{n}.#{extension}").first
       if random_image
+        random_image.user = random_user
         random_images << random_image
       else
         random_images << MediaItem.create(media: File.new(filename), user_id: users.sample.id)
@@ -299,8 +265,9 @@ droid_images = []
     filename = "#{__dir__}/seed-images/droids/droid-#{n}.#{extension}"
     if File.exists?(filename)
       p "uploading droid image #{n}"
-      droid_image = MediaItem.where(media_file_name: "droid-#{n}.#{extension}", user_id: [old_han_id, old_luke_id, old_leia_id]).first
+      droid_image = MediaItem.where(media_file_name: "droid-#{n}.#{extension}").first
       if droid_image
+        droid_image.user = random_user
         droid_images << droid_image
       else
         droid_images << MediaItem.create(media: File.new(filename), user_id: users.sample.id)
