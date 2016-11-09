@@ -1,4 +1,4 @@
-json.extract! comment, :id, :text, :commentable_type, :commentable_id, :user
+json.extract! comment, :id, :text, :commentable_type, :commentable_id, :user, :created_at
 
 json.media_items do
   json.array! comment.media_items do |media_item|
