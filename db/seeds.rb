@@ -447,13 +447,6 @@ end
   end
 end
 
-media_ids = [walkers.id, stormtrooper.id, han_chewie.id, millenium_falcon.id]
-crazy_battles = luke.statuses.create(
-  content: "Man, we've had some crazy times in this galaxy far away. Just wanted to share some pics from some of the battles over the years...",
-  media_item_ids: media_ids,
-  wall_id: luke.id
-)
-
 where_you_been = leia.statuses.create(
   content: "Luke, bro, where have you been?",
   wall_id: luke.id
@@ -533,3 +526,10 @@ chewie.comments.create(
 )
 
 chewie.update_attribute(:cover_image_url, "https://devbook.objects.cdn.dream.io/media_items/media/000/000/032/large/kashyyyk_by_wutangclanshirt-d6237t0.jpg?1478634184")
+
+media_ids = [walkers.id, stormtrooper.id, han_chewie.id, millenium_falcon.id]
+crazy_battles = luke.statuses.create(
+  content: "Man, we've had some crazy times in this galaxy far away. Just wanted to share some pics from some of the battles over the years...",
+  media_item_ids: media_ids,
+  wall_id: luke.id
+)
