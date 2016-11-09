@@ -351,11 +351,13 @@ end
 
 def random_chewie_status(media_items = [])
   media_item_ids = media_items.map {|item| item.id}
-  get_chewie.statuses.create(
+  status = get_chewie.statuses.create(
     content: random_wookie_sentence,
     wall_id: get_chewie.id,
     media_item_ids: media_item_ids
   )
+
+  status
 end
 
 def random_faker_sentence(media_items = [])
@@ -366,6 +368,8 @@ def random_faker_sentence(media_items = [])
     wall_id: user.id,
     media_item_ids: media_item_ids
   )
+
+  status
 end
 
 def random_chewie_comment(status, media_items = [])
@@ -393,6 +397,8 @@ def random_faker_place(media_items = [])
     commentable_type: 'Status',
     commentable_id: status.id
   )
+
+  status
 end
 
 def random_faker_vehicle(media_items = [])
@@ -402,6 +408,8 @@ def random_faker_vehicle(media_items = [])
     content: "Just working on my #{Faker::StarWars.vehicle}, what's everyone else up to?",
     wall_id: user.id
   )
+
+  status
 end
 
 def random_status(media_items = [])
