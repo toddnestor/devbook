@@ -12,9 +12,13 @@ if( activity.wall_id != activity.user_id )
 end
 
 if activity.feedable_type == 'Status'
+  used_media_items = []
   json.media_items do
     json.array! activity.feedable.media_items do |media_item|
-      json.partial! 'api/media_items/media_item', media_item: media_item
+      unless used_media_items.include?(media_item.id)
+        json.partial! 'api/media_items/media_item', media_item: media_item
+        used_media_items << media_item.id
+      end
     end
   end
 
@@ -26,7 +30,7 @@ end
 json.comment_count @comments.count
 
 # @comments = @comments.limit(10).order(created_at: :desc).to_a.reverse
-@comments = @comments.all
+@comments = @comments.order(created_at: :asc).all
 
 json.comments do
   json.array! @comments do |comment|

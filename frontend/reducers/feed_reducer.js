@@ -53,7 +53,7 @@ const FeedReducer = (state = _defaultState, action) => {
 
       return duped;
     case REMOVE_ACTIVITY:
-      let activityToRemove = _.find(duped, {id: action.activity.id});
+      let activityToRemove = _.find(duped.activities, {id: action.activity.id});
 
       if( activityToRemove ) {
         duped.activities = _.without(duped.activities, activityToRemove);
