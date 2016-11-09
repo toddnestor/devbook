@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :statuses, dependent: :destroy
   has_many :concerned_statuses,
     primary_key: :id,
-    foreign_key: :user_id,
+    foreign_key: :wall_id,
     class_name: :Status,
     dependent: :destroy
 
@@ -25,6 +25,12 @@ class User < ApplicationRecord
     foreign_key: :user_id,
     class_name: :Activity,
     dependent: :destroy
+
+    has_many :wall_activities,
+      primary_key: :id,
+      foreign_key: :wall_id,
+      class_name: :Activity,
+      dependent: :destroy
 
   has_many :activities, as: :feedable, dependent: :destroy
 
