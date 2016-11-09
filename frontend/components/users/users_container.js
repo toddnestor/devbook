@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import Users from './users';
 import { fetchUsers } from '../../actions/users_actions';
-import { allUsers } from '../../reducers/selectors';
+import { sortedUsers } from '../../reducers/selectors';
 
 const mapStateToProps = state => ({
-  users: allUsers(state),
+  users: sortedUsers(state),
   loading: state.users.loading
 });
 

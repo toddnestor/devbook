@@ -14,7 +14,7 @@ const RequestedFriendButton = ({ user, denyFriendRequest, acceptFriendRequest, h
   }
 
   return (
-    <DropdownButton className="btn btn-info-outline btn-sm" buttonContent={<span><span className="icon icon-add-user"></span> Respond to Request <span className="caret"></span></span>}>
+    <DropdownButton className="btn btn-info-outline btn-sm friend-button" buttonContent={<span><span className="icon icon-add-user"></span> Respond to Request <span className="caret"></span></span>}>
       <ul className="dropdown-menu">
         <li>
           <a href="#" onClick={handleAcceptFriendRequest}>

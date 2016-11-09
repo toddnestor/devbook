@@ -20,7 +20,7 @@ const ProfileHeader = ({ profile, router, username }) => {
       <div className="gradient-overlay"></div>
       <div className="container">
         <div className="container-inner">
-          <img className="img-circle media-object" src={ profile && profile.avatar_url ? profile.avatar_url : '' } />
+          <img className="media-object img-rounded" src={ profile && profile.avatar_url ? profile.avatar_url : '' } />
           <h3 className="profile-header-user text-shadow">{profile.fname} {profile.lname}</h3>
           <p className="profile-header-bio text-shadow">
             {profile.tagline}

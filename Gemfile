@@ -31,8 +31,9 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 gem 'paperclip', '~> 5.0.0'
 gem 'aws-sdk', '~> 2.6.14'
-gem 'state_machines-activerecord'
-gem 'kaminari'
+gem 'state_machines-activerecord', '~> 0.4.0'
+gem 'kaminari', '~> 0.17.0'
+gem 'faker', '~> 1.6.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -9,7 +9,7 @@ const BlockedFriendButton = ({ user, unBlockUser }) => {
   }
 
   return (
-    <DropdownButton className="btn btn-danger-outline btn-sm" buttonContent={<span><span className="icon icon-block"></span> Blocked <span className="caret"></span></span>}>
+    <DropdownButton className="btn btn-danger-outline btn-sm friend-button" buttonContent={<span><span className="icon icon-block"></span> Blocked <span className="caret"></span></span>}>
       <ul className="dropdown-menu">
         <li>
           <a href="#" onClick={handleUnBlockUser}>

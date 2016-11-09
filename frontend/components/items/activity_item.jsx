@@ -23,7 +23,7 @@ const ActivityItem = ({ activity, currentUser }) => {
 
   //ugly, but we have to make sure to use the correct user for friendships
   if( activity.feedable_type == 'Friendship') {
-    if( activity.user.friend_status === 'none' || activity.wall_user.friend_status === 'self' ) {
+    if( activity.user.friend_status !== 'accepted' && activity.user.friend_status !== 'self' ) {
       user = activity.wall_user;
     }
   }
@@ -34,7 +34,7 @@ const ActivityItem = ({ activity, currentUser }) => {
     <li className="media list-group-item p-a activity-item">
       {isOwner() && activity.feedable_type == 'Status' ? <StatusActionsContainer activity={activity} /> : ""}
       <Link className="media-left" to={`/${user.username}`}>
-        <img className="media-object img-circle" src={user.avatar_url} />
+        <img className="media-object img-rounded" src={user.avatar_url} />
       </Link>
       {renderItem()}
     </li>

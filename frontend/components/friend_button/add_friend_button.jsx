@@ -9,7 +9,7 @@ const AddFriendButton = ({ user, requestFriend, handleBlockUser }) => {
   }
 
   return (
-    <div className="btn-group">
+    <div className="btn-group friend-button">
       <button className="btn btn-primary-outline btn-sm" onClick={handleRequestFriend}>
         <span className="icon icon-add-user"></span>
          Friends
@@ -18,7 +18,7 @@ const AddFriendButton = ({ user, requestFriend, handleBlockUser }) => {
         <ul className="dropdown-menu">
           <li>
             <a href="#" onClick={handleBlockUser}>
-              <span className="icon icon-block"></span> 
+              <span className="icon icon-block"></span>
               Block
             </a>
           </li>

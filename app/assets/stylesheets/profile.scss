@@ -78,6 +78,23 @@
 }
 
 .profile-photos {
+
+  .col-md-3 {
+    height: 440px;
+
+    .panel-profile {
+      height: 410px;
+
+      .friend-button {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+      }
+    }
+  }
+
   .photo-item {
     display: inline-block;
     overflow: visible;
@@ -96,6 +113,8 @@
   li {
     .app-notifications {
       padding-bottom: 0 !important;
+      margin-right: 10px;
+      margin-left: 0;
 
       .icon {
         line-height: 49px;

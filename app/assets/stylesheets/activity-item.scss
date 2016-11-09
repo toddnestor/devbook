@@ -13,4 +13,12 @@
     top: 3px;
     cursor: pointer;
   }
+
+  .friend-item {
+    display: inline-block;
+
+    .media-body {
+      width: inherit;
+    }
+  }
 }

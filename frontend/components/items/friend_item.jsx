@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router';
 import FriendButton from '../friend_button/friend_button_container';
 
-const FriendItem = ({ friend }) => (
-  <li className="media m-b friend-item">
+const FriendItem = ({ friend, Element = `li` }) => (
+  <Element className="media m-b friend-item">
     <Link to={`/${friend.username}`} className="media-left">
-      <img className="media-object img-circle" src={friend.avatar_url} />
+      <img className="media-object img-rounded" src={friend.avatar_url} />
     </Link>
     <div className="media-body">
       <Link to={`/${friend.username}`} className="friend-name">
@@ -15,7 +15,7 @@ const FriendItem = ({ friend }) => (
         <FriendButton user={friend} />
       </div>
     </div>
-  </li>
+  </Element>
 );
 
 export default FriendItem;

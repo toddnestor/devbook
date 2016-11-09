@@ -9,7 +9,7 @@ const PendingFriendButton = ({ user, cancelRequest, handleBlockUser }) => {
   }
 
   return (
-    <DropdownButton className="btn btn-warning-outline btn-sm" buttonContent={<span><span className="icon icon-check"></span> Requested <span className="caret"></span></span>}>
+    <DropdownButton className="btn btn-warning-outline btn-sm friend-button" buttonContent={<span><span className="icon icon-check"></span> Requested <span className="caret"></span></span>}>
       <ul className="dropdown-menu">
         <li>
           <a href="#" onClick={handleCancelRequest}>

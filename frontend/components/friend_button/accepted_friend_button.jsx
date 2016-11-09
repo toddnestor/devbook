@@ -9,7 +9,7 @@ const AcceptedFriendButton = ({ user, unfriendUser, handleBlockUser }) => {
   }
 
   return (
-    <DropdownButton className="btn btn-success-outline btn-sm" buttonContent={<span><span className="icon icon-check"></span> Friends <span className="caret"></span></span>}>
+    <DropdownButton className="btn btn-success-outline btn-sm friend-button" buttonContent={<span><span className="icon icon-check"></span> Friends <span className="caret"></span></span>}>
       <ul className="dropdown-menu">
         <li>
           <a href="#" onClick={handleUnfriendUser}>

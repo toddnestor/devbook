@@ -70,3 +70,49 @@
     display: block;
   }
 }
+
+@media (max-width: 1259px) and (min-width: 992px ) {
+  .image-previews {
+    max-width: 340px;
+  }
+
+  .photos-card {
+    .photo-item {
+      img {
+        width: 84px;
+        height: auto;
+      }
+    }
+  }
+
+  .feed {
+    .photos {
+      .photo-item {
+        max-width: 125px;
+      }
+
+      .photo-item:nth-child(4n + 1), .photo-item:nth-child(4n + 4) {
+        max-width: 185px;
+      }
+    }
+  }
+}
+
+@media (max-width: 620px) {
+  .feed {
+    .photos {
+      .photo-item {
+        width: 100%;
+        max-width: 100%;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .photo-item:nth-child(4n + 1), .photo-item:nth-child(4n + 4) {
+        max-width: 100%;
+      }
+    }
+  }
+}

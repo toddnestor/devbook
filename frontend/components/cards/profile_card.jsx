@@ -7,7 +7,7 @@ const ProfileCard = ({ user }) => (
     <div className="panel-heading" style={{backgroundImage: `url(${user && user.cover_image_url ? user.cover_image_url : 'https://devbook.objects.cdn.dream.io/media_items/media/000/000/002/large/Programmer.jpg?1478195335'})`}}></div>
     <div className="panel-body text-center">
       <Link to={`/${user.username}`}>
-        <img className="panel-profile-img" src={user.avatar_url} />
+        <img className="panel-profile-img img-rounded" src={user.avatar_url} />
       </Link>
 
       <h5 className="panel-title">

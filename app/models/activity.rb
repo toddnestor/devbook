@@ -6,7 +6,7 @@ class Activity < ApplicationRecord
     class_name: :User
 
   belongs_to :feedable, polymorphic: true
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
 
   def can_comment?(other_user)
     return true if self.user == other_user || self.user.are_we_friends?(other_user)

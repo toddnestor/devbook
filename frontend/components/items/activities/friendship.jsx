@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Comments from '../../comments/comments_container';
-import ProfileCard from '../../cards/profile_card';
+// import ProfileCard from '../../cards/profile_card';
+import FriendItem from '../friend_item';
 
 const Friendship = ({ activity }) => {
   let firstUser, secondUser;
 
-  if( activity.user.friend_status === 'none' || activity.wall_user.friend_status === 'self' ) {
+  if( activity.user.friend_status !== 'accepted' && activity.user.friend_status !== 'self' ) {
     firstUser = activity.wall_user;
     secondUser = activity.user;
   } else {
@@ -26,8 +27,8 @@ const Friendship = ({ activity }) => {
           <h5>{secondUser.fname} {secondUser.lname}</h5>
         </Link>
       </div>
-      <div style={{maxWidth: '50%'}}>
-        <ProfileCard user={secondUser} />
+      <div>
+        <FriendItem friend={secondUser} Element={`div`} />
       </div>
       <Comments activity={activity} />
     </div>

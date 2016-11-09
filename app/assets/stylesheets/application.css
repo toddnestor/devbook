@@ -177,3 +177,7 @@ body, #root {
 button.has-dropdown {
   z-index: 1;
 }
+
+.img-rounded {
+  border-radius: 4px !important;
+}

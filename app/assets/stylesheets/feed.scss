@@ -10,7 +10,7 @@
       max-width: 175px;
 
       img {
-        height: 183px;
+        height: auto;
         width: auto;
       }
     }
@@ -24,6 +24,8 @@
     }
   }
 }
+
+
 
 .form-group.post-creation {
   margin-bottom: 0;
