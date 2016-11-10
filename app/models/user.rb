@@ -10,6 +10,7 @@ class User < ApplicationRecord
   attr_reader :password
 
   has_many :media_items
+  has_many :albums, dependent: :destroy
   has_many :sessions, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :statuses, dependent: :destroy

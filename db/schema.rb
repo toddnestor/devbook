@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107222233) do
+ActiveRecord::Schema.define(version: 20161110190814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 20161107222233) do
     t.index ["feedable_type", "feedable_id"], name: "index_activities_on_feedable_type_and_feedable_id", using: :btree
     t.index ["user_id"], name: "index_activities_on_user_id", using: :btree
     t.index ["wall_id"], name: "index_activities_on_wall_id", using: :btree
+  end
+
+  create_table "albums", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "title",       null: false
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["user_id"], name: "index_albums_on_user_id", using: :btree
   end
 
   create_table "attachments", force: :cascade do |t|
@@ -88,7 +97,7 @@ ActiveRecord::Schema.define(version: 20161107222233) do
 
   create_table "statuses", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "wall_id"
+    t.integer  "wall_id",    null: false
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -122,6 +131,7 @@ ActiveRecord::Schema.define(version: 20161107222233) do
   end
 
   add_foreign_key "activities", "users"
+  add_foreign_key "albums", "users"
   add_foreign_key "attachments", "media_items"
   add_foreign_key "comments", "users"
   add_foreign_key "sessions", "users"

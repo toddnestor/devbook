@@ -189,3 +189,11 @@ button.has-dropdown {
   background-size: cover;
   background-position: center;
 }
+
+p {
+  min-height: 1em;
+}
+
+.autop p {
+  margin-bottom: 0;
+}

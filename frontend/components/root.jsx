@@ -32,6 +32,8 @@ const Root = ({ store }) => {
           <IndexRoute component={HomeContainer} />
           <Route path="users" component={UsersContainer} />
           <Route path="edit-profile" component={EditProfileContainer} />
+          <Route path="albums" />
+          <Route path="albums/:id" />
           <Route path=":username" component={ProfileContainer}>
             <IndexRoute component={PostsContainer} />
             <Route path="photos" component={PhotosContainer} />

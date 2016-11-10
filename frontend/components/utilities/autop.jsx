@@ -18,7 +18,7 @@ const Autop = ({ children, style, className, onClick }) => {
   });
 
   return (
-    <div style={options.style} className={options.className} onClick={options.onClick}>
+    <div style={options.style} className={options.className + ' autop'} onClick={options.onClick}>
       {
         children.split("\n").map((para, i) => (
           <p key={i}>
