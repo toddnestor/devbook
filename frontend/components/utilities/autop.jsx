@@ -1,4 +1,5 @@
 import React from 'react';
+import LinkItUp from './link_it_up';
 
 const Autop = ({ children, style, className, onClick }) => {
   const handleClick = e => {
@@ -14,14 +15,16 @@ const Autop = ({ children, style, className, onClick }) => {
     style,
     className,
     onClick
-  })
+  });
 
   return (
     <div style={options.style} className={options.className} onClick={options.onClick}>
       {
         children.split("\n").map((para, i) => (
           <p key={i}>
-            {para}
+            <LinkItUp options={{newTab: true}}>
+              {para}
+            </LinkItUp>
           </p>
         ))
       }
