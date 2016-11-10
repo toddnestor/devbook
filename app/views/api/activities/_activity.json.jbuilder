@@ -1,20 +1,21 @@
-json.extract! activity, :user_id, :wall_id, :feedable, :action, :id,
+json.extract! activity, :user_id, :wall_id, :action, :id,
                         :created_at, :updated_at, :feedable_type, :feedable_id
 
 json.set! :user do
-  json.partial! 'api/users/basic_user', user: activity.user
+  json.partial! 'api/users/minimal_user', user: activity.user
 end
 
 if( activity.wall_id != activity.user_id )
   json.set! :wall_user do
-    json.partial! 'api/users/basic_user', user: activity.wall_user
+    json.partial! 'api/users/minimal_user', user: activity.wall_user
   end
 end
 
 if activity.feedable_type == 'Status'
+  json.feedable activity.status
   used_media_items = []
   json.media_items do
-    json.array! activity.feedable.media_items do |media_item|
+    json.array! activity.status.media_items do |media_item|
       unless used_media_items.include?(media_item.id)
         json.partial! 'api/media_items/media_item', media_item: media_item
         used_media_items << media_item.id
@@ -22,15 +23,13 @@ if activity.feedable_type == 'Status'
     end
   end
 
-  @comments = activity.feedable.comments
+  @comments = activity.status.first_ten_comments.first(10).to_a.reverse
+  json.comment_count @status_comment_counts[activity.status.id]
 else
-  @comments = activity.comments
+  json.feedable activity.feedable
+  @comments = activity.first_ten_comments.first(10).to_a.reverse
+  json.comment_count @activity_comment_counts[activity.id]
 end
-
-json.comment_count @comments.count
-
-# @comments = @comments.limit(10).order(created_at: :desc).to_a.reverse
-@comments = @comments.order(created_at: :asc).all
 
 json.comments do
   json.array! @comments do |comment|

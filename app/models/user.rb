@@ -26,11 +26,11 @@ class User < ApplicationRecord
     class_name: :Activity,
     dependent: :destroy
 
-    has_many :wall_activities,
-      primary_key: :id,
-      foreign_key: :wall_id,
-      class_name: :Activity,
-      dependent: :destroy
+  has_many :wall_activities,
+    primary_key: :id,
+    foreign_key: :wall_id,
+    class_name: :Activity,
+    dependent: :destroy
 
   has_many :activities, as: :feedable, dependent: :destroy
 
@@ -41,6 +41,10 @@ class User < ApplicationRecord
 
   has_many :friends,
     -> { where(friendships: { status: 'accepted' }) },
+    through: :friendships
+
+  has_many :friend_count,
+    -> { where(friendships: { status: 'accepted' }).count },
     through: :friendships
 
   has_many :accepted_friendships,

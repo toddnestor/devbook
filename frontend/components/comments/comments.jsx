@@ -2,9 +2,9 @@ import React from 'react';
 import CommentList from './comment_list';
 import CommentForm from './comment_form';
 
-const Comments = ({activity: {comments, comment_count}, currentUser, createComment}) => {
+const Comments = ({activity: {comments, comment_count, id}, currentUser, createComment, fetchMoreComments}) => {
   const renderComments = () => (
-    <CommentList comments={comments} comment_count={comment_count} currentUser={currentUser} />
+    <CommentList comments={comments} comment_count={comment_count} fetchMoreComments={fetchMoreComments} currentUser={currentUser} />
   );
 
   return (

@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Comments from '../../comments/comments_container';
-// import ProfileCard from '../../cards/profile_card';
-import FriendItem from '../friend_item';
 
 const Friendship = ({ activity }) => {
   let firstUser, secondUser;
@@ -28,7 +26,12 @@ const Friendship = ({ activity }) => {
         </Link>
       </div>
       <div>
-        <FriendItem friend={secondUser} Element={`div`} />
+        <Link to={`/${firstUser.username}`} className="media-left pull-left">
+          <img className="media-object img-rounded" src={firstUser.avatar_url} />
+        </Link>
+        <Link to={`/${secondUser.username}`} className="media-left pull-right">
+          <img className="media-object img-rounded" src={secondUser.avatar_url} />
+        </Link>
       </div>
       <Comments activity={activity} />
     </div>

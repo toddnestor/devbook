@@ -7,11 +7,11 @@ export const fetchFeed = (wallId, success, error) => {
   });
 };
 
-export const fetchMoreFeed = (wallId, page, success, error) => {
+export const fetchMoreFeed = (wallId, page, created, success, error) => {
   $.ajax({
     method: 'GET',
     url: `/api/users/${wallId}/activities`,
-    data: {page},
+    data: {page, created},
     success,
     error
   });

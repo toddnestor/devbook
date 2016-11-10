@@ -13,10 +13,14 @@ export default ({ getState, dispatch }) => next => action => {
       fetchFeed( action.wallId, success, error );
       break;
     case FETCH_MORE_FEED:
+      let created = getState().feed.created;
+      console.log('created: ', created );
+
       success = feed => {
         dispatch( receiveAdditionalFeed( feed ) );
       };
-      fetchMoreFeed( action.wallId, action.page, success, error );
+
+      fetchMoreFeed( action.wallId, action.page, created, success, error );
       break;
   }
 

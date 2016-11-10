@@ -21,6 +21,7 @@ export const deleteStatus = (status, activity) => ({
   activity
 });
 
-export const createdStatus = () => ({
-  type: CREATED_STATUS
+export const createdStatus = activity => ({
+  type: CREATED_STATUS,
+  activity
 });

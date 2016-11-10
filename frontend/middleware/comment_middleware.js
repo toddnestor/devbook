@@ -3,8 +3,10 @@ import { CREATE_COMMENT,
          DELETE_COMMENT,
          receiveComment,
          receiveUpdatedComment,
-         removeComment } from '../actions/comment_actions';
-import { createComment, updateComment, deleteComment } from '../util/comment_api';
+         removeComment,
+         FETCH_MORE_COMMENTS,
+         receiveMoreComments } from '../actions/comment_actions';
+import { createComment, updateComment, deleteComment, fetchMoreComments } from '../util/comment_api';
 
 export default ({ getState, dispatch }) => next => action => {
   let success;
@@ -23,6 +25,10 @@ export default ({ getState, dispatch }) => next => action => {
     case DELETE_COMMENT:
       success = () => dispatch(removeComment(action.comment));
       deleteComment(action.comment, success, error);
+      break;
+    case FETCH_MORE_COMMENTS:
+      success = comments => dispatch(receiveMoreComments(action.activity_id, comments));
+      fetchMoreComments(action.commentable_type, action.commentable_id, action.page, success, error);
       break;
   }
 

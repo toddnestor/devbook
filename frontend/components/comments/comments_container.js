@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import Comments from './comments';
 import { createComment,
          updateComment,
-         deleteComment } from '../../actions/comment_actions';
+         deleteComment,
+         fetchMoreComments } from '../../actions/comment_actions';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser
@@ -20,7 +21,19 @@ const mapDispatchToProps = (dispatch, {activity}) => ({
     dispatch(createComment(comment));
   },
   updateComment: comment => dispatch(updateComment(comment)),
-  deleteComment: comment => dispatch(deleteComment(comment))
+  deleteComment: comment => dispatch(deleteComment(comment)),
+  fetchMoreComments: page => {
+    let type, id;
+    if( activity.feedable_type == 'Status' ) {
+      type = activity.feedable_type;
+      id = activity.feedable_id;
+    } else {
+      type = 'Activity';
+      id = activity.id;
+    }
+
+    dispatch(fetchMoreComments(type, id, page, activity.id));
+  }
 });
 
 export default connect(

@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     resources :notifications, only: [:index]
     resources :statuses, only: [:update, :destroy, :show]
 
+    get '/:type/:id/comments', to: 'comments#index'
+
     get '/users/:username', to: 'users#show'
     get '/users/:username/friends', to: 'users#friends'
     post '/session/demo', to: 'sessions#demo'

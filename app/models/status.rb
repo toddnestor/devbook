@@ -12,7 +12,15 @@ class Status < ApplicationRecord
   has_many :media_items, through: :attachments
 
   has_many :activities, as: :feedable, dependent: :destroy
-  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :comments,
+    -> { includes(:user, :media_items)},
+    as: :commentable, dependent: :destroy
+
+
+  has_many :first_ten_comments,
+    -> { limit(10).order(created_at: :desc)},
+    class_name: :Comment,
+    as: :commentable
 
   def create_activity
     self.activities.create(wall_id: self.wall_id, user_id: self.user_id, action: 'created')

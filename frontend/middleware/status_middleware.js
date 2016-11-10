@@ -5,7 +5,7 @@ import { createStatus, updateStatus, deleteStatus } from '../util/status_api';
 export default ({ getState, dispatch }) => next => action => {
   let success = activity => {
     dispatch( receiveActivity( activity ) );
-    dispatch( createdStatus() );
+    dispatch( createdStatus( activity ) );
   };
 
   const error = xhr => console.log(xhr.responseJSON);

@@ -26,3 +26,13 @@ export const deleteComment = (comment, success, error) => {
     error
   });
 };
+
+export const fetchMoreComments = (type, id, page, success, error) => {
+  $.ajax({
+    method: 'GET',
+    url: `/api/${type}/${id}/comments`,
+    data: {page},
+    success,
+    error
+  });
+};

@@ -6,7 +6,19 @@ class Activity < ApplicationRecord
     class_name: :User
 
   belongs_to :feedable, polymorphic: true
-  has_many :comments, as: :commentable, dependent: :destroy
+
+  belongs_to :status,
+    -> { includes(:activities).where(activities: {feedable_type: 'Status'}) },
+    foreign_key: :feedable_id
+
+  has_many :comments,
+    -> { includes(:user, :media_items)},
+    as: :commentable, dependent: :destroy
+
+  has_many :first_ten_comments,
+    -> { limit(10).order(created_at: :desc)},
+    class_name: :Comment,
+    as: :commentable
 
   def can_comment?(other_user)
     return true if self.user == other_user || self.user.are_we_friends?(other_user)
