@@ -7,8 +7,70 @@ class Api::UsersController < ApplicationController
   end
 
   def search
-    @users = Search.new(User, params[:search]).run
-    render :index
+    @users_query = User.where.not(id: current_user.been_blocked_friendships.pluck(:friend_id))
+
+    search_term = params[:search]
+    search_words = search_term.split(' ')
+
+    where_clause = sanitize_sql("(CONCAT(fname,' ',lname) ILIKE ? OR email ILIKE ? OR username ILIKE ?)", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%")
+
+    search_words.each do |word|
+      where_clause += sanitize_sql(" OR (CONCAT(fname,' ',lname) ILIKE ? OR email ILIKE ? OR username ILIKE ?)", "%#{word}%", "%#{word}%", "%#{word}%")
+    end
+
+    @users = @users_query.where(where_clause)
+
+    highest_number = search_words.length
+
+    order_query = <<-SQL
+      CASE
+        WHEN CONCAT(fname, ' ', lname) ILIKE ? THEN #{highest_number + 3}
+        WHEN email ILIKE ? THEN #{highest_number + 3}
+        WHEN username ILIKE ? THEN #{highest_number + 3}
+        WHEN CONCAT(fname, ' ', lname) ILIKE ? THEN #{highest_number + 2}
+        WHEN email ILIKE ? THEN #{highest_number + 2}
+        WHEN username ILIKE ? THEN #{highest_number + 2}
+        WHEN CONCAT(fname, ' ', lname) ILIKE ? THEN #{highest_number + 1}
+        WHEN email ILIKE ? THEN #{highest_number + 1}
+        WHEN username ILIKE ? THEN #{highest_number + 1}
+    SQL
+
+    search_words = search_words.map {|w| "%#{w}%"}
+    triplicated_search_words = []
+
+    search_words.each do |word|
+      3.times {triplicated_search_words << word}
+      order_query += <<-SQL
+        WHEN CONCAT(fname, ' ', lname) ILIKE ? THEN #{highest_number}
+        WHEN email ILIKE ? THEN #{highest_number}
+        WHEN username ILIKE ? THEN #{highest_number}
+      SQL
+      highest_number -= 1
+    end
+
+    order_query += <<-SQL
+      END desc
+    SQL
+
+
+
+    @users = @users.order(
+      sanitize_sql(
+          order_query,
+          search_term,
+          search_term,
+          search_term,
+          "%#{search_term}",
+          "%#{search_term}",
+          "%#{search_term}",
+          "%#{search_term}%",
+          "%#{search_term}%",
+          "%#{search_term}%",
+          *triplicated_search_words
+      )
+    )
+
+    render :search
   end
 
   def create
@@ -48,5 +110,9 @@ class Api::UsersController < ApplicationController
       :gender,
       :relationship_status
     )
+  end
+
+  def sanitize_sql(*args)
+    ActiveRecord::Base.send(:sanitize_sql, args)
   end
 end
