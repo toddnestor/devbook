@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :update, :destroy]
     resources :notifications, only: [:index]
     resources :statuses, only: [:update, :destroy, :show]
-    resources :albums, only: [:create, :update, :destroy]
+    resources :albums, only: [:create, :update, :destroy, :index]
 
     get '/:type/:id/comments', to: 'comments#index'
 

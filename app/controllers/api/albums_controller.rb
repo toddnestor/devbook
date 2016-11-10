@@ -3,7 +3,9 @@ class Api::AlbumsController < ApplicationController
   before_action :set_object, only: [:destroy, :show, :update]
 
   def index
-    @albums = User.find(params[:user_id]).albums
+    @user = User.find(params[:user_id])
+    @user = current_user unless @user
+    @albums = @user.albums
   end
 
   def create

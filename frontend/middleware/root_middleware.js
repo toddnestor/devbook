@@ -7,6 +7,7 @@ import StatusMiddleware from './status_middleware';
 import FeedMiddleware from './feed_middleware';
 import NotificationsMiddleware from './notifications_middleware';
 import CommentMiddleware from './comment_middleware';
+import AlbumMiddleware from './album_middleware';
 
 const RootMiddleware = applyMiddleware(
   SessionMiddleware,
@@ -16,7 +17,8 @@ const RootMiddleware = applyMiddleware(
   StatusMiddleware,
   FeedMiddleware,
   NotificationsMiddleware,
-  CommentMiddleware
+  CommentMiddleware,
+  AlbumMiddleware
 );
 
 export default RootMiddleware;

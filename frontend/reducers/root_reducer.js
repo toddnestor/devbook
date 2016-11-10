@@ -7,6 +7,7 @@ import LoadingReducer from './loading_reducer';
 import OverlayReducer from './overlay_reducer';
 import FeedReducer from './feed_reducer';
 import NotificationsReducer from './notifications_reducer';
+import AlbumReducer from './album_reducer';
 
 const RootReducer = combineReducers({
   session: SessionReducer,
@@ -16,7 +17,8 @@ const RootReducer = combineReducers({
   loading: LoadingReducer,
   overlay: OverlayReducer,
   feed: FeedReducer,
-  notifications: NotificationsReducer
+  notifications: NotificationsReducer,
+  albums: AlbumReducer
 });
 
 export default RootReducer;
