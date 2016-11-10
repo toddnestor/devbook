@@ -8,6 +8,9 @@ class Api::StatusesController < ApplicationController
     @status = current_user.statuses.new(status_params.merge(wall_id: wall_id))
 
     if @status.save
+      @activity = @status.activities.last
+      @status_comment_counts = {}
+      @status_comment_counts[@status.id] = 0
       render :show
     else
       render 'api/shared/errors', errors: status.errors.full_messages

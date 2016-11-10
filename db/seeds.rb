@@ -145,14 +145,6 @@ accepted_friendships.each do |pair|
   friendship.accept!
 end
 
-requested_friendships = [
-  [emperor, luke]
-]
-
-requested_friendships.each do |pair|
-  friendship = Friendship.request(pair[0], pair[1])
-end
-
 blocked_friendships = [
   [luke, darth]
 ]
@@ -307,6 +299,19 @@ end
 
 def get_droids
   User.where(demo: true, lname: 'DROID').all.to_a
+end
+
+droids = get_droids
+
+requested_friendships = [
+  [emperor, luke],
+  [droids[0], luke],
+  [droids[1], luke],
+  [droids[2], luke]
+]
+
+requested_friendships.each do |pair|
+  friendship = Friendship.request(pair[0], pair[1])
 end
 
 def random_droid

@@ -9,7 +9,8 @@ class Activity < ApplicationRecord
 
   belongs_to :status,
     -> { includes(:activities).where(activities: {feedable_type: 'Status'}) },
-    foreign_key: :feedable_id
+    foreign_key: :feedable_id,
+    optional: true
 
   has_many :comments,
     -> { includes(:user, :media_items)},
