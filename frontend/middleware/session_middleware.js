@@ -25,8 +25,10 @@ export default ({ getState, dispatch }) => next => action => {
       demoLogin(success, error);
       break;
     case LOGOUT:
-      logout(() => browserHistory.push('/login'));
-      break;
+      next(action);
+      browserHistory.push('/login');
+      logout(() => {});
+      return;
     case UPDATE_USER:
       success = user => {
         user.saved = true;

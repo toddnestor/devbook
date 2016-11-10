@@ -1,4 +1,4 @@
-import { RECEIVE_PROFILE, RECEIVE_PROFILE_FRIENDS } from '../actions/profile_actions';
+import { FETCH_PROFILE, RECEIVE_PROFILE, RECEIVE_PROFILE_FRIENDS } from '../actions/profile_actions';
 import { UPDATE_FRIENDSHIP_STATUS } from '../actions/friend_actions';
 import { LOGOUT } from '../actions/session_actions';
 
@@ -8,6 +8,9 @@ const ProfileReducer = (state = _defaultState, action) => {
   Object.freeze(state);
 
   switch( action.type ) {
+    case FETCH_PROFILE:
+      return state;
+      break;
     case RECEIVE_PROFILE:
       return action.profile;
     case UPDATE_FRIENDSHIP_STATUS:
