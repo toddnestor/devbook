@@ -1,7 +1,7 @@
 import React from 'react';
 import DropdownButton from '../utilities/dropdown_button';
 
-const RequestedFriendButton = ({ user, denyFriendRequest, acceptFriendRequest, handleBlockUser }) => {
+const RequestedFriendButton = ({ user, denyFriendRequest, acceptFriendRequest, handleBlockUser, style = {} }) => {
 
   const handleDenyFriendRequest = e => {
     e.preventDefault();
@@ -14,7 +14,7 @@ const RequestedFriendButton = ({ user, denyFriendRequest, acceptFriendRequest, h
   }
 
   return (
-    <DropdownButton className="btn btn-info-outline btn-sm friend-button" buttonContent={<span><span className="icon icon-add-user"></span> Respond to Request <span className="caret"></span></span>}>
+    <DropdownButton style={style} className="btn btn-info-outline btn-sm friend-button" buttonContent={<span><span className="icon icon-add-user"></span> Respond to Request <span className="caret"></span></span>}>
       <ul className="dropdown-menu">
         <li>
           <a href="#" onClick={handleAcceptFriendRequest}>

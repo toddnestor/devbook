@@ -1,7 +1,7 @@
 import React from 'react';
 import DropdownButton from '../utilities/dropdown_button';
 
-const BlockedFriendButton = ({ user, unBlockUser }) => {
+const BlockedFriendButton = ({ user, unBlockUser, style={} }) => {
 
   const handleUnBlockUser = e => {
     e.preventDefault();
@@ -9,7 +9,7 @@ const BlockedFriendButton = ({ user, unBlockUser }) => {
   }
 
   return (
-    <DropdownButton className="btn btn-danger-outline btn-sm friend-button" buttonContent={<span><span className="icon icon-block"></span> Blocked <span className="caret"></span></span>}>
+    <DropdownButton style={style} className="btn btn-danger-outline btn-sm friend-button" buttonContent={<span><span className="icon icon-block"></span> Blocked <span className="caret"></span></span>}>
       <ul className="dropdown-menu">
         <li>
           <a href="#" onClick={handleUnBlockUser}>

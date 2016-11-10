@@ -181,3 +181,11 @@ button.has-dropdown {
 .img-rounded {
   border-radius: 4px !important;
 }
+
+.bg-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background-size: cover;
+  background-position: center;
+}

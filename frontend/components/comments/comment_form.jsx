@@ -44,7 +44,8 @@ class CommentForm extends React.Component {
     return (
       <div className="form-group post-creation media clearfix m-t-md">
         <div className="media-left">
-          <img className="media-object" style={{borderRadius: '6px', maxWidth: '40px'}} src={user.avatar_url} />
+          <span className="media-object bg-avatar" style={{backgroundImage: `url(${user.avatar_url})`, borderRadius: '4px', width: '40px'}}>
+          </span>
         </div>
         <div className="media-body">
           <Textarea type="text"

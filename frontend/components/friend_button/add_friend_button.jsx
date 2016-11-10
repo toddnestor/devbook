@@ -1,7 +1,7 @@
 import React from 'react';
 import DropdownButton from '../utilities/dropdown_button';
 
-const AddFriendButton = ({ user, requestFriend, handleBlockUser }) => {
+const AddFriendButton = ({ user, requestFriend, handleBlockUser, style = {} }) => {
 
   const handleRequestFriend = e => {
     e.preventDefault();
@@ -9,7 +9,7 @@ const AddFriendButton = ({ user, requestFriend, handleBlockUser }) => {
   }
 
   return (
-    <div className="btn-group friend-button">
+    <div className="btn-group friend-button" style={style}>
       <button className="btn btn-primary-outline btn-sm" onClick={handleRequestFriend}>
         <span className="icon icon-add-user"></span>
          Friends

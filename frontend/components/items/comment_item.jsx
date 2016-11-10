@@ -11,7 +11,8 @@ const CommentItem = ({ comment, isOwner }) => {
     <li className="media comment-item">
       {isOwner ? <CommentActionsContainer comment={comment} /> : ""}
       <Link className="media-left" to={`/${comment.user.username}`}>
-        <img className="media-object img-rounded" src={comment.user.avatar_url} />
+        <span className="media-object bg-avatar" style={{backgroundImage: `url(${comment.user.avatar_url})`, borderRadius: '4px'}}>
+        </span>
       </Link>
       <div className="media-body">
         <small className="pull-right text-muted">{moment(comment.created_at).fromNow()}</small>

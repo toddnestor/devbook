@@ -13,7 +13,9 @@ const FriendButton = ({ currentUser,
                         unfriendUser,
                         acceptFriendRequest,
                         denyFriendRequest,
-                        user }) => {
+                        user,
+                        style = {}}) => {
+
   const handleBlockUser = e => {
     e.preventDefault();
     blockUser(user);
@@ -22,15 +24,15 @@ const FriendButton = ({ currentUser,
   const displayButton = ()  => {
     switch(user.friend_status) {
       case 'none':
-        return <AddFriendButton user={user} requestFriend={requestFriend} handleBlockUser={handleBlockUser} />
+        return <AddFriendButton style={style} user={user} requestFriend={requestFriend} handleBlockUser={handleBlockUser} />
       case 'requested':
-        return <RequestedFriendButton user={user} denyFriendRequest={denyFriendRequest} acceptFriendRequest={acceptFriendRequest} handleBlockUser={handleBlockUser} />
+        return <RequestedFriendButton style={style} user={user} denyFriendRequest={denyFriendRequest} acceptFriendRequest={acceptFriendRequest} handleBlockUser={handleBlockUser} />
       case 'pending':
-        return <PendingFriendButton user={user} cancelRequest={cancelRequest} handleBlockUser={handleBlockUser} />
+        return <PendingFriendButton style={style} user={user} cancelRequest={cancelRequest} handleBlockUser={handleBlockUser} />
       case 'blocked':
-        return <BlockedFriendButton user={user} unBlockUser={unBlockUser} />
+        return <BlockedFriendButton style={style} user={user} unBlockUser={unBlockUser} />
       case 'accepted':
-        return <AcceptedFriendButton user={user} unfriendUser={unfriendUser} handleBlockUser={handleBlockUser} />
+        return <AcceptedFriendButton style={style} user={user} unfriendUser={unfriendUser} handleBlockUser={handleBlockUser} />
     }
 
     return <span style={{display: 'none'}}></span>;

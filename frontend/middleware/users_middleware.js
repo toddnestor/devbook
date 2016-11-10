@@ -16,7 +16,11 @@ export default ({ getState, dispatch }) => next => action => {
         dispatch( receiveFoundUsers(users));
       };
 
-      searchUsers(action.search, success, error);
+      if( action.search ) {
+        searchUsers(action.search, success, error);
+      } else {
+        success([]);
+      }
       break;
   }
 

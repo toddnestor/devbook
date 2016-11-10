@@ -27,12 +27,12 @@ class DropdownButton extends React.Component {
   }
 
   render() {
-    let { buttonContent, children, className } = this.props;
+    let { buttonContent, children, className, style = {} } = this.props;
 
     let classes = className + ' has-dropdown' || 'btn btn-default has-dropdown';
 
     return (
-      <button type="button" className={classes} onClick={this.toggleDropdown.bind(this)}>
+      <button type="button" className={classes} style={style} onClick={this.toggleDropdown.bind(this)}>
         {buttonContent}
         <div className="dropdown" style={{display: this.state.dropdownOpen ? 'block' : 'none'}}>
           { children }

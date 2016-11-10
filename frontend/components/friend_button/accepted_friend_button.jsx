@@ -1,7 +1,7 @@
 import React from 'react';
 import DropdownButton from '../utilities/dropdown_button';
 
-const AcceptedFriendButton = ({ user, unfriendUser, handleBlockUser }) => {
+const AcceptedFriendButton = ({ user, unfriendUser, handleBlockUser, style = {} }) => {
 
   const handleUnfriendUser = e => {
     e.preventDefault();
@@ -9,7 +9,7 @@ const AcceptedFriendButton = ({ user, unfriendUser, handleBlockUser }) => {
   }
 
   return (
-    <DropdownButton className="btn btn-success-outline btn-sm friend-button" buttonContent={<span><span className="icon icon-check"></span> Friends <span className="caret"></span></span>}>
+    <DropdownButton style={style} className="btn btn-success-outline btn-sm friend-button" buttonContent={<span><span className="icon icon-check"></span> Friends <span className="caret"></span></span>}>
       <ul className="dropdown-menu">
         <li>
           <a href="#" onClick={handleUnfriendUser}>

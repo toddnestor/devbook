@@ -3,7 +3,8 @@ import SearchUsers from './search_users';
 import { searchUsers } from '../../actions/users_actions';
 
 const mapStateToProps = state => ({
-
+  users: state.users.searchResults,
+  loading: state.users.searching
 });
 
 const mapDispatchToProps = dispatch => ({
