@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import ProfileMenuContainer from './home/profile_menu_container';
+import SearchUsersContainer from './users/search_users_container';
 
 const Nav = () => (
   <nav className="navbar navbar-inverse navbar-fixed-top app-navbar">
@@ -22,11 +23,7 @@ const Nav = () => (
 
         <ProfileMenuContainer />
 
-        <form className="navbar-form navbar-right app-search" role="search">
-          <div className="form-group">
-            <input type="text" className="form-control" placeholder="Search" />
-          </div>
-        </form>
+        <SearchUsersContainer />
       </div>
     </div>
   </nav>

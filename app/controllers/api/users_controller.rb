@@ -6,6 +6,11 @@ class Api::UsersController < ApplicationController
     @users = User.where.not(id: current_user.been_blocked_friendships.pluck(:friend_id)).all
   end
 
+  def search
+    @users = Search.new(User, params[:search]).run
+    render :index
+  end
+
   def create
     super do |user|
       login(user)

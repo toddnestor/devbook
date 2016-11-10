@@ -25,13 +25,15 @@ const Friendship = ({ activity }) => {
           <h5>{secondUser.fname} {secondUser.lname}</h5>
         </Link>
       </div>
-      <div>
-        <Link to={`/${firstUser.username}`} className="media-left pull-left">
-          <img className="media-object img-rounded" src={firstUser.avatar_url} />
-        </Link>
-        <Link to={`/${secondUser.username}`} className="media-left pull-right">
-          <img className="media-object img-rounded" src={secondUser.avatar_url} />
-        </Link>
+      <div className="clearfix">
+        <div className="col-sm-6" style={{display: 'flex', justifyContent: 'space-between', left: '50%', transform: 'translateX(-50%)'}}>
+          <Link to={`/${firstUser.username}`} className="media-left">
+            <img className="media-object img-rounded" src={firstUser.avatar_url} />
+          </Link>
+          <Link to={`/${secondUser.username}`} className="media-left">
+            <img className="media-object img-rounded" src={secondUser.avatar_url} />
+          </Link>
+        </div>
       </div>
       <Comments activity={activity} />
     </div>

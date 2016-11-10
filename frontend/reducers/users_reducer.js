@@ -4,6 +4,7 @@ import { LOGOUT } from '../actions/session_actions';
 
 const _defaultState = {
   users: {},
+  searchResults: [],
   loading: false
 };
 
