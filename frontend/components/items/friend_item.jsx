@@ -6,7 +6,7 @@ const FriendItem = ({ friend, Element = `li`, noUsername = false, style = {} }) 
   <Element className="media m-b friend-item">
     <Link to={`/${friend.username}`} className="media-left">
 
-      <span className="media-object bg-avatar" style={{backgroundImage: `url(${friend.avatar_url})`}}>
+      <span className="media-object bg-avatar" style={{backgroundImage: `url(${friend.avatar_url})`, borderRadius: '4px', height: '60px'}}>
       </span>
     </Link>
     <div className="media-body">
