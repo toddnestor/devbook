@@ -7,14 +7,12 @@ import Notification from '../items/notification';
 import AdCard from '../cards/ad_card';
 import FriendsCard from '../cards/friends_card';
 
-import { dummyPhotos } from '../profile/dummy_content';
-
 const Home = ({ currentUser, overlay, hideOverlay }) => (
   <div className="container p-t-md">
     <div className="col-md-3">
       <ProfileCard user={currentUser} />
       <AboutCard user={currentUser} />
-      <PhotosCard photos={dummyPhotos} />
+      <PhotosCard albums={currentUser.albums} user={currentUser} />
     </div>
     <div className="col-md-6">
       <Feed wallId={'home'} />

@@ -1,13 +1,18 @@
 import React from 'react';
-import PhotoItem from '../items/photo_item_container';
+import AlbumItem from '../items/album_item';
+import { Link } from 'react-router';
 
-const PhotosCard = ({ photos }) => (
-  <div className="panel panel-default visible-md-block visible-lg-block photos-card">
+const PhotosCard = ({ albums = [], user }) => (
+  <div className="panel panel-default visible-md-block visible-lg-block photos-card" style={{display: albums.length ? 'block' : 'none'}}>
     <div className="panel-body">
-      <h5 className="m-t-0">Photos <small style={{display: 'none'}}>· <a href="#">Edit</a></small></h5>
+      <h5 className="m-t-0">Albums <small>· <Link to={`/${user.username}/albums`}>View all</Link></small></h5>
       <div>
         {
-          photos.map( photo => <PhotoItem key={photo.id} photo={photo} />)
+          albums.map( album => (
+            <Link key={album.id} to={`/${user.username}/albums/${album.id}`}>
+              <AlbumItem album={album} />
+            </Link>
+          ))
         }
       </div>
     </div>

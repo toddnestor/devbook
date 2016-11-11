@@ -17,7 +17,7 @@ import AlbumsContainer from './albums/albums_container';
 import AlbumsIndexContainer from './albums/albums_index_container';
 import AlbumCreationContainer from './albums/album_creation_container';
 import AlbumContainer from './albums/album_container';
-import AlbumPhotos from './albums/album_photos';
+import AlbumPhotos from './albums/album_photos_container';
 import PhotoContainer from './albums/photo_container';
 import AlbumEditingContainer from './albums/album_editing_container';
 
@@ -60,21 +60,13 @@ class Root extends React.Component {
             <Route path="albums" component={AlbumsContainer}>
               <IndexRoute component={AlbumsIndexContainer} />
               <Route path="new" component={AlbumCreationContainer} />
-              <Route path=":album_id" component={AlbumContainer}>
-                <IndexRoute component={AlbumPhotos} />
-                <Route path="edit" component={AlbumEditingContainer} />
-                <Route path=":photo_id" component={PhotoContainer} />
-              </Route>
             </Route>
             <Route path=":username" component={ProfileContainer}>
               <IndexRoute component={PostsContainer} />
-              <Route path="photos" component={PhotosContainer}>
-                <IndexRoute component={PhotosList} />
-                <Route path="albums" component={AlbumsIndexContainer}>
-                  <Route path=":album_id" component={AlbumContainer}>
-                    <IndexRoute component={AlbumPhotos} />
-                    <Route path=":photo_id" component={PhotoContainer} />
-                  </Route>
+              <Route path="albums" component={AlbumsContainer}>
+                <IndexRoute component={AlbumsIndexContainer} />
+                <Route path=":album_id" component={AlbumContainer}>
+                  <IndexRoute component={AlbumPhotos} />
                 </Route>
               </Route>
               <Route path="friends" component={FriendsContainer} />

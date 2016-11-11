@@ -5,7 +5,8 @@ class MediaItem < ApplicationRecord
                       avatar: "180x180#",
                       wide: "260x183#",
                       narrow: "175x183#",
-                      square: "300x300#"
+                      square: "300x300#",
+                      small: "500x500"
                     }
 
   validates_attachment_content_type :media, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]

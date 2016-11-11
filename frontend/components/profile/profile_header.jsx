@@ -6,8 +6,8 @@ const ProfileHeader = ({ profile, router, username }) => {
   const getActiveTab = () => {
     let currentPath = router.getCurrentLocation().pathname;
 
-    if( currentPath.match(/^\/.*\/photos$/i) ) {
-      return 'photos';
+    if( currentPath.match(/^\/.*\/albums/i) ) {
+      return 'albums';
     } else if( currentPath.match(/^\/.*\/friends$/i)) {
       return 'friends';
     } else {
@@ -35,9 +35,9 @@ const ProfileHeader = ({ profile, router, username }) => {
               Posts
             </Link>
           </li>
-          <li className={getActiveTab() == 'photos' ? 'active' : ''}>
-            <Link to={`/${username}/photos`}>
-              Photos
+          <li className={getActiveTab() == 'albums' ? 'active' : ''}>
+            <Link to={`/${username}/albums`}>
+              Albums
             </Link>
           </li>
           <li className={getActiveTab() == 'friends' ? 'active' : ''}>

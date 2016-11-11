@@ -7,12 +7,14 @@ import { CREATE_ALBUM,
          receiveAlbum,
          receiveAlbums,
          removeAlbum } from '../actions/album_actions';
+import { FETCH_PHOTOS, receivePhotos } from '../actions/photo_actions';
 import { createAlbum,
          updateAlbum,
          destroyAlbum,
          fetchAlbum,
          fetchAlbums,
          fetchMyAlbums } from '../util/album_api';
+import { fetchPhotos } from '../util/photo_api';
 import { browserHistory } from 'react-router';
 
 export default ({ getState, dispatch }) => next => action => {
@@ -30,6 +32,10 @@ export default ({ getState, dispatch }) => next => action => {
       }
 
       createAlbum(action.album, success, error);
+      break;
+    case FETCH_PHOTOS:
+      success = photos => dispatch(receivePhotos(photos));
+      fetchPhotos(action.id, success, error);
       break;
     case UPDATE_ALBUM:
       success = album => dispatch( receiveAlbum( album ) );

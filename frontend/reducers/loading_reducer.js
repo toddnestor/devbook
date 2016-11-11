@@ -12,6 +12,7 @@ import { CREATE_ALBUM,
          FETCH_ALBUMS,
          FETCH_MY_ALBUMS,
          RECEIVE_ALBUMS } from '../actions/album_actions';
+import { FETCH_PHOTOS, RECEIVE_PHOTOS } from '../actions/photo_actions';
 
 const _defaultState = {albums: {}};
 import merge from 'lodash/merge';
@@ -21,6 +22,12 @@ const LoadingReducer = (state = _defaultState, action) => {
   let duped = merge({}, state);
 
   switch( action.type ) {
+    case FETCH_PHOTOS:
+      duped.fetchingPhotos = true;
+      return duped;
+    case RECEIVE_PHOTOS:
+      duped.fetchingPhotos = false;
+      return duped;
     case CREATE_STATUS:
       duped.createStatus = true;
       return duped;
@@ -50,6 +57,7 @@ const LoadingReducer = (state = _defaultState, action) => {
     case FETCH_ALBUM:
       duped.albums.fetchingOne = true;
       return duped;
+    case FETCH_PROFILE:
     case FETCH_MY_ALBUMS:
     case FETCH_ALBUMS:
       duped.albums.fetchingMany = true;

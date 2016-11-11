@@ -24,7 +24,8 @@ class Upload extends React.Component {
     this.options = _.merge( {
       callback: files => console.log(files),
       multiple: true,
-      accept: 'image/*'
+      accept: 'image/*',
+      modal: true
     }, this.props );
   }
 
@@ -83,16 +84,36 @@ class Upload extends React.Component {
     let { children, className, style } = this.props;
     let { loading } = this.state;
 
-    return (
-      <div onClick={this.toggleModal.bind(this)} className={`upload-area ${className}`} style={style}>
-        {children}
-        <Modal
+    if( this.options.modal ) {
+      return (
+        <div onClick={this.toggleModal.bind(this)} className={`upload-area ${className}`} style={style}>
+          {children}
+          <Modal
             isOpen={this.state.modalIsOpen}
             onRequestClose={this.closeModal.bind(this)}
             style={customStyles}
             contentLabel="Upload Files"
             shouldCloseOnOverlayClick={!loading}
-          >
+            >
+            <div>
+              <div style={{display: loading ? 'block' : 'none'}} className="dropzone-loading">
+                <div className="loader">
+                </div>
+              </div>
+              <div style={{display: loading ? 'none' : 'block'}}>
+                <Dropzone multiple={this.options.multiple} accept={this.options.accept} className="dropzone" activeClassName="dropzone-dragging" onDrop={this.onDrop.bind(this)}>
+                  <div>
+                    Drop file{this.options.multiple ? 's' : ''} here or click to upload.
+                  </div>
+                </Dropzone>
+              </div>
+            </div>
+          </Modal>
+        </div>
+      );
+    } else {
+      return (
+        <div onClick={this.toggleModal.bind(this)} className={`upload-area ${className}`} style={style}>
           <div>
             <div style={{display: loading ? 'block' : 'none'}} className="dropzone-loading">
               <div className="loader">
@@ -100,15 +121,14 @@ class Upload extends React.Component {
             </div>
             <div style={{display: loading ? 'none' : 'block'}}>
               <Dropzone multiple={this.options.multiple} accept={this.options.accept} className="dropzone" activeClassName="dropzone-dragging" onDrop={this.onDrop.bind(this)}>
-                <div>
-                  Drop file{this.options.multiple ? 's' : ''} here or click to upload.
-                </div>
+                {children}
               </Dropzone>
             </div>
           </div>
-        </Modal>
-      </div>
-    )
+        </div>
+      );
+    }
+
   }
 }
 

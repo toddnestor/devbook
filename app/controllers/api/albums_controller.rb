@@ -20,7 +20,12 @@ class Api::AlbumsController < ApplicationController
   end
 
   def photos
-    @media_items = Album.find(params[:album_id]).media_items
+    @media_items = @album.media_items
+  end
+
+  private
+  def set_album
+    @album = Album.find(params[:album_id])
   end
 
   def input_params

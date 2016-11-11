@@ -1,21 +1,45 @@
 .photos-card {
 
-  .photo-item:nth-child(odd) {
+  a:nth-child(odd) .album-item {
     margin-right: 10px;
   }
 
-  .photo-item:nth-child(even) {
+  a:nth-child(even) .album-item {
     margin-right: 0px;
   }
 
-  .photo-item {
+  .album-item {
     margin-bottom: 10px;
     display: inline-block;
     vertical-align: bottom;
 
+    .album-title {
+      color: white;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+      text-shadow: 0 0 4px black;
+      background: rgba(0,0,0,0.7);
+      cursor: pointer;
+
+      div:first-child {
+        display: none;
+      }
+    }
+
     img {
       width: 114px;
       height: 118px;
+    }
+
+    img.img-thumbnail {
+      padding: 0;
+      border: none;
+      border-radius: 0;
     }
   }
 }

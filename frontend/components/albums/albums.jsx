@@ -7,7 +7,15 @@ class Albums extends React.Component {
     }
 
     componentWillMount() {
-      this.props.fetchAlbums(this.props.user.id);
+      if( this.props.user && this.props.user.id ) {
+        this.props.fetchAlbums(this.props.user.id);
+      }
+    }
+
+    componentWillReceiveProps(newProps) {
+      if( (!this.props.user || !this.props.user.id) && (newProps.user && newProps.user.id) ) {
+        this.props.fetchAlbums(newProps.user.id);
+      }
     }
 
     render() {

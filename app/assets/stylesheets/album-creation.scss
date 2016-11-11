@@ -17,15 +17,17 @@
   }
 
 
-  .upload {
+  .dropzone {
     font-size: 2em;
     font-weight: bold;
     padding: 87px 60px;
     display: inline-block;
     border: 4px dashed blue;
+    width:100%;
+    text-align: center;
   }
 
-  .upload:hover {
+  .upload.dropzone-dragging {
     border-width: 8px;
     padding: 83px 56px;
     background: #eee;
@@ -35,7 +37,7 @@
 .albums {
 
   .album-item {
-    max-width: 226px;
+    width: 226px;
     display: inline-block;
     margin-right: 10px;
 
@@ -57,5 +59,34 @@
       max-height: 226px;
       cursor: pointer;
     }
+
+  }
+
+  .image-previews {
+    max-width: 85%;
+    width: 85%;
+  }
+}
+
+.album-list {
+  padding: 15px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  position: relative;
+
+  .create-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+.album {
+  .photo-item {
+    margin-bottom: 10px;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: bottom;
   }
 }

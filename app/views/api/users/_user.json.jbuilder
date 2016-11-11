@@ -7,6 +7,12 @@ json.set! :friends do
   end
 end
 
+json.set! :albums do
+  json.array! user.albums.limit(6).each do |album|
+    json.partial! 'api/albums/album.json.jbuilder', album: album
+  end
+end
+
 status = current_user.friend_status(user)
 
 json.friend_status status

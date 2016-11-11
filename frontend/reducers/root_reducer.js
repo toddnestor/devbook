@@ -8,6 +8,7 @@ import OverlayReducer from './overlay_reducer';
 import FeedReducer from './feed_reducer';
 import NotificationsReducer from './notifications_reducer';
 import AlbumReducer from './album_reducer';
+import PhotosReducer from './photos_reducer';
 
 const RootReducer = combineReducers({
   session: SessionReducer,
@@ -18,7 +19,8 @@ const RootReducer = combineReducers({
   overlay: OverlayReducer,
   feed: FeedReducer,
   notifications: NotificationsReducer,
-  albums: AlbumReducer
+  albums: AlbumReducer,
+  photos: PhotosReducer
 });
 
 export default RootReducer;

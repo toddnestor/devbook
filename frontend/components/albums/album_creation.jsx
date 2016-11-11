@@ -28,7 +28,9 @@ class AlbumCreation extends React.Component {
 
   update(attribute) {
     return e => {
-      this.setState({[attribute]: e.target.value});
+      let album = _.merge({}, this.state.album);
+      album[attribute] = e.target.value;
+      this.setState({album});
     }
   }
 
@@ -63,13 +65,15 @@ class AlbumCreation extends React.Component {
               </div>
             </form>
           </div>
-          <div className="col-md-offset-1 col-md-10 photo-selection">
-            {
-              this.state.mediaItems.map( item => <PhotoItem key={item.id} showRemove={true} removeCb={this.removeMediaItem(item).bind(this)} photo={{url: item.urls.large}} />)
-            }
-            <Upload className="upload pointer" callback={this.addMedia.bind(this)} multiple={true}>
-              Add Photos
+          <div className="col-md-offset-1 col-md-10">
+            <Upload className="upload pointer" callback={this.addMedia.bind(this)} modal={false} multiple={true}>
+              Drop files here or click to upload.
             </Upload>
+          </div>
+          <div className="col-md-offset-1 col-md-10 photo-selection image-previews">
+            {
+              this.state.mediaItems.map( item => <PhotoItem key={item.id} showRemove={true} removeCb={this.removeMediaItem(item).bind(this)} photo={{url: item.urls.small}} />)
+            }
           </div>
           <div className="col-md-offset-3 col-md-6 clearfix">
             <button onClick={this.handlePostCreate.bind(this)} className="btn btn-success btn-lg green-button sign-up-button pull-right m-b">Create Album</button>
