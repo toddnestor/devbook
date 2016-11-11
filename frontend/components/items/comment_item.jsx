@@ -5,7 +5,7 @@ import PhotoItem from './photo_item_container';
 import CommentActionsContainer from '../comments/comment_actions_container';
 
 const CommentItem = ({ comment, isOwner }) => {
-  const renderPhoto = () => <PhotoItem photo={{url: comment.media_items[0].urls.large}} />;
+  const renderPhoto = () => <PhotoItem photo={{url: comment.media_items[0].urls.small}} zoomUrl={comment.media_items[0].urls.large} />;
 
   return (
     <li className="media comment-item">
