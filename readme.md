@@ -25,7 +25,41 @@
 
   Users can search for other users and send friend requests to them.
 
+  Friendships were implemented using a friendship join table that joins the user table with itself.  There is a status column to determine what state the friendship is in.
+
   ![User search](./docs/images/devbook-search.png)
+
+  lodash's `debounce` method was utilized for the search so that ajax requests are not sent off while a user is actively typing.  It waits until the user has stopped typing for 250ms before sending off the request.
+
+  ```javascript
+  this.conductSearch = _.debounce(() => {
+    this.props.searchUsers(this.state.searchTerm);
+  }, 250);
+  ```
+
+  When a user requests to be friends with another user it creates two friendship entries.  One for each user as the user_id and the opposite user as the friend_id.  The user who created the request's entry shows "pending" as the status, the other user's status shows "requested".  When a request is accepted both entries' statuses are changed to "accepted".
+
+  The Active Record State Machine was utilized to keep these entries in sync.
+
+  ```ruby
+  state_machine :status, initial: :pending do
+    after_transition on: :accept, do: [:accept_mutual_friendship!]
+    after_transition on: :block, do: [:block_mutual_friendship!]
+
+    event :accept do
+      transition any => :accepted
+    end
+
+    event :block do
+      transition any => :blocked
+    end
+  end
+  ```
+
+  This means that when `accept!` is called on a friendship, then the status is changed to "accepted" and then after that transition it changes the status on the other entry to "accepted" as well.
+
+  Blocking works in a similar way changing the status of the friendship for the friend doing the blocking to "blocked" and then changing the status of the friendship for the blocked friend to "been_blocked".  This is so that we can track who did the blocking and only the user who did the blocking can unblock the other user.
+
 
 ### Post status updates that can optionally include one or many images
 
@@ -44,6 +78,25 @@
   Users can view a feed of friends' status updates and other activities.  The feed  will load more items when a user scrolls to the bottom of the feed.
 
   ![View feed](./docs/images/devbook-feed.png)
+
+  There are multiple types of activities showing up in the feed.  There are status updates, user updates (user updated profile image, user updated relationship status, etc.), so the `ActivityItem` component renders different components based on this type.
+
+  ```javascript
+  const renderItem = () => {
+    switch( activity.feedable_type ) {
+      case 'Status':
+        return <Status activity={activity} />
+      case 'User':
+        return <UserUpdate activity={activity} />
+      case 'Friendship':
+        return <Friendship activity={activity} />
+      default:
+        return <span style={{display: 'none'}}></span>
+    }
+  }
+  ```
+
+  The switch is on the `feedable_type` of the activity because activities have a polymorphic relationship with statuses, users, friendships, and other models.  `feedable` is the alias for this relationship.  The activities table has both `feedable_type` and `feedable_id` columns to track it's parent.
 
 ### Comment on any activity or status update and include an optional picture on comments
 
