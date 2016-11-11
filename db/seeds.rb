@@ -566,3 +566,8 @@ demo_users.each do |user|
     create_random_album(user, all_images)
   end
 end
+
+luke.statuses.create(
+  content: "Everyone needs to stop what they're doing and watch this preview for an upcoming documentary about how we got the plans for the original Death Star: https://www.youtube.com/watch?v=frdj1zb9sMY",
+  wall_id: luke.id
+)
