@@ -12,7 +12,7 @@ const PhotosList = ({ photos }) => {
         moreDummyPhotos.map((photo, i) => <PhotoItem key={i} photo={photo} />)
       }
     </div>
-  )
+  );
 }
 
 export default PhotosList;

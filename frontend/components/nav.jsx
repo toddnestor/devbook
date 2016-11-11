@@ -19,6 +19,9 @@ const Nav = () => (
           <li className={location.pathname == '/users' ? 'active' : ''}>
             <Link to="/users">Users</Link>
           </li>
+          <li className={location.pathname == '/albums' ? 'active' : ''}>
+            <Link to="/albums">Albums</Link>
+          </li>
         </ul>
 
         <ProfileMenuContainer />

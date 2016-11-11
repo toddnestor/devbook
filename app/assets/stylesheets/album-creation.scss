@@ -1,0 +1,61 @@
+.album-creation {
+  border: 1px solid #d3e0e9;
+  border-radius: 4px;
+  background: #fff;
+
+  form {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+
+  .photo-item {
+    img {
+      max-height: 226px;
+    }
+  }
+
+
+  .upload {
+    font-size: 2em;
+    font-weight: bold;
+    padding: 87px 60px;
+    display: inline-block;
+    border: 4px dashed blue;
+  }
+
+  .upload:hover {
+    border-width: 8px;
+    padding: 83px 56px;
+    background: #eee;
+  }
+}
+
+.albums {
+
+  .album-item {
+    max-width: 226px;
+    display: inline-block;
+    margin-right: 10px;
+
+    .album-title {
+      color: white;
+      position: absolute;
+      bottom: 5px;
+      left: 5px;
+      right: 5px;
+      text-align: center;
+      padding: 30px;
+      font-weight: bold;
+      text-shadow: 0 0 4px black;
+      background: rgba(0,0,0,0.7);
+      cursor: pointer;
+    }
+
+    img {
+      max-height: 226px;
+      cursor: pointer;
+    }
+  }
+}

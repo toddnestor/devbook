@@ -2,7 +2,12 @@ import React from 'react'
 
 class Album extends React.Component {
   render () {
-    return <div />
+    return (
+      <div>
+        the album goes here
+      </div>
+    )
+
   }
 }
 

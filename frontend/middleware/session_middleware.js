@@ -15,6 +15,7 @@ export default ({ getState, dispatch }) => next => action => {
     dispatch( receiveCurrentUser( user ) );
     browserHistory.push('/');
   }
+  
   const error = xhr => dispatch( receiveErrors( xhr.responseJSON ) );
 
   switch(action.type) {

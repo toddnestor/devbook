@@ -15,3 +15,15 @@ export const sortedUsers = state => {
     }
   });
 }
+
+export const allAlbums = ({ albums }) => _.values(albums);
+
+export const sortedAlbums = state => {
+  return allAlbums(state).sort((a, b) => {
+    if( a.title < b.title ) {
+      return -1;
+    } else {
+      return 1;
+    }
+  } );
+}

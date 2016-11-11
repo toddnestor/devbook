@@ -13,6 +13,7 @@ import { createAlbum,
          fetchAlbum,
          fetchAlbums,
          fetchMyAlbums } from '../util/album_api';
+import { browserHistory } from 'react-router';
 
 export default ({ getState, dispatch }) => next => action => {
   let success = albums => {
@@ -23,7 +24,11 @@ export default ({ getState, dispatch }) => next => action => {
 
   switch( action.type ) {
     case CREATE_ALBUM:
-      success = album => dispatch( receiveAlbum( album ) );
+      success = album => {
+        browserHistory.push(`/albums/${album.id}`);
+        dispatch( receiveAlbum( album ) );
+      }
+
       createAlbum(action.album, success, error);
       break;
     case UPDATE_ALBUM:
