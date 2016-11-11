@@ -538,3 +538,31 @@ crazy_battles = luke.statuses.create(
   media_item_ids: media_ids,
   wall_id: luke.id
 )
+
+all_images = random_images + droid_images + [walkers, stormtrooper, han_chewie, millenium_falcon, han_i_know_solo, obi_yoda]
+
+demo_users = User.where(demo: true)
+
+def random_media_items(media_items)
+  media_item_ids = []
+  rand(6..15).times do
+    media_item_ids << media_items.reject {|item| media_item_ids.include?(item.id)}.sample.id
+  end
+  media_item_ids
+end
+
+def create_random_album(user, media_items)
+  user.albums.create(
+    title: Faker::StarWars.specie,
+    description: Faker::StarWars.quote,
+    media_item_ids: random_media_items(media_items)
+  )
+end
+
+p "making random albums"
+
+demo_users.each do |user|
+  rand(3..7).times do
+    create_random_album(user, all_images)
+  end
+end
