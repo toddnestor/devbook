@@ -3,6 +3,7 @@ import Status from './activities/status';
 import UserUpdate from './activities/user_update';
 import Friendship from './activities/friendship';
 import StatusActionsContainer from './activities/status_actions_container';
+import Album from './activities/album';
 import { Link } from 'react-router';
 
 const ActivityItem = ({ activity, currentUser }) => {
@@ -14,6 +15,8 @@ const ActivityItem = ({ activity, currentUser }) => {
         return <UserUpdate activity={activity} />
       case 'Friendship':
         return <Friendship activity={activity} />
+      case 'Album':
+        return <Album activity={activity} />
       default:
         return <span style={{display: 'none'}}></span>
     }

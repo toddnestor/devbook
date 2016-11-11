@@ -1,4 +1,6 @@
 class Album < ApplicationRecord
+  after_create :create_activity
+
   belongs_to :user
   has_many :attachments, as: :attachable, dependent: :destroy
   has_many :media_items, through: :attachments
@@ -22,7 +24,7 @@ class Album < ApplicationRecord
   end
 
   def create_activity
-    self.activities.create(wall_id: self.wall_id, user_id: self.user_id, action: 'created')
+    self.activities.create(wall_id: self.user_id, user_id: self.user_id, action: 'created')
   end
 
   def can_comment?(other_user)

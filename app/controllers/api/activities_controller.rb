@@ -16,7 +16,14 @@ class Api::ActivitiesController < ApplicationController
       @activities = @activities.where.not(id: params[:created].map(&:to_i))
     end
 
-    @activities = @activities.includes(:user, :wall_user, :feedable, first_ten_comments: [:user, :media_items], status: [:user, :wall_user, :media_items, first_ten_comments: [:user, :media_items]])
+    @activities = @activities.includes(
+      :user,
+      :wall_user,
+      :feedable,
+      first_ten_comments: [:user, :media_items],
+      status: [:user, :wall_user, :media_items, first_ten_comments: [:user, :media_items]],
+      album: [:user, :media_items, comments: [:user, :media_items]]
+    )
 
     @activities = @activities.page(page)
 

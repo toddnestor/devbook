@@ -7,7 +7,7 @@ const ActivityPhotos = ({ media_items }) => {
 
     return (
       <div className="only-photo">
-        <PhotoItem photo={{url: photo.urls.large}} />
+        <PhotoItem photo={{url: photo.urls.small}} zoomUrl={photo.urls.large} />
       </div>
     )
   }
@@ -29,7 +29,7 @@ const ActivityPhotos = ({ media_items }) => {
   return (
     <div className="image-previews">
       {
-        media_items.map( photo => <PhotoItem key={photo.id} photo={{url: photo.urls.large}} />)
+        media_items.map( photo => <PhotoItem key={photo.id} photo={{url: photo.urls.small}} zoomUrl={photo.urls.large} />)
       }
     </div>
   );

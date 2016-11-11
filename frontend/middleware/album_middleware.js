@@ -27,7 +27,7 @@ export default ({ getState, dispatch }) => next => action => {
   switch( action.type ) {
     case CREATE_ALBUM:
       success = album => {
-        browserHistory.push(`/albums/${album.id}`);
+        browserHistory.push(`${getState().session.currentUser.username}/albums/${album.id}`);
         dispatch( receiveAlbum( album ) );
       }
 

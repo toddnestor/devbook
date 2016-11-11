@@ -25,6 +25,17 @@ if activity.feedable_type == 'Status'
 
   @comments = activity.status.first_ten_comments.first(10).to_a.reverse
   json.comment_count @status_comment_counts[activity.status.id]
+elsif activity.feedable_type == 'Album'
+  json.feedable activity.album
+  used_media_items = []
+  json.media_items do
+    json.array! activity.album.media_items do |media_item|
+      unless used_media_items.include?(media_item.id)
+        json.partial! 'api/media_items/media_item', media_item: media_item
+        used_media_items << media_item.id
+      end
+    end
+  end
 else
   json.feedable activity.feedable
   @comments = activity.first_ten_comments.first(10).to_a.reverse

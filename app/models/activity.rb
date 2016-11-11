@@ -12,6 +12,11 @@ class Activity < ApplicationRecord
     foreign_key: :feedable_id,
     optional: true
 
+  belongs_to :album,
+    -> { includes(:activities).where(activities: {feedable_type: 'Album'}) },
+    foreign_key: :feedable_id,
+    optional: true
+
   has_many :comments,
     -> { includes(:user, :media_items)},
     as: :commentable, dependent: :destroy
