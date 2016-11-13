@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, {activity}) => ({
   createComment: comment => {
-    if( activity.feedable_type == 'Status' ) {
+    if( activity.feedable_type == 'Status' || activity.feedable_type == 'Album' ) {
       comment.commentable_type = activity.feedable_type;
       comment.commentable_id = activity.feedable_id;
     } else {
@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch, {activity}) => ({
   deleteComment: comment => dispatch(deleteComment(comment)),
   fetchMoreComments: page => {
     let type, id;
-    if( activity.feedable_type == 'Status' ) {
+    if( activity.feedable_type == 'Status' || activity.feedable_type == 'Album' ) {
       type = activity.feedable_type;
       id = activity.feedable_id;
     } else {

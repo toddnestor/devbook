@@ -20,8 +20,8 @@ class Api::ActivitiesController < ApplicationController
       :user,
       :wall_user,
       :feedable,
-      first_ten_comments: [:user, :media_items],
-      status: [:user, :wall_user, :media_items, first_ten_comments: [:user, :media_items]],
+      comments: [:user, :media_items],
+      status: [:user, :wall_user, :media_items, comments: [:user, :media_items]],
       album: [:user, :media_items, comments: [:user, :media_items]]
     )
 
@@ -29,16 +29,20 @@ class Api::ActivitiesController < ApplicationController
 
     @activity_ids = []
     @status_ids = []
+    @album_ids = []
 
     @activities.each do |activity|
       if activity.feedable_type == 'Status'
         @status_ids << activity.status.id
+      elsif activity.feedable_type == 'Album'
+        @album_ids << activity.album.id
       else
         @activity_ids << activity.id
       end
     end
 
     @status_comment_counts = Comment.where(commentable_id: @status_ids, commentable_type: 'Status').group(:commentable_id).count
+    @album_comment_counts = Comment.where(commentable_id: @album_ids, commentable_type: 'Album').group(:commentable_id).count
     @activity_comment_counts = Comment.where(commentable_id: @activity_ids, commentable_type: 'Activity').group(:commentable_id).count
   end
 

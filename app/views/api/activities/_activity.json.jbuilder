@@ -23,7 +23,7 @@ if activity.feedable_type == 'Status'
     end
   end
 
-  @comments = activity.status.first_ten_comments.first(10).to_a.reverse
+  @comments = activity.status.comments.first(10).to_a.reverse
   json.comment_count @status_comment_counts[activity.status.id]
 elsif activity.feedable_type == 'Album'
   json.feedable activity.album
@@ -38,7 +38,7 @@ elsif activity.feedable_type == 'Album'
   end
 else
   json.feedable activity.feedable
-  @comments = activity.first_ten_comments.first(10).to_a.reverse
+  @comments = activity.comments.first(10).to_a.reverse
   json.comment_count @activity_comment_counts[activity.id]
 end
 
